@@ -15,7 +15,7 @@ const Login = () => {
 
             {/* Konten Login di tengah */}
             <div className="flex items-center justify-center h-full">
-                <div className="bg-white p-8 rounded-[40px] shadow-lg max-w-md w-full bg-opacity-45  lg:w[400px] ">
+            <div className="bg-white p-8 rounded-[40px] shadow-lg max-w-[400] max-h-[400px] w-full h-full bg-opacity-45 md:w-[1000px] md:h-700">
                     <h2 className="text-4xl font-bold mb-4 text-center font-inria-serif">Sign in</h2>
                     <div className='flex justify-between text-3xl'>
                         <div className='border-white'>
