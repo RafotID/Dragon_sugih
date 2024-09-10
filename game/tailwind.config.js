@@ -6,8 +6,12 @@ export default {
   ],
   theme: {
     extend: {
+      colors: {
+        'custom-gray': '#D9D9D9',
+      },
       fontFamily: {
         'inria-serif': ['"Inria Serif"', 'serif'],
+        'inika': ['"Inika"']
       },
     },
   },
