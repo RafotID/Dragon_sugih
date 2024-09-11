@@ -1,9 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { assets } from '../assets/indeks';
-import { Link } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
+import { signInWithEmailAndPassword, auth } from '../firebase';
+import axios from 'axios';
 
 const Signin = () => {
 
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+    const [error, setError] = useState('');
+  
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+        
+      try {
+          const userCredential = await signInWithEmailAndPassword(auth, email, password);
+          const token = await userCredential.user.getIdToken();
+    
+  
+          // Kirim data register ke backend untuk dibuatkan user di Firebase Authentication
+          const response = await axios.post('http://localhost:5000/verifyToken', {token});
+          console.log('User UID:', response.data.uid);
+    
+          alert('Login successful!');
+          navigate('/Privasi')
+        } catch (error) {
+          setError('gagal login');
+        }
+    }; 
+    
 
     return (
         <div
@@ -32,12 +58,15 @@ const Signin = () => {
                             </h3>
                         </div>
                     </div>
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <div className="mb-4 mt-6 flex justify-end items-center relative">
 
                             <input
                                 type="text"
                                 id="username"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
                                 className="w-full p-2 border border-gray-300 rounded bg-custom-gray placeholder-white"
                                 placeholder="Email"
                             />
@@ -50,6 +79,9 @@ const Signin = () => {
                             <input
                                 type="password"
                                 id="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
                                 className="w-full p-2 border border-gray-300 rounded bg-custom-gray placeholder-white"
                                 placeholder="Password"
                             />

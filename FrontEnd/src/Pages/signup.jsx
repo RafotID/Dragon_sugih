@@ -1,8 +1,30 @@
-import React from 'react';
+import {useState} from 'react'
 import { assets } from '../assets/indeks';
 import { Link } from 'react-router-dom';
+import axios from 'axios'
 
 const Signup = () => {
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+
+    const handleRegister = async (e) => {
+        e.preventDefault();
+        try {
+          // Kirim data register ke backend untuk dibuatkan user di Firebase Authentication
+          const response = await axios.post('http://localhost:5000/signup', {
+            email,
+            password,
+          });
+          console.log('User UID:', response.data.uid);
+    
+          alert('Registration successful!');
+        } catch (error) {
+          setError('Registration failed. Please try again.');
+        }
+      };
+
     return (
         <div
             className="bg-fixed bg-cover bg-center h-screen relative"
@@ -30,7 +52,7 @@ const Signup = () => {
                             </h3>
                         </div>
                     </div>
-                    <form>
+                    <form onSubmit={handleRegister}>
                         <div className="mb-4 mt-6 flex justify-end items-center relative">
 
                             <input
@@ -38,6 +60,9 @@ const Signup = () => {
                                 id="username"
                                 className="w-full p-2 border border-gray-300 rounded bg-custom-gray placeholder-white"
                                 placeholder="Email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
                             />
                             <img src={assets.gambar.iconEmail} alt="icon email" className='absolute mr-7 w-6' />
 
@@ -50,6 +75,9 @@ const Signup = () => {
                                 id="password"
                                 className="w-full p-2 border border-gray-300 rounded bg-custom-gray placeholder-white"
                                 placeholder="Password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
                             />
 
                             <img src={assets.gambar.iconPassword} alt="icon gembok" className='absolute mr-7 w-6' />
@@ -57,13 +85,14 @@ const Signup = () => {
                         </div>
                         <div className='mt-10 font-inika'>
                             <p>forgotten password ? </p>
-                            <Link to="/Privasi" className="hover:underline"><button
+                            {/* <Link to="/Privasi" className="hover:underline"> */}
+                            <button
                                 type="submit"
                                 className="w-full text-white p-2 rounded hover:bg-blue-600 text-3xl bg-custom-gray"
                             >
                                 Sign in
                             </button>
-                            </Link>
+                            {/* </Link> */}
                             <div className='mt-8'>
                                 <Link to="/signin" className="hover:underline text-2xl">back</Link>
                             </div>
