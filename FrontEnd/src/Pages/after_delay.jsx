@@ -11,7 +11,7 @@ function GameComponent() {
         // Start the delay
         const timer = setTimeout(() => {
             // Pindah ke halaman lain setelah 3 detik
-            navigate('/login'); // Ganti dengan path halaman yang diinginkan
+            navigate('/signin'); // Ganti dengan path halaman yang diinginkan
         }, 3000);
 
         // Cleanup timer when component unmounts
