@@ -1,7 +1,8 @@
 import React from 'react';
 import { assets } from '../assets/indeks';
+import { Link } from 'react-router-dom';
 
-const Login = () => {
+const Signup = () => {
     return (
         <div
             className="bg-fixed bg-cover bg-center h-screen relative"
@@ -15,17 +16,17 @@ const Login = () => {
 
             {/* Konten Login di tengah */}
             <div className="flex items-center justify-center h-full p-10">
-                <div className="bg-white p-8 rounded-[40px] shadow-lg max-w-[1000px] max-h-[500px] w-full h-full bg-opacity-45 md:w-[800px]   ">
-                    <h2 className="text-6xl  mb-4 text-center font-inria-serif text-white">Sign in</h2>
+                <div className="bg-custom-black p-8 rounded-[40px] shadow-lg max-w-[1000px] max-h-[500px] w-full h-full bg-opacity-50 md:w-[800px]   ">
+                    <h2 className="text-6xl  mb-4 text-center font-inria-serif text-white">Sign up</h2>
                     <div className='flex justify-center text-3xl font-inika'>
-                        <div className='border-white bg-white border-2 bg-opacity-50 w-[400px] h-[60px] flex items-center justify-center'>
+                        <div className='border-white bg-white border-2 bg-opacity-60 w-[400px] h-[60px] flex items-center justify-center'>
                             <h3 className='text-white'>
-                                Sign in
+                                <Link to="/signin" className="hover:underline">Sign in</Link>
                             </h3>
                         </div>
                         <div className='border-white bg-white bg-opacity-50 border-2 w-[400px] h-[60px] flex items-center justify-center'>
                             <h3 className='text-white'>
-                                Sign up
+                                <Link to="/signup" className="hover:underline">Sign up</Link>
                             </h3>
                         </div>
                     </div>
@@ -56,13 +57,16 @@ const Login = () => {
                         </div>
                         <div className='mt-10 font-inika'>
                             <p>forgotten password ? </p>
-                            <button
+                            <Link to="/Privasi" className="hover:underline"><button
                                 type="submit"
                                 className="w-full text-white p-2 rounded hover:bg-blue-600 text-3xl bg-custom-gray"
                             >
                                 Sign in
                             </button>
-                            <p className='text-center'>don't have an account? sign up</p>
+                            </Link>
+                            <div className='mt-8'>
+                                <Link to="/signin" className="hover:underline text-2xl">back</Link>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -71,4 +75,4 @@ const Login = () => {
     );
 }
 
-export default Login;
+export default Signup;

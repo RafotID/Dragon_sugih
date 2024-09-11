@@ -8,6 +8,8 @@ export default {
     extend: {
       colors: {
         'custom-gray': '#D9D9D9',
+        'custom-black': '#2F4F4F',
+        'custom-green': '#537577',
       },
       fontFamily: {
         'inria-serif': ['"Inria Serif"', 'serif'],
