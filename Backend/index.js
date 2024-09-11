@@ -17,7 +17,7 @@ app.post('/verifyToken', async (req, res) => {
     const uid = decodedToken.uid;
     res.json({ uid });
   } catch (error) {
-    res.status(401).json({ message: 'Invalid or expired tokenn' });
+    res.status(401).json({ message: 'Invalid or expired token' });
   }
 });
 
