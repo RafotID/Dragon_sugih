@@ -28,7 +28,7 @@ const Signin = () => {
                         </div>
                         <div className='border-white bg-white bg-opacity-60 border-2 w-[400px] h-[60px] flex items-center justify-center'>
                             <h3 className='text-white'>
-                                <Link to="/signup" className="hover:underline">Sign up</Link>
+                                <Link to="/signup" className="hover:underline">Sign uup</Link>
                             </h3>
                         </div>
                     </div>
