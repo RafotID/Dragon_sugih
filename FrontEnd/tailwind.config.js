@@ -18,8 +18,7 @@ export default {
         'custom-green': '#537577',
         'custom-green-singnin&signup': '#52807F',
 
-        'custom-buton-tolak': '#B06A4E',
-        'custom-buton-trima': '#5920B5',
+        'custom-blue-buuton': '#1A2E96',
       },
       fontFamily: {
         'inria-serif': ['"Inria Serif"', 'serif'],
