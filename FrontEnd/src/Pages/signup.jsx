@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { assets } from '../assets/indeks';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import Swal from 'sweetalert2'
 import axios from 'axios'
 
 const Signup = () => {
@@ -8,6 +9,7 @@ const Signup = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const navigate = useNavigate();
 
     const handleRegister = async (e) => {
         e.preventDefault();
@@ -19,8 +21,21 @@ const Signup = () => {
             });
             console.log('User UID:', response.data.uid);
 
-            alert('Registration successful!');
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Sign Up Success",
+                showConfirmButton: false,
+                timer: 1500
+              });
+            navigate('/signin')
         } catch (error) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: error.response.data.message,
+              });
+            
             setError('Registration failed. Please try again.');
         }
     };

@@ -3,6 +3,7 @@ import { assets } from '../assets/indeks';
 import { useNavigate, Link } from 'react-router-dom';
 import { signInWithEmailAndPassword, auth } from '../firebase';
 import axios from 'axios';
+import Swal from 'sweetalert2'
 
 const Signin = () => {
 
@@ -23,9 +24,20 @@ const Signin = () => {
             const response = await axios.post('http://localhost:5000/verifyToken', { token });
             console.log('User UID:', response.data.uid);
 
-            alert('Login successful!');
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Sign In Success",
+                showConfirmButton: false,
+                timer: 1500
+              });
             navigate('/Privasi')
         } catch (error) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Email atau username salah",
+              });
             setError('gagal login');
         }
     };
