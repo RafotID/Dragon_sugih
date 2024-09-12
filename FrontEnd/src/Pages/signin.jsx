@@ -86,14 +86,12 @@ const Signin = () => {
                         </div>
                         <div className='mt-8 font-inika'>
                             <p className='mb-1'>forgotten password ? </p>
-                            <Link to="/Privasi" className="hover:underline">
                                 <button
                                     type="submit"
                                     className="w-full text-white p-2 rounded hover:bg-custom-green-signup text-3xl bg-custom-green-singnin&signup"
                                 >
                                     Sign in
                                 </button>
-                            </Link>
                             <p className='text-center text-[20px] mt-2'>don't have an account? sign up</p>
                         </div>
                     </form>
