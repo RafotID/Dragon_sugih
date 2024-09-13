@@ -5,30 +5,35 @@ import Swal from 'sweetalert2'
 import axios from 'axios'
 
 const Signup = () => {
-
+    const [loading, setLoading] = useState(false)
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
-
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
+            setLoading(true)
             // Kirim data register ke backend untuk dibuatkan user di Firebase Authentication
-            const response = await axios.post('http://localhost:5000/signup', {
+            await axios.post('http://localhost:5000/signup', {
                 email,
                 password,
-            });
-            console.log('User UID:', response.data.uid);
-
-            Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "Sign Up Success",
-                showConfirmButton: false,
-                timer: 1500
-              });
-            navigate('/signin')
+            }).then((res) => {
+                const {statusCode, message, data} = res.data
+                if(statusCode === 200){
+                    console.log(statusCode,message,data);
+    
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Sign Up Success",
+                        showConfirmButton: false,
+                        timer: 1500
+                      });
+                    navigate('/signin')
+                }
+                setLoading(false)
+            })
         } catch (error) {
             Swal.fire({
                 icon: "error",
@@ -37,6 +42,7 @@ const Signup = () => {
               });
             
             setError('Registration failed. Please try again.');
+            setLoading(false)
         }
     };
 
@@ -85,10 +91,11 @@ const Signup = () => {
                         <div className='mt-10 font-inika'>
                             <p className='mb-1'>forgotten password?</p>
                             <button
+                                disabled={loading}
                                 type="submit"
                                 className="w-full text-white p-2 rounded hover:bg-custom-green-signup text-3xl bg-custom-green-singnin&signup"
                             >
-                                Sign up
+                                {loading ? "Loading ..." : "Sign up"}
                             </button>
                             <div className='mt-8 '>
                                 <Link to="/signin" className="hover:underline text-2xl">

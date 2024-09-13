@@ -6,7 +6,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2'
 
 const Signin = () => {
-
+    const [loading, setLoading] = useState(false)
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -16,22 +16,30 @@ const Signin = () => {
         e.preventDefault();
 
         try {
+            setLoading(true)
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const token = await userCredential.user.getIdToken();
 
 
             // Kirim data register ke backend untuk dibuatkan user di Firebase Authentication
-            const response = await axios.post('http://localhost:5000/verifyToken', { token });
-            console.log('User UID:', response.data.uid);
+            await axios.post('http://localhost:5000/login', { token }).then((res) => {
+                console.log('User UID:', res.data);
+                const {statusCode, message, data} = res.data
+                    if(statusCode === 200){
+                        console.log(statusCode,message,data);
 
-            Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "Sign In Success",
-                showConfirmButton: false,
-                timer: 1500
-              });
-            navigate('/Privasi')
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "Sign In Success",
+                            showConfirmButton: false,
+                            timer: 1500
+                          });
+                        navigate('/Privasi')
+                    }
+                setLoading(false)
+            })
+            
         } catch (error) {
             Swal.fire({
                 icon: "error",
@@ -39,6 +47,8 @@ const Signin = () => {
                 text: "Email atau username salah",
               });
             setError('gagal login');
+              setLoading(false)
+              console.log(error)
         }
     };
 
@@ -99,10 +109,11 @@ const Signin = () => {
                         <div className='mt-8 font-inika'>
                             <p className='mb-1'>forgotten password ? </p>
                                 <button
+                                disabled={loading}
                                     type="submit"
                                     className="w-full text-white p-2 rounded hover:bg-custom-green-signup text-3xl bg-custom-green-singnin&signup"
                                 >
-                                    Sign in
+                                    {loading ? "loading..." : "Sign in"}
                                 </button>
                             <p className='text-center text-[20px] mt-2'>don't have an account? sign up</p>
                         </div>
