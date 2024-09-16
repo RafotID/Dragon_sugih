@@ -1,0 +1,41 @@
+@keyframes shapeChange {
+    0%, 100% {
+      r: 5;
+      shape: circle;
+    }
+    50% {
+      r: 10;
+      shape: square;
+    }
+  }
+  
+  .animate-shape {
+    animation: shapeChange 1s ease-in-out infinite;
+  }
+  
+  @keyframes flow {
+    0% {
+      stroke-dashoffset: 1000; /* Mulai dari akhir */
+    }
+    100% {
+      stroke-dashoffset: 0; /* Berakhir di awal */
+    }
+  }
+  
+  .animate-flow {
+    animation: flow 10s linear infinite; /* Durasi 10 detik */
+  }
+  
+  @keyframes progressFill {
+    0% {
+      stroke-dashoffset: 1000;
+    }
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+  
+  .progressive-bar {
+    animation: progressFill 10s linear forwards; /* Durasi 10 detik */
+  }
+  

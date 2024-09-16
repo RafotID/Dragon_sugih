@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { assets } from '../assets/indeks';
 import { useNavigate, Link } from 'react-router-dom';
 import { signInWithEmailAndPassword, auth } from '../firebase';
-import axios from 'axios';
+import axiosInstance from '../Component/api/axiosInstance'; // Mengimpor Axios instance
 import Swal from 'sweetalert2'
 
 const Signin = () => {
@@ -16,42 +16,43 @@ const Signin = () => {
         e.preventDefault();
 
         try {
-            setLoading(true)
+            setLoading(true);
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const token = await userCredential.user.getIdToken();
 
-
-            // Kirim data register ke backend untuk dibuatkan user di Firebase Authentication
-            await axios.post('http://localhost:5000/login', { token }).then((res) => {
+            // Kirim data token ke backend menggunakan Axios instance
+            await axiosInstance.post('/login', { token }).then((res) => {
                 console.log('User UID:', res.data);
-                const {statusCode, message, data} = res.data
-                    if(statusCode === 200){
-                        console.log(statusCode,message,data);
+                const { statusCode, message, data } = res.data;
 
-                        Swal.fire({
-                            position: "center",
-                            icon: "success",
-                            title: "Sign In Success",
-                            showConfirmButton: false,
-                            timer: 1500
-                          });
-                        navigate('/Privasi')
-                    }
-                setLoading(false)
-            })
-            
+                if (statusCode === 200) {
+                    console.log(statusCode, message, data);
+
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Sign In Success",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+
+                    navigate('/LoadingBar'); // Redirect setelah berhasil login
+                }
+
+                setLoading(false);
+            });
+
         } catch (error) {
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
                 text: "Email atau username salah",
-              });
+            });
             setError('gagal login');
-              setLoading(false)
-              console.log(error)
+            setLoading(false);
+            console.log(error);
         }
     };
-
 
     return (
         <div className='relative h-screen'>
@@ -60,9 +61,15 @@ const Signin = () => {
                 className="absolute inset-0 bg-cover bg-center"
                 style={{ backgroundImage: `url(${assets.gambar.background1})` }}
             ></div>
-
             {/* Layer hitam dengan opacity */}
             <div className="absolute inset-0 bg-black bg-opacity-30"></div>
+            <div className='absolute top-0 right-0 m-2 sm:m-4'>
+                <img
+                    src={assets.gambar.dragonCaifu}
+                    alt="Dragon Caifu"
+                    className='w-[100px] sm:w-[150px] md:w-[200px] z-10'
+                />
+            </div>
 
             {/* Konten halaman */}
             <div className="relative flex items-center justify-center h-full p-10">
@@ -80,7 +87,7 @@ const Signin = () => {
                             </h3>
                         </div>
                     </div>
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} >
                         <div className="mb-6 mt-8 flex justify-end items-center relative">
                             <input
                                 type="email"
@@ -106,22 +113,21 @@ const Signin = () => {
                             />
                             <img src={assets.gambar.iconPassword} alt="icon gembok" className='absolute mr-7 w-6' />
                         </div>
+
                         <div className='mt-8 font-inika'>
                             <p className='mb-1'>forgotten password ? </p>
-                                <button
-                                disabled={loading}
-                                    type="submit"
-                                    className="w-full text-white p-2 rounded hover:bg-custom-green-signup text-3xl bg-custom-green-singnin&signup"
-                                >
-                                    {loading ? "loading..." : "Sign in"}
-                                </button>
+                            <button
+                                type="submit"
+                                className="w-full text-white p-2 rounded hover:bg-custom-green-signup text-3xl bg-custom-green-singnin&signup"
+                            >
+                                Sign in
+                            </button>
                             <p className='text-center text-[20px] mt-2'>don't have an account? sign up</p>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-
     );
 }
 

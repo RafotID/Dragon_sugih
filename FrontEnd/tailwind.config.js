@@ -23,11 +23,14 @@ export default {
       fontFamily: {
         'inria-serif': ['"Inria Serif"', 'serif'],
         'inika': ['"Inika"'],
-        'itim' : ['"Itim"'],
-        'inter' : ['"Inter"'],
-        'poppins' : ['"Poppins"']
+        'itim': ['"Itim"'],
+        'inter': ['"Inter"'],
+        'poppins': ['"Poppins"'],
+        'nosifer': ['"Nosifer"']
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar-hide')
+  ],
 }

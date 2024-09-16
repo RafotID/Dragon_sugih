@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { assets } from '../assets/indeks';
 import { useNavigate, Link } from 'react-router-dom';
 import Swal from 'sweetalert2'
-import axios from 'axios'
+import axiosInstance from '../Component/api/axiosInstance'; // Mengimpor Axios instance
 
 const Signup = () => {
     const [loading, setLoading] = useState(false)
@@ -10,26 +10,27 @@ const Signup = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
+
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
             setLoading(true)
             // Kirim data register ke backend untuk dibuatkan user di Firebase Authentication
-            await axios.post('http://localhost:5000/signup', {
+            await axiosInstance.post('/signup', { // Menggunakan Axios instance
                 email,
                 password,
             }).then((res) => {
-                const {statusCode, message, data} = res.data
+                const {statusCode, message, data} = res.data;
                 if(statusCode === 200){
-                    console.log(statusCode,message,data);
-    
+                    console.log(statusCode, message, data);
+
                     Swal.fire({
                         position: "center",
                         icon: "success",
                         title: "Sign Up Success",
                         showConfirmButton: false,
                         timer: 1500
-                      });
+                    });
                     navigate('/signin')
                 }
                 setLoading(false)
@@ -38,9 +39,8 @@ const Signup = () => {
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
-                text: error.response.data.message,
-              });
-            
+                text: error.response?.data?.message || 'Registration failed. Please try again.',
+            });
             setError('Registration failed. Please try again.');
             setLoading(false)
         }
@@ -56,6 +56,13 @@ const Signup = () => {
 
             {/* Layer hitam dengan opacity */}
             <div className="absolute inset-0 bg-black opacity-30"></div>
+            <div className='absolute top-0 right-0 m-2 sm:m-4'>
+                <img
+                    src={assets.gambar.dragonCaifu}
+                    alt="Dragon Caifu"
+                    className='w-[100px] sm:w-[150px] md:w-[200px] z-10'
+                />
+            </div>
 
             {/* Konten utama di luar pengaruh layer hitam */}
             <div className="relative flex items-center justify-center h-full p-10">
@@ -99,18 +106,16 @@ const Signup = () => {
                             </button>
                             <div className='mt-8 '>
                                 <Link to="/signin" className="hover:underline text-2xl">
-                                
                                     <button className='flex items-center gap-x-1 font-poppins text-custom-blue-buuton'>
-                                    <img src={assets.gambar.back} alt="" /> back
+                                        <img src={assets.gambar.back} alt="" /> back
                                     </button>
-                                    </Link>
+                                </Link>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-
     );
 }
 
