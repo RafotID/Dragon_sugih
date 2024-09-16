@@ -118,9 +118,10 @@ const Signin = () => {
                             <p className='mb-1'>forgotten password ? </p>
                             <button
                                 type="submit"
+                                disabled={loading}
                                 className="w-full text-white p-2 rounded hover:bg-custom-green-signup text-3xl bg-custom-green-singnin&signup"
                             >
-                                Sign in
+                                 {loading ? "Loading ..." : "Sign up"}
                             </button>
                             <p className='text-center text-[20px] mt-2'>don't have an account? sign up</p>
                         </div>
