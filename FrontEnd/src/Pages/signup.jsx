@@ -23,13 +23,12 @@ const Signup = () => {
                 const {statusCode, message, data} = res.data;
                 if(statusCode === 200){
                     console.log(statusCode, message, data);
-
                     Swal.fire({
                         position: "center",
                         icon: "success",
                         title: "Sign Up Success",
                         showConfirmButton: false,
-                        timer: 1500
+                        timer: 2000
                     });
                     navigate('/signin')
                 }
@@ -41,6 +40,7 @@ const Signup = () => {
                 title: "Oops...",
                 text: error.response?.data?.message || 'Registration failed. Please try again.',
             });
+            console.log(error);
             setError('Registration failed. Please try again.');
             setLoading(false)
         }
@@ -96,7 +96,6 @@ const Signup = () => {
                         </div>
 
                         <div className='mt-10 font-inika'>
-                            <p className='mb-1'>forgotten password?</p>
                             <button
                                 disabled={loading}
                                 type="submit"

@@ -43,7 +43,8 @@ const authRoute = (app) => {
       });
     }
   });
-}
 
+  
+}
 
 module.exports = authRoute

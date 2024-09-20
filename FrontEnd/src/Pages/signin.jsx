@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { assets } from '../assets/indeks';
 import { useNavigate, Link } from 'react-router-dom';
-import { signInWithEmailAndPassword, auth } from '../firebase';
-import axiosInstance from '../Component/api/axiosInstance'; // Mengimpor Axios instance
-import Swal from 'sweetalert2'
+import { signInWithEmailAndPassword, auth, sendPasswordResetEmail } from '../firebase';
+import axiosInstance from '../Component/api/axiosInstance';
+import Swal from 'sweetalert2';
 
 const Signin = () => {
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -20,27 +20,19 @@ const Signin = () => {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const token = await userCredential.user.getIdToken();
 
-            // Kirim data token ke backend menggunakan Axios instance
-            await axiosInstance.post('/login', { token }).then((res) => {
-                console.log('User UID:', res.data);
-                const { statusCode, message, data } = res.data;
+            const res = await axiosInstance.post('/login', { token });
+            const { statusCode, message, data } = res.data;
 
-                if (statusCode === 200) {
-                    console.log(statusCode, message, data);
-
-                    Swal.fire({
-                        position: "center",
-                        icon: "success",
-                        title: "Sign In Success",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-
-                    navigate('/LoadingBar'); // Redirect setelah berhasil login
-                }
-
-                setLoading(false);
-            });
+            if (statusCode === 200) {
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Sign In Success",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                navigate('/LoadingBar');
+            }
 
         } catch (error) {
             Swal.fire({
@@ -49,19 +41,36 @@ const Signin = () => {
                 text: "Email atau username salah",
             });
             setError('gagal login');
+        } finally {
             setLoading(false);
-            console.log(error);
+        }
+    };
+
+    const handlePasswordReset = async (e) => {
+        e.preventDefault();
+
+        try {
+            await sendPasswordResetEmail(auth, email);
+            Swal.fire({
+                icon: "success",
+                title: "Email Sent!",
+                text: "Please check your inbox to reset your password.",
+            });
+        } catch (error) {
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "Please enter your email",
+            });
         }
     };
 
     return (
         <div className='relative h-screen'>
-            {/* Layer background gambar */}
             <div
                 className="absolute inset-0 bg-cover bg-center"
                 style={{ backgroundImage: `url(${assets.gambar.background1})` }}
             ></div>
-            {/* Layer hitam dengan opacity */}
             <div className="absolute inset-0 bg-black bg-opacity-30"></div>
             <div className='absolute top-0 right-0 m-2 sm:m-4'>
                 <img
@@ -71,7 +80,6 @@ const Signin = () => {
                 />
             </div>
 
-            {/* Konten halaman */}
             <div className="relative flex items-center justify-center h-full p-10">
                 <div className="bg-custom-green-bg p-8 rounded-[40px] shadow-lg max-w-[1000px] max-h-[500px] w-full h-full bg-opacity-65 md:w-[800px]">
                     <h2 className="text-6xl mb-4 text-center font-inria-serif text-custom-green-text">Sign in</h2>
@@ -87,11 +95,10 @@ const Signin = () => {
                             </h3>
                         </div>
                     </div>
-                    <form onSubmit={handleSubmit} >
+                    <form onSubmit={handleSubmit}>
                         <div className="mb-6 mt-8 flex justify-end items-center relative">
                             <input
                                 type="email"
-                                id="email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 required
@@ -104,7 +111,6 @@ const Signin = () => {
                         <div className="mb-4 flex justify-end items-center relative">
                             <input
                                 type="password"
-                                id="password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 required
@@ -115,15 +121,14 @@ const Signin = () => {
                         </div>
 
                         <div className='mt-8 font-inika'>
-                            <p className='mb-1'>forgotten password ? </p>
+                            <p className='mb-1'>forgotten password? <a href="#" onClick={handlePasswordReset}>Reset</a></p>
                             <button
                                 type="submit"
                                 disabled={loading}
                                 className="w-full text-white p-2 rounded hover:bg-custom-green-signup text-3xl bg-custom-green-singnin&signup"
                             >
-                                 {loading ? "Loading ..." : "Sign up"}
+                                {loading ? "Loading ..." : "Sign in"}
                             </button>
-                            <p className='text-center text-[20px] mt-2'>don't have an account? sign up</p>
                         </div>
                     </form>
                 </div>
