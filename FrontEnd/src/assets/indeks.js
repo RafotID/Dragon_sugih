@@ -10,10 +10,15 @@ import button2 from './button2.png'
 import barText from './barText.png'
 import sidhimantra from './sidhimantra.png'
 import ManikAngkeran from './ManikAngkeran.png'
-import loading from './loading.mp4'
 import NagaBasugih from'./NagaBasugih.png'
 import barTextLarge from'./barTextLarge.png'
 import scenario from'./scenario.png'
+import bgPercakapan from'./bgPercakapan.png'
+import sidhimantrastory from './sidhimantrastory.png'
+import ManikT from './ManikT.png'
+import PapanText from './PapanText.png'
+import manik from './manik.png'
+
 
 export const assets = {
     gambar: {
@@ -30,13 +35,19 @@ export const assets = {
         ManikAngkeran,
         NagaBasugih,
         barTextLarge,
-        scenario
+        scenario,
+        bgPercakapan,
+        sidhimantrastory,
+        ManikT,
+        PapanText,
+        manik
+
     },
     Audio: {
 
     },
     vidio: {
-        loading
+      
     },
     icon: {
 

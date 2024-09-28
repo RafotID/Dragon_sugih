@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { assets } from '../assets/indeks';
 import { useNavigate, Link } from 'react-router-dom';
 import { signInWithEmailAndPassword, auth, sendPasswordResetEmail } from '../firebase';
-import axiosInstance from '../Component/api/axiosInstance';
 import Swal from 'sweetalert2';
+import { loginApi } from '../api/api';
 
 const Signin = () => {
     const [loading, setLoading] = useState(false);
@@ -20,21 +20,23 @@ const Signin = () => {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const token = await userCredential.user.getIdToken();
 
-            const res = await axiosInstance.post('/login', { token });
-            const { statusCode, message, data } = res.data;
+            await loginApi({ token }).then((res) => {
+                const { statusCode, message, data } = res;
 
-            if (statusCode === 200) {
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Sign In Success",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-                navigate('/LoadingBar');
-            }
+                if (statusCode === 200) {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Sign In Success",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    navigate('/LoadingBar');
+                }
+            })
 
         } catch (error) {
+          
             Swal.fire({
                 icon: "error",
                 title: "Oops...",

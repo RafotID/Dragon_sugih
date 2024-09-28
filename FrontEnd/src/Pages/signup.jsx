@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { assets } from '../assets/indeks';
 import { useNavigate, Link } from 'react-router-dom';
 import Swal from 'sweetalert2'
-import axiosInstance from '../Component/api/axiosInstance'; // Mengimpor Axios instance
+import { registerApi } from '../api/api';
 
 const Signup = () => {
     const [loading, setLoading] = useState(false)
@@ -16,12 +16,9 @@ const Signup = () => {
         try {
             setLoading(true)
             // Kirim data register ke backend untuk dibuatkan user di Firebase Authentication
-            await axiosInstance.post('/signup', { // Menggunakan Axios instance
-                email,
-                password,
-            }).then((res) => {
-                const {statusCode, message, data} = res.data;
-                if(statusCode === 200){
+            await registerApi({email,password}).then((res) => {
+                const { statusCode, message, data } = res.data;
+                if (statusCode === 200) {
                     console.log(statusCode, message, data);
                     Swal.fire({
                         position: "center",
@@ -35,6 +32,7 @@ const Signup = () => {
                 setLoading(false)
             })
         } catch (error) {
+            console.log(error)
             Swal.fire({
                 icon: "error",
                 title: "Oops...",

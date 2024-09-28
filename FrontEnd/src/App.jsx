@@ -11,6 +11,7 @@ import NagaBasugih from './Pages/NagaBasugih';
 import Scenario from './Pages/scenario';
 import Level1 from './levels/level1';
 import LoadingBar from './Pages/LoadingBar';
+import Story from './Pages/story';
 
 
 function App() {
@@ -32,8 +33,9 @@ function App() {
           <Route path='/Privasi' element={<Privasi />} />
           <Route path='/sidhimantra' element={<Sidhimantra />} />
           <Route path='/ManikAngkeran' element={<ManikAngkeran />} />
-          <Route path='/scenario' element={<Scenario />} />
           <Route path='/NagaBasugih' element={<NagaBasugih />} />
+          <Route path='/scenario' element={<Scenario />} />
+          <Route path='/story' element={<Story/>} />
           <Route path='/level1' element={<Level1 />} />
         </Routes>
 

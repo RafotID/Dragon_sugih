@@ -10,6 +10,7 @@ export default {
         'custom-gray': '#AFB3B1',
         'custom-grey-border': '#928B86',
         'custom-grey-input': '#A09E9E',
+        'custom-grey-text': '#FBF8D1',
 
         'custom-green-bg': '#E0FFFF',
         'custom-green-text': '#234F5C',
@@ -26,7 +27,8 @@ export default {
         'itim': ['"Itim"'],
         'inter': ['"Inter"'],
         'poppins': ['"Poppins"'],
-        'nosifer': ['"Nosifer"']
+        'nosifer': ['"Nosifer"'],
+        'jomhuria': ['"Jomhuria"'],
       },
     },
   },
