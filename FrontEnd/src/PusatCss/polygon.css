@@ -1,0 +1,19 @@
+.hexagon {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    background-color: #464747; /* Warna dasar hexagon */
+    margin: 20px auto;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    transform: rotate(90deg);
+}
+
+.hexagon1 {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background-color: #757D80; /* Warna dasar hexagon */
+    margin: 20px auto;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    transform: rotate(90deg);
+}

@@ -1,0 +1,9 @@
+  .message {
+    align-items: center;
+    left: 4%;
+    position: absolute;
+    text-align: center;
+    font-size: 32px;
+    color: white;
+  }
+  

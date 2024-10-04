@@ -12,6 +12,7 @@ import Scenario from './Pages/scenario';
 import Level1 from './levels/level1';
 import LoadingBar from './Pages/LoadingBar';
 import Story from './Pages/story';
+import Battle from './Pages/battle';
 
 
 function App() {
@@ -35,7 +36,8 @@ function App() {
           <Route path='/ManikAngkeran' element={<ManikAngkeran />} />
           <Route path='/NagaBasugih' element={<NagaBasugih />} />
           <Route path='/scenario' element={<Scenario />} />
-          <Route path='/story' element={<Story/>} />
+          <Route path='/story/:id' element={<Story/>} />
+          <Route path='/battle' element={<Battle/>} />
           <Route path='/level1' element={<Level1 />} />
         </Routes>
 

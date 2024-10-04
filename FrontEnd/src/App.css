@@ -2,3 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
+.ease {
+    animation-timing-function: ease;
+}
+
+.slide-ltr {
+    clip-path: polygon(100% 0, 100% 100%, 100% 100%, 100% 0);
+}
+
+.sliding-ltr {
+    animation-name: sliding-ltr;
+    animation-duration: 5s; 
+    animation-fill-mode:forwards;
+    animation-delay: 0.5s;
+}
+@keyframes sliding-ltr {
+    0% {
+        transform: translateX(-100%);
+        clip-path: polygon(100% 0, 100% 100%, 100% 100%, 100% 0);
+    }
+
+    100% {
+        transform: translateX(-0.5%);
+        clip-path: polygon(100% 0, 100% 100%, 0% 100%, 0 0);
+    }
+}
+

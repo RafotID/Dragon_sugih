@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { assets } from '../assets/indeks';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const Story = () => {
     // Array yang menyimpan teks dialog dari semua slide
+    const navigate = useNavigate()
     const dialogTexts = [
         // scene 1
         [
@@ -76,18 +78,27 @@ const Story = () => {
         { slide: 0, textTitle: 0, textIndex: 11 },
     ];
 
-    const [currentStep, setCurrentStep] = useState(0); // Indeks untuk mengontrol alur cerita
+    const { id } = useParams()
+
+    const [currentStep, setCurrentStep] = useState(id); // Indeks untuk mengontrol alur cerita
 
     // Fungsi untuk berpindah ke langkah berikutnya berdasarkan alur
     const handleNext = () => {
         if (currentStep < flow.length - 1) {
-            setCurrentStep(currentStep + 1); // Pindah ke langkah berikutnya
+            // setCurrentStep(currentStep + 1);
+            return navigate(`/story/${Number(currentStep) + 1}`)
+        } else {
+            navigate("/battle"); // Pindah halaman ke "/battle" setelah langkah terakhir
         }
     };
-
     const currentSlide = flow[currentStep].slide;
     const currentIndex = flow[currentStep].textIndex;
     const currentTitle = flow[currentStep].textTitle;
+
+    useEffect(() => {
+        setCurrentStep(id)
+    }, [id])
+
 
     return (
         <>
@@ -100,11 +111,11 @@ const Story = () => {
                     <div className="relative">
                         <img src={assets.gambar.PapanText} alt="Papan Teks" className="mx-auto px-5 h-[50vh]" />
 
-                        <p className="absolute flex justify-center items-center  w-[50%] h-[10%] top-[1.3vh] left-[24.5%] right-[15%] text-center text-custom-grey-text font-jomhuria text-[33px] sm:text-[60px] md:text-[60px] lg:text-[42px] leading-relaxed z-10">
+                        <p className="absolute flex justify-center items-center  w-[50%] h-[10%] top-[1.5vh] left-[24.5%] right-[15%] text-center text-custom-grey-text font-jomhuria text-[4.9vh] sm:text-[60px] md:text-[6vh] lg:text-[5.5vh] leading-relaxed z-10">
                             {title[0][currentTitle]} {/* Title */}
                         </p>
 
-                        <p className="absolute h-[22vh] top-[17vh] sm:top-[19vh] md:top-[19vh] lg:top-[18vh] left-[8%] right-[8%] text-center text-black font-poppins text-[18px] sm:text-[34px] lg:text-[3.3vh] leading-relaxed z-10 px-10 overflow-y-scroll scrollbar-hide sm:h-[22vh]">
+                        <p className="absolute h-[22vh] top-[17vh] sm:top-[19vh] md:top-[17vh] lg:top-[18vh] left-[8%] right-[8%] text-center text-black font-poppins text-[2.6vh] sm:text-[3.5vh] lg:text-[3.2vh] leading-relaxed z-10 px-10 overflow-y-scroll scrollbar-hide sm:h-[22vh]">
                             {dialogTexts[0][currentIndex]} {/* Dialog Text */}
                         </p>
 
@@ -114,7 +125,7 @@ const Story = () => {
                             style={{
                                 backgroundImage: `url(${assets.gambar.button2})`,
                                 backgroundSize: 'contain',
-                                backgroundPosition : 'center',
+                                backgroundPosition: 'center',
                                 backgroundRepeat: 'no-repeat',
                                 transform: 'rotateY(180deg)',
                             }}
@@ -129,92 +140,126 @@ const Story = () => {
                 <div className="bg-fixed bg-cover bg-center h-screen relative flex justify-center items-center w-full overflow-hidden"
                     style={{ backgroundImage: `url(${assets.gambar.bgPercakapan})` }}
                 >
-                    <div className="relative flex items-center justify-between w-full sm:flex-row flex-col h-full">
+                    <div className="relative flex items-center justify-between w-full sm:flex-col sm:ml-[4vh] md:flex-col flex-col h-full md:-top-20 lg:flex-row">
                         {/* Bagian Gambar */}
-                        <div className="w-full sm:w-[90%] relative h-full flex justify-center items-end">
+                        <div className="w-full lg:bottom-[-15%] md:w-[90%] sm:w-[90%] relative h-full flex justify-center items-end">
                             <img
                                 src={assets.gambar.sidhimantrastory}
                                 alt="Sidhimantra"
-                                className="h-[60vh] sm:h-[85vh] md:h-[85vh] lg:h-[80vh] sm:w-[70vh] w-[90%] max-w-full mx-auto"
+                                className="h-[80%]  sm:h-[90%] sm:w-[90%] md:h-[80%] lg:h-[90%] w-[90%] max-w-full mx-auto"
                             />
                         </div>
 
 
                         {/* Bagian Teks */}
-                        <div className="relative -top-24 w-full sm:right-5 sm:w-full mt-5 sm:mt-80  ">
+                        <div className="relative -top-24 w-full sm:right-5 sm:w-full mt-5 lg:mt-[35%]">
                             <img
                                 src={assets.gambar.PapanText}
                                 alt="Papan Teks"
-                                className="mx-auto px-6 h-[50vh] sm:h-[54vh] md:h-[55vh] lg:h-[55vh]  lg:w-[80vh]"
+                                className="mx-auto px-6 pb-[5%] h-[50vh] sm:h-[54vh] md:h-[55vh] lg:h-[55vh]  lg:w-[80vh] "
                             />
-                            <p className="absolute flex justify-center items-center h-[9.9%] w-[50%] top-[1.6vh] md:top-[-1vh] lg:top-[-1vh] left-[25%] right-[10%] text-center text-custom-grey-text font-jomhuria text-5xl lg:text-[7vh] leading-relaxed z-10">
+                            <p className="absolute flex justify-center items-center h-[9.9%] w-[50%] top-[1.6vh]  lg:top-[1.5vh] left-[25%] right-[10%] text-center text-custom-grey-text font-jomhuria text-5xl lg:text-[7vh] leading-relaxed sm:text-[7vh] z-10">
                                 {title[0][currentTitle]} {/* Title */}
                             </p>
-                            <p className="absolute lg:left-[23%] lg:p-0 lg:right-[22%] lg:top-[35%] lg:h-[24vh] top-[130px] sm:top-[120px] sm:h-[26vh] sm:py-6 md:px-10 lg:px-[1vh] left-[7%] right-[7%] text-center text-black font-poppins text-2xl lg:text-[3.5vh] leading-relaxed z-10 px-10 sm:overflow-y-scroll overflow-y-scroll scrollbar-hide">
+                            <p className="absolute h-[20vh] lg:left-[23%] lg:p-0 lg:right-[22%] lg:top-[30%] lg:h-[24vh] top-[30%] text-[2.6vh] sm:top-[28%] sm:h-[26vh] sm:text-[3.3vh] sm:py-6 md:px-10 lg:px-[1vh] left-[7%] right-[7%] text-center text-black font-poppins text-2xl lg:text-[3.5vh] md:text-[3.5vh] leading-relaxed z-10 px-10 sm:overflow-y-scroll overflow-y-scroll scrollbar-hide">
                                 {dialogTexts[0][currentIndex]} {/* Dialog Text */}
                             </p>
                             <button
                                 onClick={handleNext}
-                                className="absolute w-[80px] sm:w-[150px] h-[50px] sm:h-[55px] z-20"
+                                className="absolute bottom-[12%] sm:bottom-[6%] md:bottom-[12%] lg:bottom-[13%] left-[15.5%] flex justify-center items-center w-[70%] h-[10%] sm:h-[13%] z-10"
                                 style={{
                                     backgroundImage: `url(${assets.gambar.button2})`,
                                     backgroundSize: 'contain',
+                                    backgroundPosition: 'center',
                                     backgroundRepeat: 'no-repeat',
-                                    left: '48%',
-                                    bottom: '3.2vh',
-                                    transform: 'translateX(-50%) rotateY(180deg)',
+                                    transform: 'rotateY(180deg)',
                                 }}
                             />
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Slide 3 */}
+            {currentSlide === 2 && (
+                <div className="bg-fixed bg-cover bg-center h-screen relative flex justify-center items-center w-full overflow-hidden lg:justify-between"
+                    style={{ backgroundImage: `url(${assets.gambar.bgPercakapan})` }}
+                >
+                    <div>
+                        <div className="absolute -left-3 md:left-[-4%] w-[40vh] flex items-center justify-between z-0 sm:flex-col sm:ml-[4vh] md:flex-col flex-col h-full md:top-[-40%] lg:flex-col -top-[38%] lg:left-[2%] lg:w-[70vh] lg:top-[-23vh]">
+                            {/* Bagian Gambar */}
+                            <div className="w-full lg:bottom-[-15%] md:w-[90%] md:top-[2%] sm:w-[90%] relative h-full flex justify-center items-end lg:top-[20%]">
+                                <img
+                                    src={assets.gambar.sidhimantrastory}
+                                    alt="Sidhimantra"
+                                    className="h-[50%] sm:h-[90%] sm:w-[90%] md:w-[100%] md:h-[55%] lg:h-[80%] w-[90%] max-w-full mx-auto"
+                                />
+                            </div>
+
+
+                            {/* Bagian Teks */}
+                            <div className="relative -top-28 w-full sm:right-5 sm:w-full mt-5 sm:top-[-30%] md:top-[-15%] lg:mt-[35%]">
+                                <img
+                                    src={assets.gambar.PapanText}
+                                    alt="Papan Teks"
+                                    className="mx-auto px-6 pb-[5%] h-[135%] sm:h-[54%] md:h-[175%] lg:h-[55vh] lg:w-[80vh]"
+                                />
+                                <p className="absolute flex justify-center items-center h-[9.9%] w-[50%] top-[1vh] md:text-[4vh] md:top-[8%] lg:top-[1.5vh] left-[25%] right-[10%] text-center text-custom-grey-text font-jomhuria text-[4vh] lg:text-[7vh] leading-relaxed sm:text-[7vh] z-10 ">
+                                    {title[0][currentTitle]} {/* Title */}
+                                </p>
+                                <p className="absolute h-[69%] w-[90%] lg:left-[15%] lg:p-0 lg:right-[22%] lg:top-[33%] lg:h-[24vh] top-[38%] text-[1.8vh] sm:top-[28%] sm:h-[26vh] sm:text-[3.3vh] sm:py-6 md:px-[10%] md:text-[2.2vh] md:top-[40%] lg:px-[1vh] left-[5.5%] right-[7%] text-center text-black font-poppins text-2xl lg:text-[3.5vh] leading-relaxed z-10 px-10 sm:overflow-y-scroll overflow-y-scroll scrollbar-hide lg:w-[70%]">
+                                    {dialogTexts[2][currentIndex]} {/* Dialog Text */}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <button
+                            onClick={handleNext}
+                            className="absolute bottom-[1%] sm:bottom-[6%] md:bottom-[12%] md:left-[15%] lg:bottom-[1%] left-[2%] flex justify-center items-center w-[20%] h-[10%] lg:w-[7%] lg:left-[47%] sm:h-[13%] z-10"
+                            style={{
+                                backgroundImage: `url(${assets.gambar.button2})`,
+                                backgroundSize: 'contain',
+                                backgroundPosition: 'center',
+                                backgroundRepeat: 'no-repeat',
+                                transform: 'rotateY(180deg)',
+                            }}
+                        />
+                    </div>
+
+                    <div>
+                        <div className="absolute right-[-4%] w-[40vh] flex items-center justify-between z-0 sm:flex-col sm:ml-[4vh] md:flex-col flex-col h-full md:top-[-10%] lg:flex-col top-[10%] lg:right-[0%] lg:w-[70vh] lg:top-[-5%]">
+                            {/* Bagian Gambar */}
+                            <div className="w-full lg:bottom-[-15%] md:w-[90%] sm:w-[90%] relative h-full flex justify-center items-end lg:top-[20%]">
+                                <img
+                                    src={assets.gambar.manik}
+                                    alt="Sidhimantra"
+                                    className="h-[40%] sm:h-[90%] sm:w-[90%] md:h-[48%] lg:h-[80%] lg:w-[70%] w-[70%] max-w-full mx-auto"
+                                />
+                            </div>
+
+
+                            {/* Bagian Teks */}
+                            <div className="relative -top-28 w-full sm:right-5 sm:w-full mt-5 sm:top-[-30%] md:top-[-15%] lg:mt-[35%]">
+                                <img
+                                    src={assets.gambar.PapanText}
+                                    alt="Papan Teks"
+                                    className="mx-auto px-6 pb-[5%] h-[135%] sm:h-[54%] md:h-[175%] lg:h-[55vh] lg:w-[80vh]"
+                                />
+                                <p className="absolute flex justify-center items-center h-[9.9%] w-[50%] top-[1vh] md:text-[4vh] md:top-[8%] lg:top-[1.5vh] left-[25%] right-[10%] text-center text-custom-grey-text font-jomhuria text-[4vh] lg:text-[7vh] leading-relaxed sm:text-[7vh] z-10 ">
+                                    {title[1][currentTitle]} {/* Title */}
+                                </p>
+                                <p className="absolute h-[69%] w-[90%] lg:left-[15%] lg:p-0 lg:right-[22%] lg:top-[33%] lg:h-[24vh] top-[38%] text-[1.8vh] sm:top-[28%] sm:h-[26vh] sm:text-[3.3vh] sm:py-6 md:px-[10%] md:text-[2.2vh] md:top-[40%] lg:px-[1vh] left-[5.5%] right-[7%] text-center text-black font-poppins text-2xl lg:text-[3.5vh] leading-relaxed z-10 px-10 sm:overflow-y-scroll overflow-y-scroll scrollbar-hide lg:w-[70%]">
+                                    {dialogTexts[3][currentIndex]} {/* Dialog Text */}
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
 
 
-            )}
-
-            {currentSlide === 2 && (
-                <div
-                className="bg-fixed bg-cover bg-center h-screen relative flex justify-end items-end"
-                style={{ backgroundImage: `url(${assets.gambar.bgPercakapan})` }}
-            >
-                <div className="relative flex items-end justify-evenly w-[100%]">
-                    <div className="relative w-1/2 flex justify-start">
-                        <img src={assets.gambar.sidhimantrastory} alt="Mantra" className="mx-auto h-[40vh] sm:h-[60vh] w-[62vh] left-16 absolute -top-[360px] " />
-                        <img src={assets.gambar.PapanText} alt="Papan Teks" className=" pl-10 h-[385px] w-[550px] z-30 " />
-                        <p className="absolute flex justify-center items-center text-center text-custom-grey-text font-jomhuria px-[212px] text-[45px] leading-relaxed top-[-5px] pl-[38%] z-30">
-                            {title[0][currentTitle]} {/* title dari slide 3 */}
-                        </p>
-                        <p className="absolute w-[400px] inset-0 flex justify-center items-center text-center text-black font-poppins ml-24 text-2xl leading-[1.5] pt-14 z-50">
-                            {dialogTexts[2][currentIndex]} {/* Teks dari slide 3 */}
-                        </p>
-                    </div>
-                    <div className='w-[50vh] flex justify-center pl-10'>
-                        <button
-                            onClick={handleNext}
-                            className="absolute w-[80px] sm:w-[150px] h-[50px] sm:h-[55px] xs "
-                            style={{
-                                backgroundImage: `url(${assets.gambar.button2})`,
-                                backgroundSize: 'contain',
-                                backgroundRepeat: 'no-repeat',
-                                bottom: '15px',
-                                left: '44%',
-                                transform: 'rotateY(180deg)',
-                            }}
-                        />
-                    </div>
-                    <div className="relative w-1/2 flex justify-end">
-                        <p className="absolute z-50 flex items-center text-center text-custom-grey-text font-jomhuria pr-[33.5%] text-[45px] leading-relaxed top-[-5px]">
-                            {title[1][currentTitle]} {/* title dari slide 1 */}
-                        </p>
-                        <img src={assets.gambar.PapanText} alt="Papan Teks" className="pr-10 h-[385px] w-[550px] z-30" />
-                        <img src={assets.gambar.manik} alt="Manik" className="mx-auto h-[40vh] absolute -top-56 pr-40" />
-                        <p className="absolute w-[400px] inset-0 flex justify-center items-center text-center text-black font-poppins ml-[20%] text-2xl leading-[1.5] pt-16 z-50">
-                            {dialogTexts[3][currentIndex]} {/* Teks dari slide 2 */}
-                        </p>
-                    </div>
-                </div>
-            </div>
             )}
 
         </>
