@@ -14,9 +14,9 @@ export const playerStats = {
     name: 'Giant Spider',
     maxHealth: 1000,
   
-    cakar: 100,
-    lari: 200,
-    gigit: 150,
+    cakar: 1000,
+    lari: 2000,
+    gigit: 1500,
     magicDefense: 100,
   };
   
