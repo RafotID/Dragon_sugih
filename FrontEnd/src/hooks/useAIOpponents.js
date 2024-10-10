@@ -2,18 +2,17 @@ import { useEffect, useState } from 'react';
 
 export const useAIOpponents = (turn) => {
   const [aiChoice, setAiChoice] = useState('');
-  const [hasChosen, setHasChosen] = useState(false); // State untuk melacak apakah AI sudah memilih
 
   useEffect(() => {
-    if (turn === 1 && !hasChosen) {
-      const options = ['attack', 'magic', 'heal'];
-      setAiChoice(options[Math.floor(Math.random() * options.length)]);
-      setHasChosen(true); // Tandai bahwa AI sudah membuat pilihan
-      console.log(1);
-    } else if (turn > 1) {
-      setHasChosen(false); // Reset ketika turn berubah
+    // Membuat pilihan setiap kali turn berubah
+    if (turn === 1) {
+      const options = ['cakar', 'lari', 'gigit'];
+      const choice = options[Math.floor(Math.random() * options.length)];
+      setAiChoice(choice);
+    } else {
+      setAiChoice('')
     }
-  }, [turn, hasChosen]);
+  }, [turn]);
 
   return aiChoice;
 };

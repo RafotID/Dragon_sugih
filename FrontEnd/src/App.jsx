@@ -13,6 +13,7 @@ import Level1 from './levels/level1';
 import LoadingBar from './Pages/LoadingBar';
 import Story from './Pages/story';
 import Battle from './Pages/battle';
+import {Penghubung} from './components/Penghubung';
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
           <Route path='/story/:id' element={<Story/>} />
           <Route path='/battle' element={<Battle/>} />
           <Route path='/level1' element={<Level1 />} />
+          <Route path='/penghubung' element={<Penghubung/>}/>
         </Routes>
 
       </Router>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { assets } from '../assets/indeks';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 const Story = () => {
     // Array yang menyimpan teks dialog dari semua slide
@@ -88,7 +88,7 @@ const Story = () => {
             // setCurrentStep(currentStep + 1);
             return navigate(`/story/${Number(currentStep) + 1}`)
         } else {
-            navigate("/battle"); // Pindah halaman ke "/battle" setelah langkah terakhir
+            navigate("/penghubung"); // Pindah halaman ke "/battle" setelah langkah terakhir
         }
     };
     const currentSlide = flow[currentStep].slide;
@@ -128,8 +128,10 @@ const Story = () => {
                                 backgroundPosition: 'center',
                                 backgroundRepeat: 'no-repeat',
                                 transform: 'rotateY(180deg)',
-                            }}
-                        />
+                            }}>
+                            
+                            </button>
+                            
                     </div>
                 </div>
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { assets } from '../assets/indeks';
-import '../Component/style.css'; 
+import '../components/style.css'; 
 
 const DNA_LoadingBar = () => {
   const [progress, setProgress] = useState(0);

@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { assets } from '../assets/indeks';
 import '../PusatCss/polygon.css';
-import { Playerdetail } from '../Component/Player/Playerdetail';
-import { BattleAnnouncer } from '../Component/BattleAnnouncer/BattleAnnouncer';
+import { Playerdetail } from '../components/Player/Playerdetail';
+import { BattleAnnouncer } from '../components/BattleAnnouncer/BattleAnnouncer';
 import { useBattleSequence, useAIOpponents } from '../hooks'; // import hooks yang diperlukan
 import { playerStats, opponentStats, wait } from '../shared'; // import data statistik pemain dan lawan
-import { styles } from '../Component/Battle/styles.module.css'
+// import { EndMenu } from '../components/EndMenu/EndMenu';
 
-const Battle = ({ onGameEnd }) => {
+
+const Battle = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
     const img = [
         assets.gambar.sidhimantrastory,
         assets.gambar.spider
     ];
+
 
     const flow = [
         { slide: 1 },
@@ -31,7 +33,8 @@ const Battle = ({ onGameEnd }) => {
         opponentHealth,
         announcerMessage,
         playerAnimation,
-        opponentAnimation
+        opponentAnimation,
+        loading
     } = useBattleSequence(sequence);
 
     const aiChoice = useAIOpponents(turn);
@@ -53,18 +56,19 @@ const Battle = ({ onGameEnd }) => {
 
     // Logika AI memilih tindakan saat giliran AI
     useEffect(() => {
-        if (aiChoice && turn === 1 && !inSequence) {
-            setSequence({ turn, mode: aiChoice });
+        console.log(`AI memilih: ${aiChoice}`); // Gunakan pilihan yang baru saja dibuat
+        if(aiChoice && turn === 1 && !inSequence){
+            setSequence({turn, mode: aiChoice})
         }
-    }, [turn, aiChoice, inSequence]);
+    }, [turn, aiChoice, inSequence])
 
     // Mengakhiri permainan jika salah satu karakter kalah
     useEffect(() => {
         if (playerHealth === 0 || opponentHealth === 0) {
             (async () => {
-                await wait(1000);
+                await wait(1000)
                 onGameEnd(playerHealth === 0 ? opponentStats : playerStats);
-            })();
+            })()
         }
     }, [playerHealth, opponentHealth, onGameEnd]);
 
@@ -343,7 +347,8 @@ const Battle = ({ onGameEnd }) => {
                                         backgroundRepeat: 'no-repeat',
                                         border: 'none',
                                     }}
-                                    onAttack={() => setSequence({ mode: 'magic', turn })}
+                                    loading = {loading}
+                                    onClick={!loading ? onMagic= () => setSequence({ mode: 'magic', turn }) : ()=>{}}
                                 />
                                 <button
                                     className='h-[50%] w-[18%]'
@@ -354,7 +359,8 @@ const Battle = ({ onGameEnd }) => {
                                         backgroundRepeat: 'no-repeat',
                                         border: 'none',
                                     }}
-                                    onClick={() => setSequence({ mode: 'attack', turn })}
+                                    loading = {loading}
+                                    onClick={!loading ? onAttack= () => setSequence({ mode: 'attack', turn }) : ()=>{}}
                                 />
                                 <button
                                     className='h-[50%] w-[18%]'
@@ -365,7 +371,8 @@ const Battle = ({ onGameEnd }) => {
                                         backgroundRepeat: 'no-repeat',
                                         border: 'none',
                                     }}
-                                    onClick={() => setSequence({ mode: 'heal', turn })}
+                                    loading = {loading}
+                                    onClick={!loading ? onHeal= () => setSequence({ mode: 'heal', turn }) : ()=>{}}
                                 />
                             </div>
                         </div>

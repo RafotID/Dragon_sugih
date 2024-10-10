@@ -1,5 +1,5 @@
 import React from 'react';
-import Character from '../Component/Character';
+import Character from '../components/Character';
 
 const Level2 = () => {
   return (
