@@ -71,11 +71,16 @@ const Battle = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
     useEffect(() => {
         if (playerHealth === 0 || opponentHealth === 0) {
             (async () => {
-                await wait(1000)
-                onGameEnd(playerHealth === 0 ? opponentStats : playerStats);
-            })()
+                await wait(1000);
+                if (playerHealth === 0) {
+                    onGameEnd(opponentStats); // Pemain kalah
+                } else {
+                    onGameEnd(playerStats); // Pemain menang
+                }
+            })();
         }
     }, [playerHealth, opponentHealth, onGameEnd]);
+    
 
     const currentSlide = flow[currentStep].slide;
 
