@@ -1,6 +1,10 @@
 import React from 'react'
 import { assets } from '../assets/indeks';
+import { useNavigate } from 'react-router-dom';
 const NagaBasugih = () => {
+
+    const navigate = useNavigate ();
+    
     return (
         <div className='relative h-screen'>
             {/* Layer background gambar */}
@@ -14,7 +18,7 @@ const NagaBasugih = () => {
 
             {/* Tombol kiri atas */}
             <div className='absolute pt-3 pl-2 sm:pl-6 sm:pt-6 z-20'>
-                <button
+                <button onClick={() => navigate ('/Caracter')}
                     className='w-[80px] pl-20 sm:w-[150px]  md:w-[150px] h-[50px] sm:h-[55px] md:h-[60px]'
                     style={{
                         backgroundImage: `url(${assets.gambar.button2})`,

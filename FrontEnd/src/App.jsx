@@ -13,6 +13,7 @@ import Level1 from './levels/level1';
 import LoadingBar from './Pages/LoadingBar';
 import Story from './Pages/story';
 import Battle from './Pages/battle';
+import Caracter from './Pages/Caracter';
 import {Penghubung} from './components/Penghubung';
 
 
@@ -33,14 +34,16 @@ function App() {
           <Route path='/signup' element={<Signup />} />
           <Route path='/LoadingBar' element={<LoadingBar />} />
           <Route path='/Privasi' element={<Privasi />} />
+          <Route path='/Caracter' element={<Caracter />} />
+
           <Route path='/sidhimantra' element={<Sidhimantra />} />
           <Route path='/ManikAngkeran' element={<ManikAngkeran />} />
           <Route path='/NagaBasugih' element={<NagaBasugih />} />
           <Route path='/scenario' element={<Scenario />} />
-          <Route path='/story/:id' element={<Story/>} />
-          <Route path='/battle' element={<Battle/>} />
+          <Route path='/story/:id' element={<Story />} />
+          <Route path='/battle/:id' element={<Battle />} />
           <Route path='/level1' element={<Level1 />} />
-          <Route path='/penghubung' element={<Penghubung/>}/>
+          <Route path='/penghubung/:id' element={<Penghubung/>}/>
         </Routes>
 
       </Router>

@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { assets } from '../assets/indeks';
 import '../PusatCss/polygon.css';
 import { Playerdetail } from '../components/Player/Playerdetail';
 import { BattleAnnouncer } from '../components/BattleAnnouncer/BattleAnnouncer';
 import { useBattleSequence, useAIOpponents } from '../hooks'; // import hooks yang diperlukan
 import { playerStats, opponentStats, wait } from '../shared'; // import data statistik pemain dan lawan
-// import { EndMenu } from '../components/EndMenu/EndMenu';
 
 
 const Battle = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
+    const navigate = useNavigate(); 
+
     const img = [
         assets.gambar.sidhimantrastory,
         assets.gambar.spider
@@ -21,8 +23,10 @@ const Battle = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
         { slide: 1 },
         { slide: 2 },
     ];
+    const { id } = useParams()
+
     const [showAlert, setShowAlert] = useState(false);
-    const [currentStep, setCurrentStep] = useState(0); // Indeks untuk mengontrol alur cerita
+    const [currentStep, setCurrentStep] = useState(id); // Indeks untuk mengontrol alur cerita
 
     // State dan hooks pertempuran
     const [sequence, setSequence] = useState({});
@@ -42,7 +46,8 @@ const Battle = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
     // Fungsi untuk berpindah ke langkah berikutnya berdasarkan alur
     const handleNext = () => {
         if (currentStep < flow.length - 1) {
-            setCurrentStep(currentStep + 1); // Pindah ke langkah berikutnya
+            return navigate(`/penghubung/${Number(currentStep) + 1}`)
+            // Pindah ke langkah berikutnya
         }
     };
 
@@ -73,6 +78,25 @@ const Battle = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
     }, [playerHealth, opponentHealth, onGameEnd]);
 
     const currentSlide = flow[currentStep].slide;
+
+    useEffect(() => {
+        setCurrentStep(id)
+    }, [id])
+
+    // useEffect(() => {
+    //     if (playerHealth === 0 || opponentHealth === 0) {
+    //         (async () => {
+    //             await wait(1000);
+    //             if (opponentHealth === 0) {
+    //                 navigate('/story/17'); // Pindah ke "/story/17" jika lawan kalah
+    //             } else {
+    //                 onGameEnd(playerHealth === 0 ? opponentStats : playerStats); // Jika player kalah, jalankan logika yang sudah ada
+    //             }
+    //         })();
+    //     }
+    // }, [playerHealth, opponentHealth, onGameEnd, navigate]);
+    
+
     return (
         <>
             {currentSlide === 0 && (
@@ -156,7 +180,7 @@ const Battle = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
                         {showAlert && (
                             <div className="fixed inset-0 z-50 flex items-center justify-center ">
                                 <div className="bg-custom-bg-info bg-opacity-[97%] p-6 shadow-md w-[40%] h-[80%] justify-center items-center">
-                                    <p className="mt-[-30%] flex justify-center text-[8px] font-girassol text-white">Sidi Mantra</p>
+                                    <p className="mt-[0%] flex justify-center text-[5vh] font-girassol text-white">Sidi Mantra</p>
                                     <div className='z-0 absolute h-[30%] w-[15%]'
                                         style={{
                                             backgroundImage: `url(${img[0]})`,

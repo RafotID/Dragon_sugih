@@ -14,7 +14,7 @@ const DNA_LoadingBar = () => {
 
     if (progress === 100) {
       clearInterval(interval);
-      navigate("/Privasi"); // pindah halaman setelah loading selesai
+      navigate("/Caracter"); // pindah halaman setelah loading selesai
     }
 
     return () => clearInterval(interval);

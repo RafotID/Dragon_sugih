@@ -2,7 +2,8 @@
     position: relative;
     width: 90px;
     height: 90px;
-    background-color: #464747; /* Warna dasar hexagon */
+    background-color: #464747;
+    /* Warna dasar hexagon */
     margin: 20px auto;
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     transform: rotate(90deg);
@@ -12,8 +13,17 @@
     position: relative;
     width: 100px;
     height: 100px;
-    background-color: #757D80; /* Warna dasar hexagon */
+    background-color: #757D80;
+    /* Warna dasar hexagon */
     margin: 20px auto;
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     transform: rotate(90deg);
+}
+
+.polygon-clip {
+    clip-path: polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%);
+}
+
+.polygon-clip-2 {
+    clip-path: polygon(20% 0%, 80% 0%, 100% 50%, 80% 100%, 20% 100%, 0% 50%);
 }

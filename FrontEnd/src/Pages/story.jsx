@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { assets } from '../assets/indeks';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
+
 const Story = () => {
     // Array yang menyimpan teks dialog dari semua slide
     const navigate = useNavigate()
@@ -19,7 +20,8 @@ const Story = () => {
             "Adegan berpindah menuju gunung dan peperangan",
             "Di setiap jalan Sidi mantra akan melewati banyak rintangan ada lima rintangan untuk menuju gunung kamu harus melewati untuk melanjutkan perjalanan",
             "Di awal perjalanan bertemulah dengan penjaga pintu gunung  Giant Super",
-            " Tiba tiba terdengar suara dari dalam hutan.Giant Spider keluar dari dalam hutan menghadang sidi mantra"
+            "Tiba tiba terdengar suara dari dalam hutan.Giant Spider keluar dari dalam hutan menghadang sidi mantra",
+            " Sidi mantra melanjutkan perjalanan ke gunung untuk meminta petunjuk dewa"
         ],
         // scene 2
         [
@@ -76,6 +78,7 @@ const Story = () => {
         { slide: 0, textTitle: 0, textIndex: 10 },
         { slide: 1, textTitle: 1, textIndex: 2 },
         { slide: 0, textTitle: 0, textIndex: 11 },
+        { slide: 0, textTitle: 0, textIndex: 12 },
     ];
 
     const { id } = useParams()
@@ -84,13 +87,18 @@ const Story = () => {
 
     // Fungsi untuk berpindah ke langkah berikutnya berdasarkan alur
     const handleNext = () => {
-        if (currentStep < flow.length - 1) {
-            // setCurrentStep(currentStep + 1);
-            return navigate(`/story/${Number(currentStep) + 1}`)
+        if (currentStep < 16) {
+            // Pindah ke slide berikutnya
+            return navigate(`/story/${Number(currentStep) + 1}`);
         } else {
-            navigate("/penghubung"); // Pindah halaman ke "/battle" setelah langkah terakhir
+            //Pindah halaman ke "/battle" setelah langkah terakhir
+            navigate("/penghubung/1");
+            // Setelah slide ke-17, pindah ke halaman "/battle/1"
+            // navigate("/battle/1");
         }
     };
+    
+
     const currentSlide = flow[currentStep].slide;
     const currentIndex = flow[currentStep].textIndex;
     const currentTitle = flow[currentStep].textTitle;

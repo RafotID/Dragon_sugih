@@ -11,10 +11,10 @@ import button2 from './button2.png'
 import barText from './barText.png'
 import sidhimantra from './sidhimantra.png'
 import ManikAngkeran from './ManikAngkeran.png'
-import NagaBasugih from'./NagaBasugih.png'
-import barTextLarge from'./barTextLarge.png'
-import scenario from'./scenario.png'
-import bgPercakapan from'./bgPercakapan.png'
+import NagaBasugih from './NagaBasugih.png'
+import barTextLarge from './barTextLarge.png'
+import scenario from './scenario.png'
+import bgPercakapan from './bgPercakapan.png'
 import sidhimantrastory from './sidhimantrastory.png'
 import PapanText from './PapanText.png'
 import manik from './manik.png'
@@ -29,6 +29,15 @@ import buttonA from './buttonA.png'
 import buttonM from './buttonM.png'
 import papanBattel from './papanBattel.png'
 import barH from './barH.png'
+import poligonManik from './polimanik.png'
+import poligonSidi from './polisidi.png'
+import bg from './bg.png'
+import naga from './naga.png'
+import mageIcon from './mageIcon.png'
+import healtIcon from './healtIcon.png' 
+import healIcon from './healIcon.png'
+import devIcon from './devIcon.png'
+import pysicalIcon from './pysicalIcon.png'
 
 export const assets = {
     gambar: {
@@ -61,14 +70,25 @@ export const assets = {
         buttonA,
         buttonM,
         barH,
-        papanBattel
+        papanBattel,
+        poligonManik,
+        poligonSidi,
+        naga,
+        bg,
+        mageIcon,
+        healtIcon,
+        healIcon,
+        devIcon,
+        pysicalIcon
+
+
 
     },
     Audio: {
 
     },
     vidio: {
-      
+
     },
     icon: {
 

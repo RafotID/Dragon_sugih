@@ -1,7 +1,13 @@
 import { assets } from '../assets/indeks'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Sidhimantra = () => {
+    const navigate = useNavigate ();
+    const handleClick = () => {
+          navigate('/story/1');
+    }
+   
     return (
         <div className='relative h-screen'>
             {/* Layer background gambar */}
@@ -15,7 +21,7 @@ const Sidhimantra = () => {
 
             {/* Tombol kiri atas */}
             <div className='absolute pt-3 pl-2 sm:pl-6 sm:pt-6 z-20'>
-                <button
+                <button onClick={handleClick}
                     className='w-[80px] pl-20 sm:w-[150px]  md:w-[150px] h-[50px] sm:h-[55px] md:h-[60px]'
                     style={{
                         backgroundImage: `url(${assets.gambar.button2})`,
