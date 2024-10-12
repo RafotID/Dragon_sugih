@@ -61,7 +61,6 @@ const Battle = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
 
     // Logika AI memilih tindakan saat giliran AI
     useEffect(() => {
-        console.log(`AI memilih: ${aiChoice}`); // Gunakan pilihan yang baru saja dibuat
         if(aiChoice && turn === 1 && !inSequence){
             setSequence({turn, mode: aiChoice})
         }

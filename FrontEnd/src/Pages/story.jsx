@@ -92,7 +92,7 @@ const Story = () => {
             return navigate(`/story/${Number(currentStep) + 1}`);
         } else {
             //Pindah halaman ke "/battle" setelah langkah terakhir
-            navigate("/penghubung/1");
+            navigate("/penghubung/0");
             // Setelah slide ke-17, pindah ke halaman "/battle/1"
             // navigate("/battle/1");
         }

@@ -17,7 +17,8 @@ const Signup = () => {
             setLoading(true)
             // Kirim data register ke backend untuk dibuatkan user di Firebase Authentication
             await registerApi({email,password}).then((res) => {
-                const { statusCode, message, data } = res.data;
+                const { statusCode, message, data } = res;
+               
                 if (statusCode === 200) {
                     console.log(statusCode, message, data);
                     Swal.fire({

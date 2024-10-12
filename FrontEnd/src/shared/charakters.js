@@ -3,7 +3,7 @@ export const playerStats = {
     name: 'Sidi Mantra',
     maxHealth: 500,
   
-    magic: 2500,
+    magic: 250,
     heal: 150,
     attack: 100,
     livesteal: 50,
@@ -14,9 +14,9 @@ export const playerStats = {
     name: 'Giant Spider',
     maxHealth: 1000,
   
-    cakar: 1000,
-    lari: 2000,
-    gigit: 1500,
+    cakar: 100,
+    lari: 275,
+    gigit: 150,
     magicDefense: 100,
   };
   

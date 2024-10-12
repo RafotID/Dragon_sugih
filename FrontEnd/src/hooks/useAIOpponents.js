@@ -9,6 +9,7 @@ export const useAIOpponents = (turn) => {
       const options = ['cakar', 'lari', 'gigit'];
       const choice = options[Math.floor(Math.random() * options.length)];
       setAiChoice(choice);
+      console.log(`AI memilih: ${choice}`);
     } else {
       setAiChoice('')
     }

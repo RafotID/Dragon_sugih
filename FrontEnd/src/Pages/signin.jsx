@@ -4,6 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { signInWithEmailAndPassword, auth, sendPasswordResetEmail } from '../firebase';
 import Swal from 'sweetalert2';
 import { loginApi } from '../api/api';
+// import { data } from 'autoprefixer';
 
 const Signin = () => {
     const [loading, setLoading] = useState(false);
@@ -17,13 +18,15 @@ const Signin = () => {
 
         try {
             setLoading(true);
-            const userCredential = await signInWithEmailAndPassword(auth, email, password);
-            const token = await userCredential.user.getIdToken();
-
+            // Sign in with email and password
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const token = await userCredential.user.getIdToken();
+            
             await loginApi({ token }).then((res) => {
                 const { statusCode, message, data } = res;
 
                 if (statusCode === 200) {
+                    console.log(statusCode, message, data)
                     Swal.fire({
                         position: "center",
                         icon: "success",
@@ -36,14 +39,15 @@ const Signin = () => {
             })
 
         } catch (error) {
-          
+            console.error("Login gagal:", error.message || error); // Menampilkan pesan kesalahan
             Swal.fire({
                 icon: "error",
-                title: "Oops...",
+                title: "Terjadi Kesalahan",
                 text: "Email atau username salah",
             });
             setError('gagal login');
-        } finally {
+        }
+         finally {
             setLoading(false);
         }
     };

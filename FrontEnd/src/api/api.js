@@ -1,7 +1,7 @@
 import axiosInstance from "./axiosInstance"
 
 export const registerApi = (values) => {
-  return axiosInstance.post(`/signup`,values)
+  return axiosInstance.post(`/api/signup`,values)
     .then((response) => {
       return response.data
     })
@@ -10,7 +10,7 @@ export const registerApi = (values) => {
     })
 }
 export const loginApi = (values) => {
-  return axiosInstance.post(`/login`,values).then((response) => {
+  return axiosInstance.post(`/api/signin`,values).then((response) => {
       return response.data
     })
     .catch((error) => {
