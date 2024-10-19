@@ -1,22 +1,22 @@
 export const playerStats = {
     level: 44,
     name: 'Sidi Mantra',
-    maxHealth: 500,
+    maxHealth: 750,
   
-    magic: 250,
-    heal: 150,
-    attack: 100,
-    livesteal: 50,
-    defense: 80,
+    magic: 400,
+    heal: 200,
+    attack: 150,
+    livesteal: 75,
+    defense: 120,
   };
   export const opponentStats = {
     level: 44,
     name: 'Giant Spider',
     maxHealth: 1000,
   
-    cakar: 100,
-    lari: 275,
-    gigit: 150,
-    magicDefense: 100,
+    cakar: 150,
+    lari: 325,
+    gigit: 200,
+    magicDefense: 150,
   };
   

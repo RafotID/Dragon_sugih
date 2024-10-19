@@ -28,7 +28,6 @@ export const Penghubung = () => {
     {mode === 'menang' && navigate('/story/17') }
     
     {mode === 'kalah' && <EndMenu winner={winner} onStartClick={() => {
-        setWinner(undefined)
         setMode('battle')
     }}/>}
 
