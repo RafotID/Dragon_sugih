@@ -15,6 +15,7 @@ import Story from './Pages/story';
 import Battle from './Pages/battle';
 import Caracter from './Pages/Caracter';
 import {Penghubung} from './components/Penghubung';
+// import PrivateRoute from './PrivateRoute';
 
 
 function App() {

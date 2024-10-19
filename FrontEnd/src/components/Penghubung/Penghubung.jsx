@@ -9,7 +9,6 @@ export const Penghubung = () => {
     const navigate = useNavigate()
     const [mode, setMode] = useState('battle')
     const [winner, setWinner] = useState()
-    // const [lose, setLose] = useState()
 
 
     return <div >
