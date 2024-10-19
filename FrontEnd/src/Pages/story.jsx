@@ -9,36 +9,45 @@ const Story = () => {
     const dialogTexts = [
         // scene 1
         [
-            "Di sebuah desa terdapat laki laki tua yang selalu berdoa kepada dewa untuk meminta momongan",
-            "Setelah sekian lama berdoa, Sidi Mantra dikaruniai seorang anak laki-laki",
-            "Manik dalam bahasa Sanskerta berarti permata, Angkeran berarti 'Angker' atau misterius",
-            "Waktu berlalu, Manik Angkeran tumbuh dewasa",
+            "Di sebuah desa terdapat laki laki tua yang selalu berdoa kepada dewa , ia berdoa meminta seorang anak karena sudah lama ia hidup sendirian.",
+            "Setelah sekian  lama  berdoa  Sidi Mantra akhirnya di beri seorang anak laki laki oleh dewa yang di beri nama Manik Angkeran",
+            "Manik dalam bahasa sansakerta berarti permata, Angkeran berarti “Angker” atau misterius",
+            "Waktu berlalu, Manik Angkeran tumbuh dewasa dan sangat gemar bermain judi",
             "Adegan berpindah ke keadaan keuangan yang hancur karena si Manik Angkeran yang suka berjudi dan selalu kalah",
-            "Sidi Mantra yang sudah kesal lalu Sidi Mantra mengusir Manik Angkeran",
-            "Adegan campur tangan dewa Sidi Mantra pergi ke gunung untuk meminta bantuan dewa",
-            "pergilah manik angkeran menuju gunung untuk meminta petunjuk kepada dewa",
-            "Adegan berpindah menuju gunung dan peperangan",
-            "Di setiap jalan Sidi mantra akan melewati banyak rintangan ada lima rintangan untuk menuju gunung kamu harus melewati untuk melanjutkan perjalanan",
-            "Di awal perjalanan bertemulah dengan penjaga pintu gunung  Giant Super",
-            "Tiba tiba terdengar suara dari dalam hutan.Giant Spider keluar dari dalam hutan menghadang sidi mantra",
-            " Sidi mantra melanjutkan perjalanan ke gunung untuk meminta petunjuk dewa"
+            "Sidi Mantra yang sudah kesal akhirnya mengusir Manik Angkeran",
+
+            "Sidi Mantra pergi ke kuil di atas  gunung untuk meminta bantuan kepada dewa",
+            "lalu pergilah sidi mantra menuju kuil untuk meminta petunjuk kepada dewa agar masalahnya teratasi",
+
+            "Adegan berpindah menuju pintu gunung , di perjalanan manik angkeran dihadang oleh monster yang menjaga wilayah tersebut",
+
+            "setiap perjalanan, kamu akan menghadapi banyak rintangan untuk menuju gunung kamu harus melewati semua rintangan untuk melanjutkan perjalanan",
+
+            "Di awal perjalanan bertemulah dengan penjaga pintu gunung  si Giant Super  yang menghalangi jalan",
+
+            " di tengah perjalanan tiba tiba terdengar suara dari dalam hutan.Laba laba besar keluar dari dalam hutan menghadang Sidi mantra",
+            
+            " Sidi mantra melanjutkan perjalanan ke gunung untuk meminta petunjuk dewa",
+            "kamu akan melewati hutan terbakar yang dijaga oleh Apiar sang golem api"
         ],
         // scene 2
         [
-            "Wahai dewa tolong berikan saya momongan agar saya tidak hidup sendirian",
-            "Akhirnya, doaku dikabulkan! Aku dikaruniai seorang putra, ku beri nama Manik Angkeran",
-            "Aku harus cepat ke puncak gunung sebelum matahari terbenam. Langit mulai gelap",
+            "Wahai dewa tolong berikan saya seorang anak agar saya tidak hidup sendirian lagi",
+            "terima kasih dewa karena telah memberikan aku seorang anak , anak ini akan kuberi nama  Manik Angkeran",
+            "Aku harus cepat ke puncak gunung sebelum matahari terbenam. ",
+            "serangan mu memang kuat,tapi tidak membuatku patah semangat untuk menuju kepuncak gunung",
+            "Udara mulai terasa sangat panas .Semoga aku bisa melewatinya tanpa terbakar."
 
         ],
         // scene 3
         [
             "Manik, kau sudah dewasa. ku berharap kau membuat keputusan yang bijaksana dan membawa kehormatan bagi keluarga kita.",
-            "Manik, kau telah menghabiskan harta dan menumpuk utang. Aku tidak bisa membantu mu lagi. Kau harus pergi",
+            "Manik, kau telah menghabiskan harta dan menumpuk hutang. Aku tidak bisa membantu mu lagi. Kau harus pergi",
 
         ],
         [
-            "Ayah, aku telah menemukan cara cepat untuk mendapatkan uang. Judi adalah jawabannya!",
-            "Ayah, tolong! Beri aku satu kesempatan lagi!",
+            "Tenang ayah, aku telah menemukan cara cepat untuk mendapatkan uang. Judi adalah jawabannya!",
+            "Tidak Ayah, tolong! Beri aku satu kesempatan lagi!",
 
         ]
     ];
@@ -78,7 +87,10 @@ const Story = () => {
         { slide: 0, textTitle: 0, textIndex: 10 },
         { slide: 1, textTitle: 1, textIndex: 2 },
         { slide: 0, textTitle: 0, textIndex: 11 },
-        { slide: 0, textTitle: 0, textIndex: 12 },
+        { slide: 1, textTitle: 1, textIndex: 3 },
+        { slide: 0, textTitle: 0, textIndex: 13 },
+        { slide: 1, textTitle: 0, textIndex: 4 },
+
     ];
 
     const { id } = useParams()
@@ -90,9 +102,12 @@ const Story = () => {
         if (currentStep < 16) {
             // Pindah ke slide berikutnya
             return navigate(`/story/${Number(currentStep) + 1}`);
-        } else {
+        } else if (currentStep == 17){
+            return navigate(`/story/${Number(currentStep) + 1}`);
+        }
+        else {
             //Pindah halaman ke "/battle" setelah langkah terakhir
-            navigate("/penghubung/0");
+            navigate("/penghubung/4");
             // Setelah slide ke-17, pindah ke halaman "/battle/1"
             // navigate("/battle/1");
         }
@@ -172,7 +187,7 @@ const Story = () => {
                                 {title[0][currentTitle]} {/* Title */}
                             </p>
                             <p className="absolute h-[20vh] lg:left-[23%] lg:p-0 lg:right-[22%] lg:top-[30%] lg:h-[24vh] top-[30%] text-[2.6vh] sm:top-[28%] sm:h-[26vh] sm:text-[3.3vh] sm:py-6 md:px-10 lg:px-[1vh] left-[7%] right-[7%] text-center text-black font-poppins text-2xl lg:text-[3.5vh] md:text-[3.5vh] leading-relaxed z-10 px-10 sm:overflow-y-scroll overflow-y-scroll scrollbar-hide">
-                                {dialogTexts[0][currentIndex]} {/* Dialog Text */}
+                                {dialogTexts[1][currentIndex]} {/* Dialog Text */}
                             </p>
                             <button
                                 onClick={handleNext}

@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { EndMenu } from '../EndMenu';
-import Battle from "../../Pages/battle";
+import {Battle} from "../../Pages/battle";
 import { useNavigate } from "react-router-dom";
 import { playerStats } from "../../shared";
 
@@ -9,6 +9,7 @@ export const Penghubung = () => {
     const navigate = useNavigate()
     const [mode, setMode] = useState('battle')
     const [winner, setWinner] = useState()
+    // const [lose, setLose] = useState()
 
 
     return <div >
@@ -27,6 +28,7 @@ export const Penghubung = () => {
     {mode === 'menang' && navigate('/story/17') }
     
     {mode === 'kalah' && <EndMenu winner={winner} onStartClick={() => {
+        setWinner(undefined)
         setMode('battle')
     }}/>}
 

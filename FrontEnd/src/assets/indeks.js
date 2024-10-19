@@ -38,6 +38,15 @@ import healtIcon from './healtIcon.png'
 import healIcon from './healIcon.png'
 import devIcon from './devIcon.png'
 import pysicalIcon from './pysicalIcon.png'
+import DewaApi from './DewaApi.png'
+import tombolNext from './tombolNext.png'
+import bgLv2 from './bgLv2.png'
+import golemApi from './golemApi.png'
+import apiB from './apiB.png'
+import apiK from './apiK.png'
+import  Cakar from './Cakar.png'
+import lari from './lari.png'
+import gigit from './gigit.png' 
 
 export const assets = {
     gambar: {
@@ -79,7 +88,16 @@ export const assets = {
         healtIcon,
         healIcon,
         devIcon,
-        pysicalIcon
+        pysicalIcon,
+        DewaApi,
+        tombolNext,
+        Cakar,
+        apiB,
+        apiK,
+        golemApi,
+        bgLv2,
+        lari,
+        gigit
 
 
 

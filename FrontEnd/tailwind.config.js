@@ -12,6 +12,13 @@ export default {
         'custom-grey-input': '#A09E9E',
         'custom-grey-text': '#FBF8D1',
         'papanText': '#303938',
+        'custom-div':'#222831',
+
+        'custom-number-magic':'#92DBFF',
+        'custom-number-healt':'#FF90BC',
+        'custom-number-physical':'#D27C2C',
+        'custom-number-heal':'#2E7D32',
+        'custom-number-dev':'#84B0C1',
 
         'custom-green-bg': '#E0FFFF',
         'custom-linier-1': '#3F5256',
