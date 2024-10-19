@@ -1,22 +1,71 @@
-export const playerStats = {
-    level: 44,
-    name: 'Sidi Mantra',
-    maxHealth: 750,
-  
-    magic: 400,
-    heal: 200,
-    attack: 150,
-    livesteal: 75,
-    defense: 120,
-  };
-  export const opponentStats = {
-    level: 44,
-    name: 'Giant Spider',
-    maxHealth: 1000,
-  
-    cakar: 150,
-    lari: 325,
-    gigit: 200,
-    magicDefense: 150,
-  };
-  
+export const Player = {
+  level: 44,
+  maxHealth: 750,
+  name: 'Sidhi Mantra',
+  img: '/assetss/sidhimantra.png',
+
+  magic: 400,
+  heal: 150,
+  attack: 150,
+  livesteal: 75,
+  defense: 90
+};
+
+export const GiantSpider = {
+  level: 44,
+  name: 'Giant Spider',
+  maxHealth: 1000,
+  img: '/assetss/spider.png',
+
+  cakar: 150,
+  lari: 370,
+  gigit: 200,
+  defense: 100,
+};
+
+export const MonsterApi = {
+  level: 44,
+  name: 'Golem Lava',
+  maxHealth: 1000,
+  img: '/assetss/MonsterApi.png',
+
+  suhu : 30,
+  suhuTinggi : 90,
+  tinjuan : 400,
+  defense: 200,
+};
+
+export const MonsterEs = {
+  level: 44,
+  name: 'yeti',
+  maxHealth: 1000,
+  img: '/assetss/MonsterEs.png',
+
+  batu : 70,
+  teriakan : 200,
+  badaiSalju : 200,
+  defense: 200,
+};
+
+export const Buaya = {
+  level: 44,
+  name: 'Buaya',
+  maxHealth: 1000,
+  img: '/assetss/buaya.png',
+
+  adaptasi : 150,
+  air : 175,
+  pukulan : 150,
+  defense: 150,
+};
+
+export const Serigala = {
+  level: 44,
+  name: 'Serigala',
+  maxHealth: 800,
+  img: '/assetss/serigala.png',
+
+  cakaran : 30,
+  auman : 200,
+  tendangan : 350,
+};

@@ -10,7 +10,7 @@ export const wait = ms =>
       const receivedDamage =
         attacker.attack - (attacker.level - receiver.level) * 1.25;
     
-      const finalDamage = receivedDamage ;
+      const finalDamage = receivedDamage  ;
     
       return finalDamage;
     };
@@ -23,7 +23,7 @@ export const wait = ms =>
       const receivedDamage =
         attacker.magic - (attacker.level - receiver.level) * 1.25;
     
-      const finalDamage = receivedDamage - receiver.magicDefense / 2;
+      const finalDamage = receivedDamage - receiver.defense / 2;
     
       return finalDamage;
     };
@@ -33,7 +33,7 @@ export const wait = ms =>
     };
 
 
-    // Serangan AI
+    // Serangan GiantSpider
    
     export const cakar = ({ attacker, receiver }) => {
       const receivedDamage =
@@ -64,5 +64,119 @@ export const wait = ms =>
       return finalDamage;
     };
 
+    //serangan MonsterApi 
+
+    export const suhu = ({ attacker, receiver }) => {
+      const receivedDamage =
+        attacker.suhu - (attacker.level - receiver.level) * 1.25;
+
+    
+      const finalDamage = receivedDamage;
+    
+      return finalDamage;
+    };
+
+    export const suhuTinggi = ({ attacker, receiver }) => {
+      const receivedDamage =
+        attacker.suhuTinggi - (attacker.level - receiver.level) * 1.25;
+
+    
+      const finalDamage = receivedDamage ;
+    
+      return finalDamage;
+    };
+    
+    export const tinjuan = ({ attacker, receiver }) => {
+      const receivedDamage =
+        attacker.tinjuan - (attacker.level - receiver.level) * 1.25;
+
+    
+      const finalDamage = receivedDamage - receiver.defense / 2;
+    
+      return finalDamage;
+    };
+    
+    // serangan monsterEs
+    export const batu = ({ attacker, receiver }) => {
+      const receivedDamage =
+        attacker.batu - (attacker.level - receiver.level) * 1.25;
+
+    
+      const finalDamage = receivedDamage - receiver.defense/2;
+    
+      return finalDamage;
+    };
+    
+
+    export const teriakan = ({ attacker, receiver }) => {
+      const receivedDamage =
+        attacker.teriakan - (attacker.level - receiver.level) * 1.25;
+
+    
+      const finalDamage = receivedDamage ;
+    
+      return finalDamage;
+    };
+    
+
+    export const badaiSalju = ({ attacker, receiver }) => {
+      const receivedDamage =
+        attacker.badaiSalju - (attacker.level - receiver.level) * 1.25;
+
+    
+      const finalDamage = receivedDamage - receiver.defense/ 2;
+    
+      return finalDamage;
+    };
+
+    // serangan Buaya
+    export const air = ({ attacker, receiver }) => {
+      const receivedDamage =
+        attacker.air - (attacker.level - receiver.level) * 1.25;
+
+    
+      const finalDamage = receivedDamage - receiver.defense/ 2;
+    
+      return finalDamage;
+    };
+
+    export const adaptasi = ({ receiver }) => {
+      return receiver.adaptasi + receiver.level * 0.25;
+    };
+    
+    export const pukulan = ({ attacker, receiver }) => {
+      const receivedDamage =
+        attacker.pukulan - (attacker.level - receiver.level) * 1.25;
+
+    
+      const finalDamage = receivedDamage - receiver.defense/ 2;
+    
+      return finalDamage;
+    };
+
+    // serangan serigala
+    export const cakaran = ({ attacker, receiver }) => {
+      const receivedDamage =
+        attacker.cakaran - (attacker.level - receiver.level) * 1.25;
+
+    
+      const finalDamage = receivedDamage ;
+    
+      return finalDamage;
+    };
+
+     export const auman = ({ receiver }) => {
+      return receiver.auman + receiver.level * 0.25;
+    };
+
+    export const tendangan = ({ attacker, receiver }) => {
+      const receivedDamage =
+        attacker.tendangan - (attacker.level - receiver.level) * 1.25;
+
+    
+      const finalDamage = receivedDamage - receiver.defense/ 2;
+    
+      return finalDamage;
+    };
     
     
