@@ -11,64 +11,30 @@ import { playerStats, opponentStats, wait } from '../shared'; // import data sta
 export const Battle = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
     const navigate = useNavigate();
 
-    const playerStatsArray = [
-        { name: "Magic", value: playerStats.magic, icon: assets.gambar.mageIcon, style: 'text-custom-number-magic' },
-        { name: "Heal", value: playerStats.heal, icon: assets.gambar.healtIcon, style: 'text-custom-number-healt' },
-        { name: "Physical", value: playerStats.attack, icon: assets.gambar.pysicalIcon, style: 'text-custom-number-physical' },
-        { name: "Lifesteal", value: playerStats.livesteal, icon: assets.gambar.healIcon, style: 'text-custom-number-heal' },
-        { name: "Defense", value: playerStats.defense, icon: assets.gambar.devIcon, style: 'text-custom-number-dev' },
+    const playerMagic = playerStats.magic;
+    const playerPhysical = playerStats.attack;
+    const playerhealth = playerStats.heal;
+    const playerlivesteal = playerStats.livesteal;
+    const playerDev = playerStats.defense;
+    const playerLv = playerStats.level;
+
+    const Spider = opponentStats.level;
+    const healt = opponentStats.maxHealth;
+    const physical = opponentStats.gigit;
+    const magicDev = opponentStats.magicDefense;
+    const cakarDamage = opponentStats.cakar;
+
+    const img = [
+        assets.gambar.sidhimantrastory,
+        assets.gambar.spider
     ];
-
-    const SpiderStatsArray = [
-        { name: "Heald", value: opponentStats.maxHealth, icon: assets.gambar.healtIcon, style: 'text-custom-number-magic' },
-        { name: "Lari", value: opponentStats.lari, icon: assets.gambar.lari, style: 'text-custom-number-healt' },
-        { name: "Dev", value: opponentStats.magicDefense, icon: assets.gambar.devIcon, style: 'text-custom-number-physical' },
-        { name: "gigit", value: playerStats.livesteal, icon: assets.gambar.healIcon, style: 'text-custom-number-heal' },
-        { name: "Defense", value: playerStats.defense, icon: assets.gambar.devIcon, style: 'text-custom-number-dev' },
-    ];
-
-    const ApiarStatsArray = [
-        { name: "Magic", value: playerStats.magic, icon: assets.gambar.mageIcon, style: 'text-custom-number-magic' },
-        { name: "Heal", value: playerStats.heal, icon: assets.gambar.healtIcon, style: 'text-custom-number-healt' },
-        { name: "Physical", value: playerStats.attack, icon: assets.gambar.pysicalIcon, style: 'text-custom-number-physical' },
-        { name: "Lifesteal", value: playerStats.livesteal, icon: assets.gambar.healIcon, style: 'text-custom-number-heal' },
-        { name: "Defense", value: playerStats.defense, icon: assets.gambar.devIcon, style: 'text-custom-number-dev' },
-    ];
-
-    const Textdialog = 
-    [
-        ["Laba laba! . . . . jangan menghalangi jalanku, aku harus ke atas gunung ini untuk mencapai tujuanku!",
-        "Aku tidak datang untuk berurusan denganmu, tapi jika ini harus terjadi, baiklah. Panasmu tidak akan menghentikanku!"],
-
-        ["Ssssssssiapa yang berani memasuki wilayah ku? berani sekali manusia sepertimu menginjakkan kaki disini !",
-        "Manusia bodoh! Kau pikir bisa melewati wilayahku begitu saja? Kau akan terbakar sebelum mencapai tujuanmu"
-        ]
-    ]
-
 
     const flow = [
-         // sidhi percakapan
-        { slide: 0, bg: assets.gambar.bgBattle, alert: playerStatsArray, charakter: assets.gambar.sidhimantrastory, dialog:0 }, 
-        // spider percakapan
-        {
-            slide: 1, bg: assets.gambar.bgBattle, alert: SpiderStatsArray, charakter: assets.gambar.spider,
-            namecharakter: "Giant Spider", dialog:0
-        },
-        //battle
-        { slide: 2, bg: assets.gambar.bgBattle, charakter: assets.gambar.spider },
-        // sidhi percakapan 2
-        { slide: 0, bg: assets.gambar.bgLv2, alert: playerStatsArray, charakter: assets.gambar.sidhimantrastory,
-            dialog:1
-        },
-        // Apiar percakapan
-        {
-            slide: 1, bg: assets.gambar.bgLv2, alert: ApiarStatsArray, charakter: assets.gambar.golemApi,
-            namecharakter: "Apiar", dialog:1
-        },
-        //battle 2
-        { slide: 2, bg: assets.gambar.bgLv2, charakter: assets.gambar.golemApi}
+        { slide: 0 },
+        { slide: 1 },
+        { slide: 2 },
+        { slide: 3 },
     ];
-
     const { id } = useParams()
 
     const [showAlert, setShowAlert] = useState(false);
@@ -130,11 +96,6 @@ export const Battle = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
 
 
     const currentSlide = flow[currentStep].slide;
-    const currentAlert = flow[currentStep]?.alert;
-    const currentBg = flow[currentStep].bg;
-    const currentCharakter = flow[currentStep].charakter;
-    const currentNameCharakter = flow[currentStep].namecharakter;
-    const currentDialog = flow[currentStep].dialog;
 
     useEffect(() => {
         setCurrentStep(id)
@@ -148,7 +109,7 @@ export const Battle = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
                 <div className='relative h-screen overflow-hidden'>
                     <div
                         className="absolute inset-0 bg-cover bg-center"
-                        style={{ backgroundImage: `url(${currentBg})` }}>
+                        style={{ backgroundImage: `url(${assets.gambar.bgBattle})` }}>
                     </div>
 
                     <div className='bg-gradient-to-r from-custom-linier-1 via-custom-linier-2 to-custom-linier-3 opacity-[50%] absolute inset-0'>
@@ -181,7 +142,7 @@ export const Battle = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
                                 bottom: '6%',
                             }}
                         >
-                            <p className='justify-center items-center flex font-poppins text-[25px] pl-20'>{Textdialog[0][currentDialog]}</p>
+                            <p className='justify-center items-center flex font-poppins text-[25px] pl-20'> Laba laba! . . . . jangan menghalangi jalanku, aku harus ke atas gunung ini untuk mencapai tujuanku!</p>
                             <button
                                 className='absolute z-50 h-[20%] w-[28%] left-[92%] bottom-[20%]'
                                 style={{
@@ -189,23 +150,23 @@ export const Battle = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
                                     backgroundSize: 'contain',
                                     backgroundRepeat: 'no-repeat',
                                     border: 'none',
-                                    pointerEvents: 'auto',
-                                    cursor: 'pointer',
+                                    pointerEvents: 'auto', // Pointer events aktif untuk button
+                                    cursor: 'pointer', // Menambah efek kursor untuk menunjukkan bahwa ini tombol
                                 }}
-                                onClick={handleNext}
+                                onClick={handleNext} // Fungsi untuk pindah ke slide berikutnya
                             >
                             </button>
                         </div>
 
                         <div className='z-0 absolute h-[100%] w-[60%]'
                             style={{
-                                backgroundImage: `url(${currentCharakter})`,
+                                backgroundImage: `url(${img[0]})`,
                                 backgroundSize: 'contain',
                                 backgroundPosition: 'center',
                                 backgroundRepeat: 'no-repeat',
                                 left: '20%',
                                 bottom: '0%',
-                                pointerEvents: 'none',
+                                pointerEvents: 'none', // Pastikan elemen ini tidak menghalangi klik
                             }}>
                         </div>
 
@@ -219,24 +180,25 @@ export const Battle = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
                                 width: '100%',
                                 left: '2%',
                                 bottom: '3%',
-                                pointerEvents: 'none',
+                                pointerEvents: 'none', // Pastikan elemen ini tidak menghalangi klik
                             }}
                         ></div>
 
-                        {showAlert && currentAlert && (
-                            <div className="fixed inset-0 z-50 flex items-center justify-center">
+                        {showAlert && (
+                            <div className="fixed inset-0 z-50 flex items-center justify-center ">
                                 <div className="bg-custom-bg-info bg-opacity-[97%] p-6 shadow-md w-[40%] h-[80%] justify-center items-center">
                                     <p className="mt-[0%] flex justify-center text-[5vh] font-girassol text-white">Sidi Mantra</p>
                                     <div className='z-0 absolute h-[30%] w-[15%]'
                                         style={{
-                                            backgroundImage: `url(${currentCharakter})`,
+                                            backgroundImage: `url(${img[0]})`,
                                             backgroundSize: 'contain',
                                             backgroundPosition: 'center',
                                             backgroundRepeat: 'no-repeat',
                                             left: '43%',
                                             top: '20%',
-                                            pointerEvents: 'none',
+                                            pointerEvents: 'none', // Pastikan elemen ini tidak menghalangi klik
                                         }}>
+                                        <p className="mt-[80%] flex justify-center text-[30px] font-girassol text-white">Level {playerLv}</p>
                                     </div>
                                     <button
                                         className='absolute z-30 h-[5%] w-[5%] top-[13%] left-[66%]'
@@ -250,22 +212,28 @@ export const Battle = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
                                     >
                                     </button>
                                     <div className='flex flex-row flex-wrap justify-center items-center gap-x-16 gap-y-16 mt-[50%]'>
-                                        {currentAlert
-                                            .filter(stat => stat.name !== "PlayersLv")
-                                            .map((stat, index) => (
-                                                <div
-                                                    key={index}
-                                                    className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-6 items-center font-girassol'
-                                                >
-                                                    <img
-                                                        src={stat.icon}
-                                                        alt=""
-                                                        className='ml-3 my-1 w-[35px] h-[35px]'
-                                                    />
-                                                    <p className={`${stat.style} text-[35px]`}>{stat.value}</p>
-                                                </div>
-                                            ))}
+                                        <div className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-6 items-center font-girassol '>
+                                            <img src={assets.gambar.mageIcon} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
+                                            <p className='text-custom-number-magic text-[35px]'>{playerMagic}</p>
+                                        </div>
+                                        <div className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-5 items-center font-girassol '>
+                                            <img src={assets.gambar.healtIcon} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
+                                            <p className='text-custom-number-healt text-[35px]'>{playerhealth}</p>
+                                        </div>
+                                        <div className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-5 items-center font-girassol '>
+                                            <img src={assets.gambar.pysicalIcon} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
+                                            <p className='text-custom-number-physical text-[35px]'>{playerPhysical}</p>
+                                        </div>
+                                        <div className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-6 items-center font-girassol '>
+                                            <img src={assets.gambar.healIcon} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
+                                            <p className='text-custom-number-heal text-[35px]'>{playerlivesteal}</p>
+                                        </div>
+                                        <div className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-6 items-center font-girassol '>
+                                            <img src={assets.gambar.devIcon} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
+                                            <p className='text-custom-number-dev text-[35px]'>{playerDev}</p>
+                                        </div>
                                     </div>
+
                                 </div>
                             </div>
                         )}
@@ -273,12 +241,11 @@ export const Battle = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
                 </div>
             )}
 
-
             {currentSlide === 1 && (
                 <div className='relative h-screen overflow-hidden'>
                     <div
                         className="absolute inset-0 bg-cover bg-center"
-                        style={{ backgroundImage: `url(${currentBg})` }}>
+                        style={{ backgroundImage: `url(${assets.gambar.bgBattle})` }}>
                     </div>
 
                     <div className='bg-gradient-to-r from-custom-linier-1 via-custom-linier-2 to-custom-linier-3 opacity-[50%] absolute inset-0'>
@@ -311,7 +278,7 @@ export const Battle = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
                                 bottom: '6%',
                             }}
                         >
-                            <p className='justify-center items-center flex font-poppins text-[25px] pl-20'>{Textdialog[1][currentDialog]}</p>
+                            <p className='justify-center items-center flex font-poppins text-[25px] pl-20'> Ssssssssiapa yang berani memasuki wilayah ku? berani sekali manusia sepertimu menginjakkan kaki disini !</p>
                             <button
                                 className='absolute z-50 h-[20%] w-[28%] left-[92%] bottom-[20%]'
                                 style={{
@@ -329,7 +296,7 @@ export const Battle = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
 
                         <div className='z-0 absolute h-[60%] w-[60%]'
                             style={{
-                                backgroundImage: `url(${currentCharakter})`,
+                                backgroundImage: `url(${img[1]})`,
                                 backgroundSize: 'contain',
                                 backgroundPosition: 'center',
                                 backgroundRepeat: 'no-repeat',
@@ -353,13 +320,13 @@ export const Battle = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
                             }}
                         ></div>
 
-                        {showAlert && currentAlert && (
+                        {showAlert && (
                             <div className="fixed inset-0 z-50 flex items-center justify-center ">
                                 <div className="bg-custom-bg-info bg-opacity-[97%] p-6 shadow-md w-[40%] h-[80%] justify-center items-center">
-                                    <p className="mt-[0%] flex justify-center text-[5vh] font-girassol text-white">{currentNameCharakter}</p>
+                                    <p className="mt-[0%] flex justify-center text-[5vh] font-girassol text-white">Giant Spider</p>
                                     <div className='z-0 absolute h-[30%] w-[15%]'
                                         style={{
-                                            backgroundImage: `url(${currentCharakter})`,
+                                            backgroundImage: `url(${img[1]})`,
                                             backgroundSize: 'contain',
                                             backgroundPosition: 'center',
                                             backgroundRepeat: 'no-repeat',
@@ -367,7 +334,7 @@ export const Battle = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
                                             top: '20%',
                                             pointerEvents: 'none', // Pastikan elemen ini tidak menghalangi klik
                                         }}>
-
+                                        <p className="mt-[80%] flex justify-center text-[30px] font-girassol text-white">Level {Spider}</p>
                                     </div>
                                     <button
                                         className='absolute z-30 h-[5%] w-[5%] top-[13%] left-[66%]'
@@ -381,22 +348,28 @@ export const Battle = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
                                     >
                                     </button>
                                     <div className='flex flex-row flex-wrap justify-center items-center gap-x-16 gap-y-16 mt-[50%]'>
-                                        {currentAlert
-                                            .filter(stat => stat.name !== "PlayersLv") // Menghilangkan objek PlayersLv
-                                            .map((stat, index) => (
-                                                <div
-                                                    key={index}
-                                                    className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-6 items-center font-girassol'
-                                                >
-                                                    <img
-                                                        src={stat.icon}
-                                                        alt=""
-                                                        className='ml-3 my-1 w-[35px] h-[35px]'
-                                                    />
-                                                    <p className={`${stat.style} text-[35px]`}>{stat.value}</p>
-                                                </div>
-                                            ))}
+                                        <div className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-6 items-center font-girassol '>
+                                            <img src={assets.gambar.healtIcon} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
+                                            <p className='text-custom-number-healt text-[35px]'>{healt}</p>
+                                        </div>
+                                        <div className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-5 items-center font-girassol '>
+                                            <img src={assets.gambar.pysicalIcon} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
+                                            <p className='text-custom-number-physical text-[35px]'>{physical}</p>
+                                        </div>
+                                        <div className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-5 items-center font-girassol '>
+                                            <img src={assets.gambar.devIcon} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
+                                            <p className='text-custom-number-dev text-[35px]'>{magicDev}</p>
+                                        </div>
+                                        <div className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-6 items-center font-girassol '>
+                                            <img src={assets.gambar.Cakar} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
+                                            <p className='text-custom-number-heal text-[35px]'>{cakarDamage}</p>
+                                        </div>
+                                        <div className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-6 items-center font-girassol '>
+                                            <img src={assets.gambar.devIcon} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
+                                            <p className='text-custom-number-dev text-[35px]'>{playerDev}</p>
+                                        </div>
                                     </div>
+
                                 </div>
                             </div>
                         )}
@@ -407,7 +380,7 @@ export const Battle = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
                 <div className='relative h-screen overflow-hidden'>
                     <div
                         className="absolute inset-0 bg-cover bg-center"
-                        style={{ backgroundImage: `url(${currentBg})` }}>
+                        style={{ backgroundImage: `url(${assets.gambar.bgBattle})` }}>
                     </div>
 
                     <div className='bg-gradient-to-r from-custom-linier-1 via-custom-linier-2 to-custom-linier-3 opacity-[50%] absolute inset-0'>
@@ -439,7 +412,7 @@ export const Battle = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
                         </div>
 
                         <div className='relative flex justify-end top-[2%] right-[2%]'>
-                            <img src={currentCharakter} alt="" className={`absolute mr-[5%] w-[18%] mt-[3%] `} />
+                            <img src={assets.gambar.spider} alt="" className={`absolute mr-[5%] w-[18%] mt-[3%] `} />
                             <p className='absolute z-30 font-girassol text-white text-[3vh] mt-[0.5%] right-[20%] leading-relaxed'>Giant Spider</p>
 
                             <img src={assets.gambar.barH} alt="papan" className='absolute ml-[3%] w-[32%] ' />
@@ -515,6 +488,7 @@ export const Battle = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
                         </div>
                         <div className='z-0 absolute h-[60%] w-[60%]'
                             style={{
+                                backgroundImage: `url(${img[9]})`,
                                 backgroundSize: 'contain',
                                 backgroundPosition: 'center',
                                 backgroundRepeat: 'no-repeat',
