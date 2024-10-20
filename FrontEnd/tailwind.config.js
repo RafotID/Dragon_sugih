@@ -14,11 +14,20 @@ export default {
         'papanText': '#303938',
         'custom-div':'#222831',
 
+        'gradienA':'#97908A',
+        'gradienM':'#7C7D7C',
+        'gradienB':'#817F7D',
+
+        'gradien1':'#FF6E33',
+        'gradien2':'#FF8733',
+        'gradien3':'#FFB80B',
+
         'custom-number-magic':'#92DBFF',
         'custom-number-healt':'#FF90BC',
         'custom-number-physical':'#D27C2C',
         'custom-number-heal':'#2E7D32',
         'custom-number-dev':'#84B0C1',
+        'custom-number-air': '#92DBFF',
 
         'custom-green-bg': '#E0FFFF',
         'custom-linier-1': '#3F5256',

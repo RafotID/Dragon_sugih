@@ -2,7 +2,7 @@ import { useState } from "react"
 import { EndMenu } from '../EndMenu';
 import {Battle} from "../../Pages/battle";
 import { useNavigate } from "react-router-dom";
-import { playerStats } from "../../shared";
+import { Player } from "../../shared";
 
 
 export const Penghubung = () => {
@@ -17,7 +17,7 @@ export const Penghubung = () => {
 {mode === 'battle' && <Battle 
     onGameEnd={winner => {
         setWinner(winner);
-        if (winner === playerStats) {
+        if (winner === Player) {
             setMode('menang'); // Arahkan ke 'next' jika menang
         } else {
             setMode('kalah'); // Arahkan ke 'lose' jika kalah

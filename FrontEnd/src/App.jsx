@@ -12,9 +12,9 @@ import Scenario from './Pages/scenario';
 import Level1 from './levels/level1';
 import LoadingBar from './Pages/LoadingBar';
 import Story from './Pages/story';
-import {Battle} from './Pages/battle';
+import { Battle, Battle2, Battle3, Battle4, Battle5 } from './Pages/battle';
 import Caracter from './Pages/Caracter';
-import {Penghubung} from './components/Penghubung';
+import { Penghubung } from './components/Penghubung';
 
 
 function App() {
@@ -42,8 +42,12 @@ function App() {
           <Route path='/scenario' element={<Scenario />} />
           <Route path='/story/:id' element={<Story />} />
           <Route path='/battle/:id' element={<Battle />} />
+          <Route path='/battle2/:id' element={<Battle2 />} />
+          <Route path='/battle3/:id' element={<Battle3 />} />
+          <Route path='/battle4/:id' element={<Battle4 />} />
+          <Route path='/battle5/:id' element={<Battle5 />} />
           <Route path='/level1' element={<Level1 />} />
-          <Route path='/penghubung/:id' element={<Penghubung/>}/>
+          <Route path='/penghubung/:id' element={<Penghubung />} />
         </Routes>
 
       </Router>

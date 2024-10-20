@@ -26,9 +26,13 @@ const Story = () => {
             "Di awal perjalanan bertemulah dengan penjaga pintu gunung  si Giant Super  yang menghalangi jalan",
 
             " di tengah perjalanan tiba tiba terdengar suara dari dalam hutan.Laba laba besar keluar dari dalam hutan menghadang Sidi mantra",
-            
+
             " Sidi mantra melanjutkan perjalanan ke gunung untuk meminta petunjuk dewa",
-            "kamu akan melewati hutan terbakar yang dijaga oleh Apiar sang golem api"
+            "kamu akan melewati hutan terbakar yang dijaga oleh Apiar sang golem api",
+            "kamu akan melewati hutan salju yang dijaga oleh Frostar",
+            "kamu akan melewati rawa rawa yang sangat bau dijaga oleh Crockar",
+            "kamu akan melawan monster terakhir dari game ini",
+
         ],
         // scene 2
         [
@@ -36,7 +40,14 @@ const Story = () => {
             "terima kasih dewa karena telah memberikan aku seorang anak , anak ini akan kuberi nama  Manik Angkeran",
             "Aku harus cepat ke puncak gunung sebelum matahari terbenam. ",
             "serangan mu memang kuat,tapi tidak membuatku patah semangat untuk menuju kepuncak gunung",
-            "Udara mulai terasa sangat panas .Semoga aku bisa melewatinya tanpa terbakar."
+            "Udara mulai terasa sangat panas .Semoga aku bisa melewatinya tanpa terbakar.",
+            "Api tidak menghentikan ku. Satu langkah lebih dekat ke tujuanku",
+            "Udara dingin ini... tidak salah lagi, ini wilayah  Frostar. Aku harus terus bergerak atau beku di tempat.",
+            "Ternyata, es juga bisa pecah. Saatnya lanjut sebelum mati beku.",
+            "Rawa ini terasa berat... dan bau lumpur tak sedap mulai menyengat. Crockar pasti sudah mengincarku",
+            "Lumpur tidak bisa menahan ku. Aku tetap berdiri kokoh mengalahka mu. Siap untuk lawan berikutnya",
+            "Hutan ini penuh dengan bayangan... Aku bisa merasakan serigala mengawasi dari segala arah. Lupor pasti di sini",
+            "Serangan mu tidak cukup cepat untuk menumbangkan ku",
 
         ],
         // scene 3
@@ -87,9 +98,25 @@ const Story = () => {
         { slide: 0, textTitle: 0, textIndex: 10 },
         { slide: 1, textTitle: 1, textIndex: 2 },
         { slide: 0, textTitle: 0, textIndex: 11 },
-        { slide: 1, textTitle: 1, textIndex: 3 },
+
+        { slide: 1, textTitle: 1, textIndex: 3 }, //ini dialog sebelum ke apiar
         { slide: 0, textTitle: 0, textIndex: 13 },
         { slide: 1, textTitle: 0, textIndex: 4 },
+
+        { slide: 1, textTitle: 1, textIndex: 5 }, //ini dialog sebelum ke frostar
+        { slide: 0, textTitle: 0, textIndex: 14 },
+        { slide: 1, textTitle: 0, textIndex: 6 }, //22
+
+        { slide: 1, textTitle: 1, textIndex: 7 }, //ini dialog sebelum ke buaya
+        { slide: 0, textTitle: 0, textIndex: 15 },
+        { slide: 1, textTitle: 0, textIndex: 8 },
+
+        { slide: 1, textTitle: 0, textIndex: 9 }, //ini dialog sebelum serigala
+        { slide: 0, textTitle: 0, textIndex: 16 },
+        { slide: 1, textTitle: 0, textIndex: 10 },
+
+        { slide: 1, textTitle: 0, textIndex: 11 },// dialog sesudah perang lawan serigala dan lanjut story menuju dewa
+
 
     ];
 
@@ -101,18 +128,19 @@ const Story = () => {
     const handleNext = () => {
         if (currentStep < 16) {
             // Pindah ke slide berikutnya
-            return navigate(`/story/${Number(currentStep) + 1}`);
-        } else if (currentStep == 17){
-            return navigate(`/story/${Number(currentStep) + 1}`);
+            navigate(`/story/${Number(currentStep) + 1}`);
+        } else if (currentStep == 16) {
+            navigate("/penghubung/0");
+        } else if (currentStep > 16 && currentStep < 19) {
+            navigate(`/story/${Number(currentStep) + 1}`);
+        } else if (currentStep == 19) {
+
+            navigate(`/penghubung/battle2/${Number(0)}`
+
+            )
         }
-        else {
-            //Pindah halaman ke "/battle" setelah langkah terakhir
-            navigate("/penghubung/4");
-            // Setelah slide ke-17, pindah ke halaman "/battle/1"
-            // navigate("/battle/1");
-        }
+
     };
-    
 
     const currentSlide = flow[currentStep].slide;
     const currentIndex = flow[currentStep].textIndex;
@@ -152,9 +180,9 @@ const Story = () => {
                                 backgroundRepeat: 'no-repeat',
                                 transform: 'rotateY(180deg)',
                             }}>
-                            
-                            </button>
-                            
+
+                        </button>
+
                     </div>
                 </div>
 
@@ -266,6 +294,7 @@ const Story = () => {
 
 
                             {/* Bagian Teks */}
+
                             <div className="relative -top-28 w-full sm:right-5 sm:w-full mt-5 sm:top-[-30%] md:top-[-15%] lg:mt-[35%]">
                                 <img
                                     src={assets.gambar.PapanText}

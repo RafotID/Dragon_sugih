@@ -47,6 +47,17 @@ import apiK from './apiK.png'
 import  Cakar from './Cakar.png'
 import lari from './lari.png'
 import gigit from './gigit.png' 
+import bgLv3 from './bgLv3.png'
+import monsterEs  from './monsterEs.png'
+import bgLv5 from './bgLv5.png'
+import monsterSrigala from './monsterSrigala.png'
+import air  from './air.png'
+import batu  from './batu.png'
+import aumanEsdanSerigla from './aumanEsdanSerigla.png'
+import badaiEs from './badaiEs.png'
+import bgLv4 from './bgLv4.png'
+import cockar from './cockar.png'
+import pukulan from './pukulan.png'
 
 export const assets = {
     gambar: {
@@ -97,7 +108,20 @@ export const assets = {
         golemApi,
         bgLv2,
         lari,
-        gigit
+        gigit,
+        bgLv3,
+        bgLv5,
+        monsterEs,
+        monsterSrigala,
+        air,
+        batu,
+        aumanEsdanSerigla,
+        badaiEs,
+        bgLv4,
+        cockar,
+        pukulan
+
+        
 
 
 
