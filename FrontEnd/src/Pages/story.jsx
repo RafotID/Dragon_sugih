@@ -79,7 +79,7 @@ const Story = () => {
         ]
     ]
 
-    // Array yang menentukan alur slide dan indeks teks
+    // Array yang menentukan alur slide dan indeks teks /
     const flow = [
         { slide: 0, textTitle: 0, textIndex: 0 },
         { slide: 1, textTitle: 1, textIndex: 0 },
