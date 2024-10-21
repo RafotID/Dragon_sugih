@@ -22,6 +22,14 @@ export default {
         'gradien2':'#FF8733',
         'gradien3':'#FFB80B',
 
+        'gradienApi1':'#8B0000',
+        'gradienApi2':'#FF0000',
+        'gradienApi3':'#FFD700',
+
+        'gradienApik1':'#00008B',
+        'gradienApik2':'#0000FF',
+        'gradienApik3':'#00FFFF',
+
         'custom-number-magic':'#92DBFF',
         'custom-number-healt':'#FF90BC',
         'custom-number-physical':'#D27C2C',

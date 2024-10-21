@@ -1,10 +1,10 @@
 export const Player = {
   level: 44,
-  maxHealth: 750,
+  maxHealth: 400,
   name: 'Sidi Mantra',
   img: '/assetss/sidhimantra.png',
 
-  magic: 4000,
+  magic: 750,
   heal: 150,
   attack: 150,
   livesteal: 75,

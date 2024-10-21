@@ -12,15 +12,16 @@ export const Battle = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
     const navigate = useNavigate();
 
     const playerMagic = Player.magic;
-    const playerPhysical = Player.maxHealth;
-    const playerhealth = Player.attack;
+    const playerhealth = Player.maxHealth;
+    const playerattack = Player.attack;
     const playerlivesteal = Player.heal;
     const playerDev = Player.defense;
 
     const healt = GiantSpider.maxHealth;
-    const physical = GiantSpider.gigit;
-    const magicDev = GiantSpider.magicDefense;
-    const cakarDamage = GiantSpider.cakar;
+    const lari = GiantSpider.lari;
+    const gigit = GiantSpider.gigit;
+    const dev = GiantSpider.defense;
+    const cakar = GiantSpider.cakar;
 
     const img = [
         assets.gambar.sidhimantrastory,
@@ -57,9 +58,7 @@ export const Battle = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
         if (currentStep < flow.length - 1) {
             return navigate(`/penghubung/${Number(currentStep) + 1}`)
             // Pindah ke langkah berikutnya
-        } else {
-            navigate('/story/18');
-        }
+        } 
     };
 
     const handleInfoClick = () => {
@@ -219,7 +218,7 @@ export const Battle = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
                                         </div>
                                         <div className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-5 items-center font-girassol '>
                                             <img src={assets.gambar.pysicalIcon} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
-                                            <p className='text-custom-number-physical text-[35px]'>{playerPhysical}</p>
+                                            <p className='text-custom-number-physical text-[35px]'>{playerattack}</p>
                                         </div>
                                         <div className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-6 items-center font-girassol '>
                                             <img src={assets.gambar.healIcon} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
@@ -331,7 +330,7 @@ export const Battle = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
                                             top: '20%',
                                             pointerEvents: 'none', // Pastikan elemen ini tidak menghalangi klik
                                         }}>
-                                        <p className="mt-[80%] flex justify-center text-[30px] font-girassol text-white">Level {Spider}</p>
+                                      
                                     </div>
                                     <button
                                         className='absolute z-30 h-[5%] w-[5%] top-[13%] left-[66%]'
@@ -350,20 +349,20 @@ export const Battle = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
                                             <p className='text-custom-number-healt text-[35px]'>{healt}</p>
                                         </div>
                                         <div className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-5 items-center font-girassol '>
-                                            <img src={assets.gambar.pysicalIcon} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
-                                            <p className='text-custom-number-physical text-[35px]'>{physical}</p>
+                                            <img src={assets.gambar.lari} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
+                                            <p className='text-custom-number-physical text-[35px]'>{lari}</p>
                                         </div>
                                         <div className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-5 items-center font-girassol '>
                                             <img src={assets.gambar.devIcon} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
-                                            <p className='text-custom-number-dev text-[35px]'>{magicDev}</p>
+                                            <p className='text-custom-number-dev text-[35px]'>{gigit}</p>
+                                        </div>
+                                        <div className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-6 items-center font-girassol '>
+                                            <img src={assets.gambar.gigit} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
+                                            <p className='text-custom-number-heal text-[35px]'>{dev}</p>
                                         </div>
                                         <div className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-6 items-center font-girassol '>
                                             <img src={assets.gambar.Cakar} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
-                                            <p className='text-custom-number-heal text-[35px]'>{cakarDamage}</p>
-                                        </div>
-                                        <div className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-6 items-center font-girassol '>
-                                            <img src={assets.gambar.devIcon} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
-                                            <p className='text-custom-number-dev text-[35px]'>{playerDev}</p>
+                                            <p className='bg-gradient-to-t from-gradien3 via-gradien2 to-gradien1 bg-clip-text text-transparent text-[35px]'>{cakar}</p>
                                         </div>
                                     </div>
 
@@ -578,7 +577,7 @@ export const Battle2 = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
 
     const playerMagic = Player.magic;
     const playerPhysical = Player.attack;
-    const playerhealth = Player.heal;
+    const playerhealth = Player.maxHealth;
     const playerlivesteal = Player.livesteal;
     const playerDev = Player.defense;
 
@@ -624,12 +623,13 @@ export const Battle2 = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
     // Fungsi untuk berpindah ke langkah berikutnya berdasarkan alur
     const handleNext = () => {
         if (currentStep < flow.length - 1) {
-            return navigate(`/penghubung/${Number(currentStep) + 1}`)
-            // Pindah ke langkah berikutnya
+            return navigate(`/penghubung/${Number(currentStep) + 1}`);
         } else {
-            navigate('/story/18');
+            // Jika ini adalah akhir dari alur di battle2, arahkan ke story 20
+            navigate('/story/20');
         }
     };
+    
 
     const handleInfoClick = () => {
         setShowAlert(true); // Menampilkan alert saat tombol info ditekan
@@ -916,19 +916,19 @@ export const Battle2 = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
                                     <div className='flex flex-row flex-wrap justify-center items-center gap-x-16 gap-y-16 mt-[50%]'>
                                         <div className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-6 items-center font-girassol '>
                                             <img src={assets.gambar.apiB} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
-                                            <p className='text-custom-number-healt text-[35px]'>{suhuTinggi}</p>
+                                            <p className='bg-gradient-to-t from-gradienApi3 via-gradienApi2 to-gradienApi1 bg-clip-text text-transparent  text-[35px]'>{suhuTinggi}</p>
                                         </div>
                                         <div className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-5 items-center font-girassol '>
                                             <img src={assets.gambar.healtIcon} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
-                                            <p className='text-custom-number-physical text-[35px]'>{maxHealth}</p>
+                                            <p className='text-custom-number-healt text-[35px]'>{maxHealth}</p>
                                         </div>
                                         <div className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-5 items-center font-girassol '>
-                                            <img src={assets.gambar.apiK} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
-                                            <p className='text-custom-number-dev text-[35px]'>{suhu}</p>
+                                            <img src={assets.gambar.pukulan} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
+                                            <p className='text-custom-number-physical text-[35px]'>{tinjuan}</p>
                                         </div>
                                         <div className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-6 items-center font-girassol '>
-                                            <img src={assets.gambar.Cakar} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
-                                            <p className='text-custom-number-heal text-[35px]'>{tinjuan}</p>
+                                            <img src={assets.gambar.apiK} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
+                                            <p className='bg-gradient-to-t from-gradienApik3 via-gradienApik2 to-gradienApik1 bg-clip-text text-transparent text-[35px]'>{suhu}</p>
                                         </div>
                                         <div className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-6 items-center font-girassol '>
                                             <img src={assets.gambar.devIcon} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
@@ -1758,7 +1758,7 @@ export const Battle4 = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
     // Fungsi untuk berpindah ke langkah berikutnya berdasarkan alur
     const handleNext = () => {
         if (currentStep < flow.length - 1) {
-            return navigate(`/penghubung/Battle4/${Number(currentStep) + 1}`)
+            return navigate(`/penghubung/${Number(currentStep) + 1}`)
             // Pindah ke langkah berikutnya
         } else {
             navigate('/story/18');

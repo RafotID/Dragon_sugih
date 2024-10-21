@@ -1,98 +1,84 @@
-import { useState } from "react"
+import { useState, useEffect } from "react";
 import { EndMenu } from '../EndMenu';
-import {Battle, Battle2, Battle3, Battle4, Battle5} from "../../Pages/battle";
-import { useNavigate } from "react-router-dom";
+import { Battle, Battle2, Battle3, Battle4, Battle5 } from "../../Pages/battle";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Player } from "../../shared";
 
-
 export const Penghubung = () => {
-    const navigate = useNavigate()
-    const [mode, setMode] = useState('battle')
-    const [winner, setWinner] = useState()
-    // const [lose, setLose] = useState()
+    const navigate = useNavigate();
+    const location = useLocation();
+    const [mode, setMode] = useState('battle');
+    const [winner, setWinner] = useState();
+    const [battleStage, setBattleStage] = useState(location.state?.mode || 'battle1'); // Dapatkan stage dari state navigasi
+    const [storyStage, setStoryStage] = useState(17); // Tahap cerita, mulai dari story 17
 
-
-    return <div >
-
-{mode === 'battle' && <Battle 
-    onGameEnd={winner => {
-        setWinner(winner);
-        if (winner === Player) {
-            setMode('battle2'); // Arahkan ke 'next' jika menang
-        } else {
-            setMode('kalah'); // Arahkan ke 'lose' jika kalah
+    // Fungsi untuk mendapatkan komponen pertempuran yang sesuai berdasarkan battleStage
+    const getCurrentBattleComponent = () => {
+        switch (battleStage) {
+            case 'battle1': return Battle;
+            case 'battle2': return Battle2;
+            case 'battle3': return Battle3;
+            case 'battle4': return Battle4;
+            case 'battle5': return Battle5;
+            default: return null;
         }
-    }}
-/>}
+    };
 
-    {/* {mode === 'menang' && navigate('/story/17') } */}
+    const CurrentBattle = getCurrentBattleComponent();
 
-    {mode === 'battle2' && <Battle2 
-    onGameEnd={winner => {
-        setWinner(winner);
-        if (winner === Player) {
-            setMode('battle3'); // Arahkan ke 'next' jika menang
-        } else {
-            setMode('kalah2'); // Arahkan ke 'lose' jika kalah
+    // Logika navigasi setelah kemenangan pertempuran
+    useEffect(() => {
+        if (mode === 'nextStory') {
+            if (battleStage === 'battle2') {
+                setStoryStage(20);
+                navigate(`/story/20 `);
+            } else if (battleStage === 'battle3') {
+                setStoryStage(23);
+                navigate(`/story/23 `);
+            } else if (battleStage === 'battle4') {
+                setStoryStage(26);
+                navigate(`/story/26 `)
+            } else if (battleStage === 'battle5'){
+                setStoryStage(29);
+                navigate(`/story/29 `)
+            }else if (storyStage <= 30) {
+                navigate(`/story/${storyStage} `);
+                setStoryStage(prev => prev + 1);
+            } else {
+                setMode('battle');
+                setBattleStage(prev => {
+                    if (prev === 'battle1') return 'battle2';
+                    if (prev === 'battle2') return 'battle3';
+                    if (prev === 'battle3') return 'battle4';
+                    if (prev === 'battle4') return 'battle5';
+                    return 'battle1';
+                });
+                navigate('/penghubung/0', { state: { mode: battleStage } });
+            }
         }
-    }}
-/>}
+    }, [mode, storyStage, navigate, battleStage]);
 
-    {mode === 'battle3' && <Battle3 
-    onGameEnd={winner => {
-        setWinner(winner);
-        if (winner === Player) {
-            setMode('battle4'); // Arahkan ke 'next' jika menang
-        } else {
-            setMode('kalah3'); // Arahkan ke 'lose' jika kalah
-        }
-    }}
-/>}
-    {mode === 'battle4' && <Battle4 
-    onGameEnd={winner => {
-        setWinner(winner);
-        if (winner === Player) {
-            setMode('battle5'); // Arahkan ke 'next' jika menang
-        } else {
-            setMode('kalah4'); // Arahkan ke 'lose' jika kalah
-        }
-    }}
-/>}
-    {mode === 'battle5' && <Battle5 
-    onGameEnd={winner => {
-        setWinner(winner);
-        if (winner === Player) {
-            setMode(''); // Arahkan ke 'next' jika menang
-        } else {
-            setMode('kalah5'); // Arahkan ke 'lose' jika kalah
-        }
-    }}
-/>}
-    
-    {mode === 'kalah' && <EndMenu winner={winner} onStartClick={() => {
-        setWinner(undefined)
-        setMode('battle')
-    }}/>}
-    
-    {mode === 'kalah2' && <EndMenu winner={winner} onStartClick={() => {
-        setWinner(undefined)
-        setMode('battle2')
-    }}/>}
+    return (
+        <div>
+            {mode === 'battle' && CurrentBattle && (
+                <CurrentBattle
+                    onGameEnd={winner => {
+                        setWinner(winner);
+                        if (winner === Player) {
+                            setMode('nextStory'); // Menang -> pindah ke story
+                        } else {
+                            setMode('kalah'); // Kalah -> pindah ke mode kalah
+                        }
+                    }}
+                />
+            )}
 
-    {mode === 'kalah3' && <EndMenu winner={winner} onStartClick={() => {
-        setWinner(undefined)
-        setMode('battle3')
-    }}/>}
-
-    {mode === 'kalah4' && <EndMenu winner={winner} onStartClick={() => {
-        setWinner(undefined)
-        setMode('battle4')
-    }}/>}
-
-    {mode === 'kalah5' && <EndMenu winner={winner} onStartClick={() => {
-        setWinner(undefined)
-        setMode('battle5')
-    }}/>}
-
-    </div>
-}
+            {mode === 'kalah' && (
+                <EndMenu winner={winner} onStartClick={() => {
+                    setWinner(undefined);
+                    setMode('battle');
+                }} />
+            )}
+        </div>
+    );
+};
