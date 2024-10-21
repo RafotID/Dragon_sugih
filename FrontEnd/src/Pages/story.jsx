@@ -135,9 +135,7 @@ const Story = () => {
             navigate(`/story/${Number(currentStep) + 1}`);
         } else if (currentStep == 19) {
 
-            navigate(`/penghubung/battle2/${Number(0)}`
-
-            )
+            navigate(`/penghubung/battle2/${Number(0)}`)
         }
 
     };
