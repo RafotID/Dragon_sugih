@@ -7,7 +7,7 @@ const Caracter = () => {
     return (
         <>
             <div className='absolute pt-3 left-[85%] sm:pl-6 sm:pt-6 z-20'>
-                <button  onClick={() => navigate ('/scenario')}
+                <button  onClick={() => navigate ('/scenario/0')}
                     className='w-[80px] pl-20 sm:w-[150px]  md:w-[150px] h-[50px] sm:h-[55px] md:h-[60px]'
                     style={{
                         backgroundImage: `url(${assets.gambar.button2})`,

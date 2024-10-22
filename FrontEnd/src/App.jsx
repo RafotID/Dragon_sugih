@@ -8,13 +8,14 @@ import Privasi from './Pages/Privasi';
 import Sidhimantra from './Pages/sidhimantra';
 import ManikAngkeran from './Pages/ManikAngkeran';
 import NagaBasugih from './Pages/NagaBasugih';
-import Scenario from './Pages/scenario';
+import Scenario from './Pages/Scenario';
 import Level1 from './levels/level1';
 import LoadingBar from './Pages/LoadingBar';
 import Story from './Pages/story';
 import { Battle, Battle2, Battle3, Battle4, Battle5 } from './Pages/battle';
 import Caracter from './Pages/Caracter';
 import { Penghubung } from './components/Penghubung';
+import PercakapanNaga from './Pages/PercakapanNaga';
 
 
 function App() {
@@ -39,7 +40,7 @@ function App() {
           <Route path='/sidhimantra' element={<Sidhimantra />} />
           <Route path='/ManikAngkeran' element={<ManikAngkeran />} />
           <Route path='/NagaBasugih' element={<NagaBasugih />} />
-          <Route path='/scenario' element={<Scenario />} />
+          <Route path='/Scenario/:id' element={<Scenario />} />
           <Route path='/story/:id' element={<Story />} />
           <Route path='/battle/:id' element={<Battle />} />
           <Route path='/battle2/:id' element={<Battle2 />} />
@@ -48,6 +49,7 @@ function App() {
           <Route path='/battle5/:id' element={<Battle5 />} />
           <Route path='/level1' element={<Level1 />} />
           <Route path='/penghubung/:id' element={<Penghubung />} />
+          <Route path='/PercakapanNaga/:id' element={<PercakapanNaga />} />
         </Routes>
 
       </Router>
