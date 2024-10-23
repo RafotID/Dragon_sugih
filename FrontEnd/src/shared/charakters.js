@@ -68,4 +68,5 @@ export const Serigala = {
   cakaran : 30,
   auman : 200,
   tendangan : 350,
+  defense : 0
 };
