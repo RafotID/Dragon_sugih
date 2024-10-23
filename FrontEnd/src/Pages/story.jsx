@@ -32,7 +32,8 @@ const Story = () => {
             "kamu akan melewati hutan salju yang dijaga oleh Frostar",
             "kamu akan melewati rawa rawa yang sangat bau dijaga oleh Crockar",
             "kamu akan melawan monster terakhir dari game ini",
-            "Sudah berakhir... Sekarang tinggal menemui Dewa untuk mendapatkan petunjuk. Aku hampir sampai pada tujuanku."
+            "Sudah berakhir... Sekarang tinggal menemui Dewa untuk mendapatkan petunjuk. Aku hampir sampai pada tujuanku.",
+            " Sidi mantra mendengarkan ucapan Dewa dan pergi ke goa menemui Naga Basugih"
 
         ],
         // scene 2
@@ -118,6 +119,7 @@ const Story = () => {
 
         { slide: 1, textTitle: 0, textIndex: 11 },// dialog sesudah perang lawan serigala dan lanjut story menuju dewa
         { slide: 0, textTitle: 0, textIndex: 17 },// dialog sesudah perang lawan serigala dan lanjut story menuju dewa
+        { slide: 0, textTitle: 0, textIndex: 18 },
 
 
     ];
@@ -155,8 +157,12 @@ const Story = () => {
         } else if (currentStep == 28) {
             navigate('/penghubung/0', { state: { mode: 'battle5' } });
 
-        } else if (currentStep > 28 && currentStep < 31) {
+        } else if (currentStep > 28 && currentStep < 30) {
             navigate(`/story/${Number(currentStep) + 1}`);
+        } else if (currentStep == 30){
+            navigate('/PercakapanDewaApi')
+        } else if (currentStep == 31){
+            navigate('/PercakapanNaga/0')
         }
         };
 

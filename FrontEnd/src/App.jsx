@@ -16,7 +16,7 @@ import { Battle, Battle2, Battle3, Battle4, Battle5 } from './Pages/battle';
 import Caracter from './Pages/Caracter';
 import { Penghubung } from './components/Penghubung';
 import PercakapanNaga from './Pages/PercakapanNaga';
-
+import PercakapanDewaApi from './Pages/PercakapanDewaApi';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -50,6 +50,7 @@ function App() {
           <Route path='/level1' element={<Level1 />} />
           <Route path='/penghubung/:id' element={<Penghubung />} />
           <Route path='/PercakapanNaga/:id' element={<PercakapanNaga />} />
+          <Route path='/PercakapanDewaApi' element={<PercakapanDewaApi />} />
         </Routes>
 
       </Router>

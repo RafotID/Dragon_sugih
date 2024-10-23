@@ -59,6 +59,7 @@ import bgLv4 from './bgLv4.png'
 import cockar from './cockar.png'
 import pukulan from './pukulan.png'
 import tmksh from './tmksh.png'
+import bgDewa from './bgDewa.png'
 
 export const assets = {
     gambar: {
@@ -121,7 +122,8 @@ export const assets = {
         bgLv4,
         cockar,
         pukulan,
-        tmksh
+        tmksh,
+        bgDewa
 
         
 
