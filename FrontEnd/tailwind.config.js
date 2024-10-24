@@ -62,7 +62,8 @@ export default {
         'nosifer': ['"Nosifer"'],
         'jomhuria': ['"Jomhuria"'],
         'girassol': ['"Girassol"'],
-        'jua': ['"jua"']
+        'jua': ['"jua"'],
+        'Just-Another-Hand': ['"Just Another Hand"','Just','Another','Hand']
       },
     },
   },

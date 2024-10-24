@@ -29,8 +29,8 @@ export const Battle = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
     ];
 
     const flow = [
-        { slide: 0 },
         { slide: 1 },
+        { slide: 0 },
         { slide: 2 },
     ];
     const { id } = useParams()
@@ -595,8 +595,8 @@ export const Battle2 = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
     ];
 
     const flow = [
-        { slide: 0 },
         { slide: 1 },
+        { slide: 0 },
         { slide: 2 },
         { slide: 3 },
     ];
@@ -708,7 +708,7 @@ export const Battle2 = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
                                 bottom: '6%',
                             }}
                         >
-                            <p className='justify-center items-center flex font-poppins text-[25px] pl-20'> Laba laba! . . . . jangan menghalangi jalanku, aku harus ke atas gunung ini untuk mencapai tujuanku!</p>
+                            <p className='justify-center items-center flex font-poppins text-[25px] pl-20'>Aku tidak datang untuk berurusan denganmu, tapi jika ini harus terjadi, baiklah. Panasmu tidak akan menghentikanku!"</p>
                             <button
                                 className='absolute z-50 h-[20%] w-[28%] left-[92%] bottom-[20%]'
                                 style={{
@@ -844,7 +844,7 @@ export const Battle2 = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
                                 bottom: '6%',
                             }}
                         >
-                            <p className='justify-center items-center flex font-poppins text-[25px] pl-20'> Ssssssssiapa yang berani memasuki wilayah ku? berani sekali manusia sepertimu menginjakkan kaki disini !</p>
+                            <p className='justify-center items-center flex font-poppins text-[25px] pl-20'>Manusia bodoh! Kau pikir bisa melewati wilayahku begitu saja? Kau akan terbakar sebelum mencapai tujuanmu!</p>
                             <button
                                 className='absolute z-50 h-[20%] w-[28%] left-[92%] bottom-[20%]'
                                 style={{
@@ -978,8 +978,8 @@ export const Battle2 = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
                         </div>
 
                         <div className='relative flex justify-end top-[2%] right-[2%]'>
-                            <img src={assets.gambar.golemApi} alt="" className={`absolute mr-[5%] w-[18%] mt-[3%] `} />
-                            <p className='absolute z-30 font-girassol text-white text-[3vh] mt-[0.5%] right-[20%] leading-relaxed'>Apiar</p>
+                            <img src={assets.gambar.golemApi} alt="" className={`absolute mr-[5%] w-[23%] mt-[4%] `} />
+                            <p className='absolute z-30 font-girassol text-white text-[3vh] mt-[0.5%] right-[23%] leading-relaxed'>Apiar</p>
 
                             <img src={assets.gambar.barH} alt="papan" className='absolute ml-[3%] w-[32%] ' />
 
@@ -1163,8 +1163,8 @@ export const Battle3 = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
     ];
 
     const flow = [
-        { slide: 0 },
         { slide: 1 },
+        { slide: 0 },
         { slide: 2 },
     ];
     const { id } = useParams()
@@ -1544,7 +1544,7 @@ export const Battle3 = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
 
                         <div className='relative flex justify-end top-[2%] right-[2%]'>
                             <img src={assets.gambar.monsterEs} alt="" className={`absolute mr-[5%] w-[18%] mt-[6%] `} />
-                            <p className='absolute z-30 font-girassol text-white text-[3vh] mt-[0.5%] right-[20%] leading-relaxed'>Frostar</p>
+                            <p className='absolute z-30 font-girassol text-white text-[3vh] mt-[0.5%] right-[22%] leading-relaxed'>Frostar</p>
 
                             <img src={assets.gambar.barH} alt="papan" className='absolute ml-[3%] w-[32%] ' />
 
@@ -1730,8 +1730,8 @@ export const Battle4 = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
     ];
 
     const flow = [
-        { slide: 0 },
         { slide: 1 },
+        { slide: 0 },
         { slide: 2 },
         { slide: 3 },
     ];
@@ -2024,7 +2024,7 @@ export const Battle4 = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
                         {showAlert && (
                           <div className="fixed inset-0 z-50 flex items-center justify-center">
                           <div className="bg-custom-bg-info bg-opacity-[97%] p-6 shadow-md w-[40%] h-[80%] justify-center items-center">
-                              <p className="mt-[0%] flex justify-center text-[5vh] font-girassol text-white">Cockar</p>
+                              <p className="mt-[0%] flex justify-center text-[5vh] font-girassol text-white">Crockar</p>
                               <div
                                   className='z-0 absolute h-[65%] w-[30%]'
                                   style={{
@@ -2113,7 +2113,7 @@ export const Battle4 = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
 
                         <div className='relative flex justify-end top-[2%] right-[2%]'>
                             <img src={assets.gambar.cockar} alt="" className={`absolute mr-[5%] w-[18%] mt-[5%] `} />
-                            <p className='absolute z-30 font-girassol text-white text-[3vh] mt-[0.5%] right-[20%] leading-relaxed'>Cockar</p>
+                            <p className='absolute z-30 font-girassol text-white text-[3vh] mt-[0.5%] right-[22%] leading-relaxed'>Crockar</p>
 
                             <img src={assets.gambar.barH} alt="papan" className='absolute ml-[3%] w-[32%] ' />
 
@@ -2297,8 +2297,8 @@ export const Battle5 = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
     ];
 
     const flow = [
-        { slide: 0 },
         { slide: 1 },
+        { slide: 0 },
         { slide: 2 },
     ];
     const { id } = useParams()
@@ -2674,7 +2674,7 @@ export const Battle5 = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
 
                         <div className='relative flex justify-end top-[2%] right-[2%]'>
                             <img src={assets.gambar.monsterSrigala} alt="" className={`absolute mr-[5%] w-[18%] mt-[6%] `} />
-                            <p className='absolute z-30 font-girassol text-white text-[3vh] mt-[0.5%] right-[20%] leading-relaxed'>Lupor</p>
+                            <p className='absolute z-30 font-girassol text-white text-[3vh] mt-[0.5%] right-[23%] leading-relaxed'>Lupor</p>
 
                             <img src={assets.gambar.barH} alt="papan" className='absolute ml-[3%] w-[32%] ' />
 

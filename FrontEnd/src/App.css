@@ -28,3 +28,28 @@
     }
 }
 
+
+/* components/style.css */
+@keyframes multiColorLoading {
+  0% {
+    width: 0%;
+    background: linear-gradient(to right, #ADD8E6, #ADD8E6);
+  }
+  33% {
+    width: 33%;
+    background: linear-gradient(to right, #ADD8E6, #00008B);
+  }
+  66% {
+    width: 66%;
+    background: linear-gradient(to right, #00008B, #000000);
+  }
+  100% {
+    width: 100%;
+    background: linear-gradient(to right, #000000, #000000);
+  }
+}
+
+.animate-multi-color-loading {
+  animation: multiColorLoading 5s linear forwards; /* Durasi animasi 5 detik */
+}
+

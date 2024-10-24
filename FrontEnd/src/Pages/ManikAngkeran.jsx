@@ -47,7 +47,7 @@ const ManikAngkeran = () => {
 
                         <div className='absolute top-0 left-0 w-full h-full flex items-center justify-center'>
                             <p className='text-black px-[10%] font-inria-serif text-center font-bold text-lg sm:text-2xl md:text-4xl lg:text-5xl'>
-                                People who like to gamble and are greedy
+                            seorang anak pemberian dari dewa
                             </p>
                         </div>
                     </div>

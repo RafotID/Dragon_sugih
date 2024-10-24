@@ -49,7 +49,10 @@ const Sidhimantra = () => {
 
                         <div className='absolute top-0 left-0 w-full h-full flex items-center justify-center'>
                             <p className='text-black px-[10%] font-inria-serif text-center font-bold text-lg sm:text-2xl md:text-4xl lg:text-5xl'>
-                                A person possessed magic powers,many years of living alone
+                                lelaki tua yang memiliki kekuatan ,
+                                sihir
+
+                                dan hidup sendirian di sebuah desa
                             </p>
                         </div>
                     </div>

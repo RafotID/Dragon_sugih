@@ -48,7 +48,7 @@ const NagaBasugih = () => {
 
                         <div className='absolute top-0 left-0 w-full h-full flex items-center justify-center'>
                             <p className='text-black px-[10%] font-inria-serif text-center font-bold text-lg sm:text-2xl md:text-4xl lg:text-5xl'>
-                                A dragon that has the power of a burst of fire,  Years of Keeping Gold Treasures
+                            naga emas dalam legenda
                             </p>
                         </div>
                     </div>

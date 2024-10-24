@@ -11,7 +11,7 @@ const Scenario = () => {
     ];
 
     const flow = [
-        { slide: 0, tittle: assets.gambar.scenario, text: 0 },
+        { slide: 0, tittle: assets.gambar.scenario, text: 0, button : assets.gambar.tombolNext },
         { slide: 0, tittle: assets.gambar.tmksh, text: 1 }
     ];
 
@@ -27,6 +27,7 @@ const Scenario = () => {
     const currentSlide = flow[currentStep].slide;
     const currentTitle = flow[currentStep].tittle;
     const currentText = flow[currentStep].text;
+    const currentButton = flow[currentStep].button;
 
     const handleClick = () => {
         navigate('/story/0');
@@ -46,11 +47,11 @@ const Scenario = () => {
                     <div className="absolute inset-0 bg-black bg-opacity-50"></div>
 
                     {/* Tombol kiri atas */}
-                    <div className='absolute pt-3 pl-2 sm:pl-6 sm:pt-6 z-20'>
-                        <button onClick={handleClick}
-                            className='w-[80px] pl-20 sm:w-[150px] md:w-[150px] h-[50px] sm:h-[55px] md:h-[60px]'
+                    <div className='absolute flex justify-end w-screen pt-3 sm:pl-6 sm:pt-6 z-20'>
+                        <button onClick={() => navigate('/story/0')}
+                            className='w-[50px]  pl-10 sm:w-[100px] md:w-[100px] h-[50px] sm:h-[55px] md:h-[60px]'
                             style={{
-                                backgroundImage: `url(${assets.gambar.button2})`,
+                                backgroundImage: `url(${currentButton})`,
                                 backgroundSize: 'contain',
                                 backgroundRepeat: 'no-repeat'
                             }}

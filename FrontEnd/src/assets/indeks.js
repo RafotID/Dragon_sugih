@@ -60,6 +60,8 @@ import cockar from './cockar.png'
 import pukulan from './pukulan.png'
 import tmksh from './tmksh.png'
 import bgDewa from './bgDewa.png'
+import bgGameOver from './bgGameOver.png'
+import buttonPlayAgain from './buttonPlayAgain.png'
 
 export const assets = {
     gambar: {
@@ -123,8 +125,9 @@ export const assets = {
         cockar,
         pukulan,
         tmksh,
-        bgDewa
-
+        bgDewa,
+        bgGameOver,
+        buttonPlayAgain
         
 
 

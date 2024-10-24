@@ -43,7 +43,7 @@ const navigate = useNavigate ();
 
                     {/* Papan textBattle - Ukuran diperbesar */}
                     <div className='mt-[-10%] w-[60%] flex justify-center z-20'>
-                     
+                     <p className='absolute w-[25%] h-[35%] text-center flex items-center text-white text-3xl leading-10'>Wahai dewa <br></br> berilah saya bantuan untuk menyelesaikan masalah saya</p>
                         <img
                             src={assets.gambar.papanBattel}
                             alt="papan battle"
@@ -65,6 +65,8 @@ const navigate = useNavigate ();
 
                     {/* Papan textBattle - Ukuran diperbesar */}
                     <div className=' mt-[-3%] w-[60%] flex justify-center z-20'>
+                        <p className='absolute w-[25%] h-[35%] text-center flex items-center text-white text-3xl leading-10'>.  .  .  .  .  .  .  .
+                        pergilah . . . pergi ke goa Naga basugih . . . dia akan membantumu</p>
                         <img
                             src={assets.gambar.papanBattel}
                             alt="papan battle"

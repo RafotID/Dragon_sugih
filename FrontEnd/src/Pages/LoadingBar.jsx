@@ -1,100 +1,48 @@
+// components/DNA_LoadingBar.js
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { assets } from '../assets/indeks';
-import '../components/style.css'; 
+import '../components/style.css';
 
 const DNA_LoadingBar = () => {
-  const [progress, setProgress] = useState(0);
   const navigate = useNavigate();
+  const [dots, setDots] = useState('');
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setProgress((prev) => (prev < 100 ? prev + 1 : 100));
-    }, 100); // update progress setiap 100ms (10 detik untuk mencapai 100%)
+    // Mengalihkan ke halaman berikutnya setelah 5 detik
+    const timer = setTimeout(() => {
+      navigate("/Caracter"); // Ganti "/Caracter" dengan route tujuan Anda
+    }, 5000);
 
-    if (progress === 100) {
-      clearInterval(interval);
-      navigate("/Caracter"); // pindah halaman setelah loading selesai
-    }
+    // Menambahkan titik-titik "..."
+    const dotInterval = setInterval(() => {
+      setDots(prevDots => (prevDots.length < 3 ? prevDots + '.' : ''));
+    }, 500); // Setiap 0,5 detik menambahkan titik
 
-    return () => clearInterval(interval);
-  }, [progress, navigate]);
+    // Membersihkan timer dan interval saat komponen di-unmount
+    return () => {
+      clearTimeout(timer);
+      clearInterval(dotInterval);
+    };
+  }, [navigate]);
 
   return (
-    <div className="relative w-full h-screen flex items-center justify-center overflow-hidden" style={{ backgroundImage: `url(${assets.gambar.background1})` }}>
-      <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2">
-        <svg viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg" className="w-[80vw] h-[20vh]">
-          {/* Heliks DNA */}
-          {[...Array(5)].map((_, index) => (
-            <React.Fragment key={index}>
-              {/* Heliks kiri */}
-              <path
-                d={`M${50 + (index * 150)},50 Q${90 + (index * 150)},100 ${130 + (index * 150)},50 T${250 + (index * 150)},50`}
-                stroke={`url(#grad${(index % 2) + 1})`}
-                strokeWidth="4"
-                fill="none"
-                strokeLinecap="round"
-                strokeDasharray="1000"
-                strokeDashoffset={1000 - (1000 * (progress / 100))}
-                className="animate-flow"
-              />
-              {/* Heliks kanan */}
-              <path
-                d={`M${50 + (index * 150)},150 Q${90 + (index * 150)},100 ${130 + (index * 150)},150 T${250 + (index * 150)},150`}
-                stroke={`url(#grad${((index + 1) % 2) + 1})`}
-                strokeWidth="4"
-                fill="none"
-                strokeLinecap="round"
-                strokeDasharray="1000"
-                strokeDashoffset={1000 - (1000 * (progress / 100))}
-                className="animate-flow"
-              />
-              {/* Garis penghubung */}
-              <path
-                d={`M${70 + (index * 150)},50 L${70 + (index * 150)},150`}
-                stroke={`url(#grad${(index % 2) + 1})`}
-                strokeWidth="2"
-                fill="none"
-                strokeLinecap="round"
-              />
-              <path
-                d={`M${110 + (index * 150)},50 L${110 + (index * 150)},150`}
-                stroke={`url(#grad${((index + 1) % 2) + 1})`}
-                strokeWidth="2"
-                fill="none"
-                strokeLinecap="round"
-              />
-            </React.Fragment>
-          ))}
-          <defs>
-            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style={{ stopColor: "#FF0000", stopOpacity: 1 }} /> {/* Merah */}
-              <stop offset="100%" style={{ stopColor: "#000000", stopOpacity: 1 }} /> {/* Hitam */}
-            </linearGradient>
-            <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style={{ stopColor: "#8F00FF", stopOpacity: 1 }} /> {/* Hitam */}
-              <stop offset="100%" style={{ stopColor: "#8F00FF", stopOpacity: 1 }} /> {/* Merah */}
-            </linearGradient>
-          </defs>
-          {/* Bentuk berubah-ubah di sepanjang heliks */}
-          <circle
-            cx={`${(progress / 100) * 800}`}
-            cy="100"
-            r="10" // Ukuran lingkaran diubah menjadi lebih besar
-            fill="transparent"
-            stroke="#FFFFFF" // Lingkaran berwarna putih
-            strokeWidth="10"
-            className="animate-shape"
-          />
-          {/* Progresif bar */}
-          <path
-            d={`M0,100 L${(progress / 100) * 800},100`}
-            stroke="#FFFFFF"
-            strokeWidth="6"
-            fill="none"
-            className="progressive-bar"
-          />
-        </svg>
+    <div className="relative h-screen">
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: `url(${assets.gambar.background1})` }}
+      ></div>
+
+      <div className="flex flex-col justify-end items-center min-h-screen bg-black bg-opacity-60">
+        {/* Tulisan Loading dengan titik-titik */}
+        <h1 className="text-4xl font-bold text-white mb-4 z-10">
+          Loading{dots}
+        </h1>
+
+        {/* Loading Bar */}
+        <div className="relative w-1/2 h-4 bg-gray-300 rounded-full overflow-hidden z-10 mb-[5%]">
+          <div className="absolute left-0 top-0 h-full animate-multi-color-loading"></div>
+        </div>
       </div>
     </div>
   );

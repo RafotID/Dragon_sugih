@@ -49,7 +49,7 @@ const Privasi = () => {
 
                             <div className='flex pt-16 sm:pt-10 justify-center'>
                                 <div className='flex justify-between w-[80%] sm:w-[65%] md:w-[70%] text-lg sm:text-xl md:text-2xl text-black font-inter font-bold'>
-                                    <button className='flex items-start justify-center w-[160px] sm:w-[150px] md:w-[170px] h-[40px] sm:h-[55px] md:h-[60px] sm:pt-[5px] bg-cover bg-center'
+                                    <button onClick={() => navigate('/signin')} className='flex items-start justify-center w-[160px] sm:w-[150px] md:w-[170px] h-[40px] sm:h-[55px] md:h-[60px] sm:pt-[5px] bg-cover bg-center'
                                         style={{
                                             backgroundImage: `url(${assets.gambar.button})`
 

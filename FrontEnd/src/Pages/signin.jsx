@@ -34,7 +34,7 @@ const Signin = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
-                    navigate('/LoadingBar');
+                    navigate('/Privasi');
                 }
             })
 
