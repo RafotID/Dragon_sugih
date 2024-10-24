@@ -1,7 +1,7 @@
 export const Player = {
   level: 44,
   maxHealth: 1000,
-  name: 'Sidhi Mantra',
+  name: 'SIDI MANTRA',
   img: '/assetss/sidhimantra.png',
 
   magic: 500,
@@ -13,7 +13,7 @@ export const Player = {
 
 export const GiantSpider = {
   level: 44,
-  name: 'Giant Spider',
+  name: 'GIANT SPIDER',
   maxHealth: 1500,
   img: '/assetss/spider.png',
 
@@ -25,7 +25,7 @@ export const GiantSpider = {
 
 export const MonsterApi = {
   level: 44,
-  name: 'Golem Lava',
+  name: 'APIAR',
   maxHealth: 1500,
   img: '/assetss/MonsterApi.png',
 
@@ -37,7 +37,7 @@ export const MonsterApi = {
 
 export const MonsterEs = {
   level: 44,
-  name: 'yeti',
+  name: 'FROSTAR',
   maxHealth: 1500,
   img: '/assetss/MonsterEs.png',
 
@@ -49,7 +49,7 @@ export const MonsterEs = {
 
 export const Buaya = {
   level: 44,
-  name: 'Buaya',
+  name: 'CROCKAR',
   maxHealth: 1500,
   img: '/assetss/buaya.png',
 
@@ -61,7 +61,7 @@ export const Buaya = {
 
 export const Serigala = {
   level: 44,
-  name: 'Serigala',
+  name: 'LUPOR',
   maxHealth: 1300,
   img: '/assetss/serigala.png',
 
