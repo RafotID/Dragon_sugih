@@ -31,7 +31,7 @@ export const MonsterApi = {
 
   suhu : 50,
   suhuTinggi : 150,
-  tinjuan : 550,
+  tinjuan : 750,
   defense: 200,
 };
 
