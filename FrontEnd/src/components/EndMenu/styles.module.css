@@ -1,13 +1,16 @@
-/* components/style.css */
-@keyframes loadingAnimation {
-  0% {
-    width: 0%;
-  }
-  100% {
-    width: 100%;
-  }
+.main {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-
-.animate-loading {
-  animation: loadingAnimation 5s linear forwards; /* Berjalan selama 5 detik */
-}
+/* .startButton {
+  border: none;
+  outline: none;
+  padding: 15px;
+  font-size: 32px;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0px 0px 3px gray;
+} */
