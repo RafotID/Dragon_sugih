@@ -29,33 +29,28 @@ export const useBattleSequence = sequence => {
           (async () => {
             setLoading(true)
             setInSequence(true);
-            setAnnouncerMassage(`${attacker.name} menyerang ${receiver.name} dengan tinju yang dilapisi sihir`);
-            await wait(1000);
+            setAnnouncerMassage(`${attacker.name} melapisi tangannya dengan sihir `);
+            await wait(2000);
+            setAnnouncerMassage(`${attacker.name} berlari ke arah ${receiver.name} lalu melancarkan 1 pukulan kuat ! `);
+            await wait(2500);
 
             if (turn === 0) {
-              setPlayerAnimation('attack')
-              await wait(100);
-
-              setPlayerAnimation('static')
-              await wait(500);
-
-              setOpponentAnimation('damage')
-              await wait(750);
-
-              setOpponentAnimation('static')
-              setAnnouncerMassage(`${receiver.name} terluka`);
+             
+              setAnnouncerMassage(`${receiver.name} terkena pukulan tersebut`);
+              await wait(1300);
               setOpponentHealth(h => (h - damage > 0 ? h - damage : 0))
-              await wait(1500);
-
-              setOpponentAnimation('static')
-              setAnnouncerMassage(`Memulihkan sebagian kecil nyawa`)
-              await wait(1500)
-
+              await wait(500);
+              
+              setAnnouncerMassage(`${attacker.name} menyerap sebagian energi ${receiver.name}`);
+              setOpponentHealth(h => (h - damage > 0 ? h - damage : 0))
+              await wait(2000);
+              setAnnouncerMassage(`${attacker.name} memulihkan sebagian energinya`)
               setPlayerHealth(h =>
-                h + recovered <= attacker.maxHealth
-                  ? h + recovered
-                  : attacker.maxHealth,
-              )
+              h + recovered <= attacker.maxHealth
+              ? h + recovered
+              : attacker.maxHealth,
+              )   
+              await wait(1500)
               setAnnouncerMassage(`${receiver.name} membalas ${attacker.name} `);
               await wait(1500);
             }
@@ -73,22 +68,16 @@ export const useBattleSequence = sequence => {
           (async () => {
             setLoading(true)
             setInSequence(true);
-            setAnnouncerMassage(`${attacker.name} menyerang ${receiver.name} dengan sihir`);
-            await wait(1000);
+            setAnnouncerMassage(`${attacker.name} melompat ke belakang , menjaga jarak dari ${receiver.name}`);
+            await wait(2200);
+            setAnnouncerMassage(`${attacker.name} mengeluarkan sihir yang kuat dari loncengnya !`);
+            await wait(1900);
 
             if (turn === 0) {
-              setPlayerAnimation('attack')
-              await wait(100);
-
-              setPlayerAnimation('static')
-              await wait(500);
-
-              setOpponentAnimation('damage')
-              await wait(750);
-
-              setOpponentAnimation('static')
-              setAnnouncerMassage(`${receiver.name} terkena sihir`);
+              setAnnouncerMassage(`${receiver.name} terkena serangan sihir !`);
               setOpponentHealth(h => (h - damage > 0 ? h - damage : 0))
+              await wait(1500);
+              setAnnouncerMassage(`${receiver.name} menderita luka akibat ledakan sihir !`);
               await wait(1500);
 
               setAnnouncerMassage(`${receiver.name} membalas ${attacker.name} `);
@@ -108,17 +97,17 @@ export const useBattleSequence = sequence => {
           (async () => {
             setLoading(true)
             setInSequence(true);
-            setAnnouncerMassage(`${attacker.name} memulihkan nyawa`);
-            await wait(1000);
+            setAnnouncerMassage(`${attacker.name} melemparkan bola asap ke bawah ${receiver.name} `);
+            await wait(2000);
+            setAnnouncerMassage(`pandangan ${receiver.name} terganggu ! `);
+            await wait(1500);
+            setAnnouncerMassage(`${attacker.name} memakai kesempatan ini untuk memulihkan diri !`);
+            await wait(2200);
 
             if (turn === 0) {
-              setPlayerAnimation('magic')
-              await wait(1000);
-
-              setPlayerAnimation('static')
-              await wait(500);
-
-              setAnnouncerMassage(`Nyawa ${attacker.name} pulih sebagian`);
+              setAnnouncerMassage(`${attacker.name} mengeluarkan sihir pemulihan yang kuat !`);
+              await wait(1900);
+              setAnnouncerMassage(`sebagian besar nyawa ${attacker.name} telah pulih !`);
               setPlayerHealth(h =>
                 h + recovered <= attacker.maxHealth
                   ? h + recovered
@@ -126,6 +115,8 @@ export const useBattleSequence = sequence => {
               )
               await wait(1500);
 
+              setAnnouncerMassage(`pandangan ${receiver.name} kembali normal`);
+              await wait(1500);
               setAnnouncerMassage(`${receiver.name} membalas ${attacker.name}`);
               await wait(1500);
             }
@@ -134,7 +125,7 @@ export const useBattleSequence = sequence => {
             setInSequence(false);
           })();
 
-          break;
+          break
         }
 
         case 'gigit': {
@@ -142,24 +133,17 @@ export const useBattleSequence = sequence => {
 
           (async () => {
             setInSequence(true);
-            setAnnouncerMassage(`${attacker.name} mengigit ${receiver.name}`);
-            await wait(1000);
+            setAnnouncerMassage(`${attacker.name} melepaskan jaring laba-laba ke arah ${receiver.name} `);
+            await wait(2000);
+            setAnnouncerMassage(`${receiver.name} terjebak jaring jaring tersebut !!!`);
+            await wait(1500);
 
             if (turn === 1) {
-              setOpponentAnimation('attack')
-              await wait(100);
-
-              setOpponentAnimation('static')
-              await wait(500);
-
-              setPlayerAnimation('damage')
-              await wait(750);
-
-              setPlayerAnimation('static')
-              setAnnouncerMassage(`${receiver.name} tergigit oleh ${attacker.name}`);
-
+              setAnnouncerMassage(`${attacker.name} mendekat dengan cepat lalu menerkam ${receiver.name} !`);
               setPlayerHealth(h => (h - damage > 0 ? h - damage : 0))
-              await wait(1500);
+              await wait(2000);
+              setAnnouncerMassage(`${receiver.name} mengeluarkan sihir untuk melarikan diri dalam lonceng dan berhasil membebaskan diri!`)
+              await wait(2700);
 
               setAnnouncerMassage(`${receiver.name} membalas ${attacker.name} `);
               await wait(1500);
@@ -177,24 +161,14 @@ export const useBattleSequence = sequence => {
 
           (async () => {
             setInSequence(true);
-            setAnnouncerMassage(`${attacker.name} mencakar ${receiver.name}`);
-            await wait(1000);
+            setAnnouncerMassage(`${attacker.name} mendekati ${receiver.name} dengan cepat dan melancar serangan !`);
+            await wait(2500);
 
             if (turn === 1) {
-              setOpponentAnimation('attack')
-              await wait(100);
-
-              setOpponentAnimation('static')
-              await wait(500);
-
-              setPlayerAnimation('damage')
-              await wait(750);
-
-              setPlayerAnimation('static')
-              setAnnouncerMassage(`${receiver.name} terkena cakaran ${attacker.name}`);
-
+              
+              setAnnouncerMassage(`${receiver.name} terkena serangan dari ${attacker.name}`);
               setPlayerHealth(h => (h - damage > 0 ? h - damage : 0))
-              await wait(1500);
+              await wait(1800);
 
               setAnnouncerMassage(`${receiver.name} membalas ${attacker.name} `);
               await wait(1500);
@@ -213,25 +187,18 @@ export const useBattleSequence = sequence => {
 
           (async () => {
             setInSequence(true);
-            setAnnouncerMassage(`${attacker.name} berlari dan menerjang ${receiver.name}`);
-            await wait(1000);
+            setAnnouncerMassage(`${attacker.name} berlari ke arah ${receiver.name} dengan kecepatan penuh` );
+            await wait(2000);
+            setAnnouncerMassage(`${attacker.name} menghancur segala hal yang menghalangi jalan!` );
+            await wait(2000);
 
             if (turn === 1) {
-              setOpponentAnimation('attack')
-              await wait(100);
-
-              setOpponentAnimation('static')
-              await wait(500);
-
-              setPlayerAnimation('damage')
-              await wait(750);
-
-              setPlayerAnimation('static')
-              setAnnouncerMassage(`${receiver.name} terluka parah`);
-
-              setPlayerHealth(h => (h - damage > 0 ? h - damage : 0))
+              setAnnouncerMassage(`${receiver.name} mencoba menghindar tapi gagal `);
               await wait(1500);
-
+              
+              setAnnouncerMassage(`${receiver.name} terkena serangan tersebut dan menderita cedera serius !`);
+              setPlayerHealth(h => (h - damage > 0 ? h - damage : 0))
+              await wait(2200);
               setAnnouncerMassage(`${receiver.name} membalas ${attacker.name} `);
               await wait(1500);
             }
@@ -289,33 +256,28 @@ export const useBattleSequence2 = sequence => {
           (async () => {
             setLoading(true)
             setInSequence(true);
-            setAnnouncerMassage(`${attacker.name} menyerang ${receiver.name} dengan tinju yang dilapisi sihir`);
-            await wait(1000);
+            setAnnouncerMassage(`${attacker.name} melapisi tangannya dengan sihir `);
+            await wait(2000);
+            setAnnouncerMassage(`${attacker.name} berlari ke arah ${receiver.name} lalu melancarkan 1 pukulan kuat ! `);
+            await wait(2500);
 
             if (turn === 0) {
-              setPlayerAnimation('attack')
-              await wait(100);
-
-              setPlayerAnimation('static')
-              await wait(500);
-
-              setOpponentAnimation('damage')
-              await wait(750);
-
-              setOpponentAnimation('static')
-              setAnnouncerMassage(`${receiver.name} terluka`);
+             
+              setAnnouncerMassage(`${receiver.name} terkena pukulan tersebut`);
+              await wait(1300);
               setOpponentHealth(h => (h - damage > 0 ? h - damage : 0))
-              await wait(1500);
-
-              setOpponentAnimation('static')
-              setAnnouncerMassage(`Memulihkan sebagian kecil nyawa`)
-              await wait(1500)
-
+              await wait(500);
+              
+              setAnnouncerMassage(`${attacker.name} menyerap sebagian energi ${receiver.name}`);
+              setOpponentHealth(h => (h - damage > 0 ? h - damage : 0))
+              await wait(2000);
+              setAnnouncerMassage(`${attacker.name} memulihkan sebagian energinya`)
               setPlayerHealth(h =>
-                h + recovered <= attacker.maxHealth
-                  ? h + recovered
-                  : attacker.maxHealth,
-              )
+              h + recovered <= attacker.maxHealth
+              ? h + recovered
+              : attacker.maxHealth,
+              )   
+              await wait(1500)
               setAnnouncerMassage(`${receiver.name} membalas ${attacker.name} `);
               await wait(1500);
             }
@@ -333,22 +295,16 @@ export const useBattleSequence2 = sequence => {
           (async () => {
             setLoading(true)
             setInSequence(true);
-            setAnnouncerMassage(`${attacker.name} menyerang ${receiver.name} dengan sihir`);
-            await wait(1000);
+            setAnnouncerMassage(`${attacker.name} melompat ke belakang , menjaga jarak dari ${receiver.name}`);
+            await wait(2200);
+            setAnnouncerMassage(`${attacker.name} mengeluarkan sihir yang kuat dari loncengnya !`);
+            await wait(1900);
 
             if (turn === 0) {
-              setPlayerAnimation('attack')
-              await wait(100);
-
-              setPlayerAnimation('static')
-              await wait(500);
-
-              setOpponentAnimation('damage')
-              await wait(750);
-
-              setOpponentAnimation('static')
-              setAnnouncerMassage(`${receiver.name} terkena sihir`);
+              setAnnouncerMassage(`${receiver.name} terkena serangan sihir !`);
               setOpponentHealth(h => (h - damage > 0 ? h - damage : 0))
+              await wait(1500);
+              setAnnouncerMassage(`${receiver.name} menderita luka akibat ledakan sihir !`);
               await wait(1500);
 
               setAnnouncerMassage(`${receiver.name} membalas ${attacker.name} `);
@@ -368,17 +324,17 @@ export const useBattleSequence2 = sequence => {
           (async () => {
             setLoading(true)
             setInSequence(true);
-            setAnnouncerMassage(`${attacker.name} memulihkan nyawa`);
-            await wait(1000);
+            setAnnouncerMassage(`${attacker.name} melemparkan bola asap ke bawah ${receiver.name} `);
+            await wait(2000);
+            setAnnouncerMassage(`pandangan ${receiver.name} terganggu ! `);
+            await wait(1500);
+            setAnnouncerMassage(`${attacker.name} memakai kesempatan ini untuk memulihkan diri !`);
+            await wait(2200);
 
             if (turn === 0) {
-              setPlayerAnimation('magic')
-              await wait(1000);
-
-              setPlayerAnimation('static')
-              await wait(500);
-
-              setAnnouncerMassage(`Nyawa ${attacker.name} pulih sebagian`);
+              setAnnouncerMassage(`${attacker.name} mengeluarkan sihir pemulihan yang kuat !`);
+              await wait(1900);
+              setAnnouncerMassage(`sebagian besar nyawa ${attacker.name} telah pulih !`);
               setPlayerHealth(h =>
                 h + recovered <= attacker.maxHealth
                   ? h + recovered
@@ -386,6 +342,8 @@ export const useBattleSequence2 = sequence => {
               )
               await wait(1500);
 
+              setAnnouncerMassage(`pandangan ${receiver.name} kembali normal`);
+              await wait(1500);
               setAnnouncerMassage(`${receiver.name} membalas ${attacker.name}`);
               await wait(1500);
             }
@@ -394,7 +352,7 @@ export const useBattleSequence2 = sequence => {
             setInSequence(false);
           })();
 
-          break;
+          break
         }
 
         case 'suhu': {
@@ -402,18 +360,20 @@ export const useBattleSequence2 = sequence => {
 
           (async () => {
             setInSequence(true);
-            setAnnouncerMassage(`${attacker.name} hanya diam melihat ${receiver.name}`);
-            await wait(2000);
+            setAnnouncerMassage(`${attacker.name} hanya diam dan melihat ${receiver.name} dengan tatapan kosong ....`);
+            await wait(2500);
 
             if (turn === 1) {
-
-              setPlayerAnimation('static')
-              setAnnouncerMassage(`${receiver.name} tidak tahan dengan panas ini !`);
-
-              setPlayerHealth(h => (h - damage > 0 ? h - damage : 0))
+              setAnnouncerMassage(`${receiver.name} sekilas melihat hal aneh ...`);
               await wait(2000);
+              setAnnouncerMassage(`${receiver.name} tertegun sejenak ...`);
+              await wait(1500);
 
-              setAnnouncerMassage(`${receiver.name} membalas ${attacker.name} `);
+              setAnnouncerMassage(`dikarenakan keadaan lingkungan sekitar yang panas nyawa ${receiver.name} berkurang`)
+              setPlayerHealth(h => (h - damage > 0 ? h - damage : 0))
+              await wait(3000);
+
+              setAnnouncerMassage(`${receiver.name} tersadar dan membalas ${attacker.name} `);
               await wait(1500);
             }
 
@@ -430,18 +390,15 @@ export const useBattleSequence2 = sequence => {
 
           (async () => {
             setInSequence(true);
-            setAnnouncerMassage(`${attacker.name} mengeluarkan aura api , suhu disekitar ${receiver.name} mulai naik`);
-            await wait(2000);
+            setAnnouncerMassage(`${attacker.name} mengeluarkan aura api ke sekitar karenanya suhu disekitar meningkat drastis`);
+            await wait(3000);
 
             if (turn === 1) {
               
-              setAnnouncerMassage(`Suhu di sekitar ${receiver.name} naik drastis untuk beberapa saat`);
+              setAnnouncerMassage(`${receiver.name} tidak tahan dengan peningkatan suhu ini`);
               await wait(2000)
 
-              setPlayerAnimation('damage')
-              await wait(750);
-              setPlayerAnimation('static')
-              setAnnouncerMassage(`Kulit ${receiver.name} mulai meleleh secara perlahan`)
+              setAnnouncerMassage(`Kulit ${receiver.name} terbakar oleh api`)
               setPlayerHealth(h => (h - damage > 0 ? h - damage : 0))
               await wait(1500);
 
@@ -463,28 +420,20 @@ export const useBattleSequence2 = sequence => {
           (async () => {
             setInSequence(true);
             setAnnouncerMassage(`${attacker.name} bergerak menuju ${receiver.name} dan melayangkan 1 pukulan yang sangat kuat`);
-            await wait(2300);
+            await wait(2500);
 
             if (turn === 1) {
-              setOpponentAnimation('attack')
-              await wait(100);
-
-              setOpponentAnimation('static')
-              await wait(500);
-
-              setPlayerAnimation('damage')
-              await wait(750);
-
-              setPlayerAnimation('static')
-              setAnnouncerMassage(`${receiver.name} terhantam serangan tersebut hingga membuat tanah bergetar`);
+              setAnnouncerMassage(`${receiver.name} mencoba menghindar tetapi gagal karena di kelilingi api !`);
               setPlayerHealth(h => (h - damage > 0 ? h - damage : 0))
+              await wait(2500);
+
+              setAnnouncerMassage(`${receiver.name} terkena serangan tersebut dan terkapar di tanah`)
               await wait(2000);
+              setAnnouncerMassage(`${receiver.name} mengalami rasa sakit luar biasa karena tulang tulangnya remuk karena serangan tersebut ! `)
+              await wait(3000);
 
-              setAnnouncerMassage(`${receiver.name} mengalami cedera serius`)
-              await wait(1500);
-
-              setAnnouncerMassage(`${receiver.name} membalas ${attacker.name} `);
-              await wait(1500);
+              setAnnouncerMassage(`karena tekadnya yang kuat ${receiver.name} berhasil bangkit dan membalas ${attacker.name} `);
+              await wait(3000);
             }
 
             setTurn(turn === 1 ? 0 : 1);
@@ -540,33 +489,29 @@ export const useBattleSequence3 = sequence => {
           (async () => {
             setLoading(true)
             setInSequence(true);
-            setAnnouncerMassage(`${attacker.name} menyerang ${receiver.name} dengan tinju yang dilapisi sihir`);
-            await wait(1000);
+            setAnnouncerMassage(`${attacker.name} melapisi tangannya dengan sihir `);
+            await wait(2000);
+            setAnnouncerMassage(`${attacker.name} berlari ke arah ${receiver.name} lalu melancarkan 1 pukulan kuat ! `);
+            await wait(2500);
 
             if (turn === 0) {
-              setPlayerAnimation('attack')
-              await wait(100);
-
-              setPlayerAnimation('static')
-              await wait(500);
-
-              setOpponentAnimation('damage')
-              await wait(750);
-
-              setOpponentAnimation('static')
-              setAnnouncerMassage(`${receiver.name} terluka`);
+             
+              setAnnouncerMassage(`${receiver.name} terkena pukulan tersebut`);
+              await wait(1300);
               setOpponentHealth(h => (h - damage > 0 ? h - damage : 0))
-              await wait(1500);
-
-              setOpponentAnimation('static')
-              setAnnouncerMassage(`Memulihkan sebagian kecil nyawa`)
-              await wait(1500)
-
+              await wait(500);
+              
+              setAnnouncerMassage(`${attacker.name} menyerap sebagian energi ${receiver.name}`);
+              await wait(2000);
+              setOpponentHealth(h => (h - damage > 0 ? h - damage : 0))
+              await wait(500);
+              setAnnouncerMassage(`${attacker.name} memulihkan sebagian energinya`)
               setPlayerHealth(h =>
-                h + recovered <= attacker.maxHealth
-                  ? h + recovered
-                  : attacker.maxHealth,
-              )
+              h + recovered <= attacker.maxHealth
+              ? h + recovered
+              : attacker.maxHealth,
+              )   
+              await wait(1500)
               setAnnouncerMassage(`${receiver.name} membalas ${attacker.name} `);
               await wait(1500);
             }
@@ -584,22 +529,16 @@ export const useBattleSequence3 = sequence => {
           (async () => {
             setLoading(true)
             setInSequence(true);
-            setAnnouncerMassage(`${attacker.name} menyerang ${receiver.name} dengan sihir`);
-            await wait(1000);
+            setAnnouncerMassage(`${attacker.name} melompat ke belakang , menjaga jarak dari ${receiver.name}`);
+            await wait(2200);
+            setAnnouncerMassage(`${attacker.name} mengeluarkan sihir yang kuat dari loncengnya !`);
+            await wait(1900);
 
             if (turn === 0) {
-              setPlayerAnimation('attack')
-              await wait(100);
-
-              setPlayerAnimation('static')
-              await wait(500);
-
-              setOpponentAnimation('damage')
-              await wait(750);
-
-              setOpponentAnimation('static')
-              setAnnouncerMassage(`${receiver.name} terkena sihir`);
+              setAnnouncerMassage(`${receiver.name} terkena serangan sihir !`);
               setOpponentHealth(h => (h - damage > 0 ? h - damage : 0))
+              await wait(1500);
+              setAnnouncerMassage(`${receiver.name} menderita luka akibat ledakan sihir !`);
               await wait(1500);
 
               setAnnouncerMassage(`${receiver.name} membalas ${attacker.name} `);
@@ -619,17 +558,17 @@ export const useBattleSequence3 = sequence => {
           (async () => {
             setLoading(true)
             setInSequence(true);
-            setAnnouncerMassage(`${attacker.name} memulihkan nyawa`);
-            await wait(1000);
+            setAnnouncerMassage(`${attacker.name} melemparkan bola asap ke bawah ${receiver.name} `);
+            await wait(2000);
+            setAnnouncerMassage(`pandangan ${receiver.name} terganggu ! `);
+            await wait(1500);
+            setAnnouncerMassage(`${attacker.name} memakai kesempatan ini untuk memulihkan diri !`);
+            await wait(2200);
 
             if (turn === 0) {
-              setPlayerAnimation('magic')
-              await wait(1000);
-
-              setPlayerAnimation('static')
-              await wait(500);
-
-              setAnnouncerMassage(`Nyawa ${attacker.name} pulih sebagian`);
+              setAnnouncerMassage(`${attacker.name} mengeluarkan sihir pemulihan yang kuat !`);
+              await wait(1900);
+              setAnnouncerMassage(`sebagian besar nyawa ${attacker.name} telah pulih !`);
               setPlayerHealth(h =>
                 h + recovered <= attacker.maxHealth
                   ? h + recovered
@@ -637,6 +576,8 @@ export const useBattleSequence3 = sequence => {
               )
               await wait(1500);
 
+              setAnnouncerMassage(`pandangan ${receiver.name} kembali normal`);
+              await wait(1500);
               setAnnouncerMassage(`${receiver.name} membalas ${attacker.name}`);
               await wait(1500);
             }
@@ -645,7 +586,7 @@ export const useBattleSequence3 = sequence => {
             setInSequence(false);
           })();
 
-          break;
+          break
         }
 
         case 'batu': {
@@ -653,35 +594,23 @@ export const useBattleSequence3 = sequence => {
 
           (async () => {
             setInSequence(true);
-            setAnnouncerMassage(`${attacker.name} mengambil batu batu disekitar lalu melemparkan ke arah ${receiver.name}`);
-            await wait(2000);
+            setAnnouncerMassage(`${attacker.name} mengambil batu batu disekitar dan melemparkannya ke arah ${receiver.name}`);
+            await wait(2500);
 
             if (turn === 1) {
-              setOpponentAnimation('attack')
-              await wait(100);
-              setOpponentAnimation('static')
-              await wait(500);
               
+              setPlayerHealth(h => (h - damage > 0 ? h - damage : 0))
+              await wait(500);
               setAnnouncerMassage(`${receiver.name} terkena lemparan batu bertubi tubi`);
-              await wait(1000);
-              setPlayerAnimation('damage')
-              await wait(500);
+              await wait(1500);
               setPlayerHealth(h => (h - damage > 0 ? h - damage : 0))
-              await wait(750);
-              setPlayerAnimation('damage')
               await wait(500);
-              setPlayerHealth(h => (h - damage > 0 ? h - damage : 0))
-              await wait(750);
               setAnnouncerMassage(`${receiver.name} kesulitan menghindar !`)
-              await wait(1500)
-              setPlayerAnimation('damage')
-              await wait(500);
+              await wait(1300)
               setPlayerHealth(h => (h - damage > 0 ? h - damage : 0))
-              await wait(750);
-              
-              setPlayerAnimation('static')
+              await wait(500);
 
-              setAnnouncerMassage(`${receiver.name} membalas ${attacker.name} `);
+              setAnnouncerMassage(`${receiver.name} akhirnya berhasil menghindar dan membalas ${attacker.name} `);
               await wait(1500);
             }
 
@@ -698,23 +627,18 @@ export const useBattleSequence3 = sequence => {
 
           (async () => {
             setInSequence(true);
-            setAnnouncerMassage(`${attacker.name} berteriak dengan kekuatan penuh !!!!`);
-            await wait(2000);
+            setAnnouncerMassage(`${attacker.name} mengeluarkan suara nyaring yang diperkuat dengan sihir !!`);
+            await wait(2500);
 
             if (turn === 1) {
               setAnnouncerMassage(`${receiver.name} tidak kuat mendengar teriakan tersebut !`);
-              await wait(2000)
-
-              setPlayerAnimation('damage')
-              await wait(750);
-
-              setPlayerAnimation('static')
+              await wait(2000);
               setAnnouncerMassage(`Telinga ${receiver.name} terluka`)
               setPlayerHealth(h => (h - damage > 0 ? h - damage : 0))
               await wait(1500);
 
-              setAnnouncerMassage(`${receiver.name} membalas ${attacker.name} `);
-              await wait(1500);
+              setAnnouncerMassage(`${receiver.name} menutupi telinganya dengan batu kecil dan membalas ${attacker.name}`);
+              await wait(2500);
             }
 
             setTurn(turn === 1 ? 0 : 1);
@@ -730,37 +654,29 @@ export const useBattleSequence3 = sequence => {
 
           (async () => {
             setInSequence(true);
-            setAnnouncerMassage(`${attacker.name} memanggil badai salju yang sangat kuat !!! `);
-            await wait(2300);
+            setAnnouncerMassage(`${attacker.name} mengeluarkan serangan terkuatnya , yaitu badai salju !!!`);
+            await wait(2700);
+            setAnnouncerMassage(`${receiver.name} kebingungan karena tiba tiba ada badai salju !`);
+            await wait(2500);
 
             if (turn === 1) {
-              setOpponentAnimation('attack')
-              await wait(100);
-              
-              setOpponentAnimation('static')
-              await wait(500);
-              setAnnouncerMassage(`${receiver.name} terjebak di tengah badai salju tersebut `);
-              await wait(1500);
 
-              setPlayerAnimation('damage')
-              await wait(500);
+              setAnnouncerMassage(`${receiver.name} terjebak di tengah badai salju tersebut `);
+              await wait(2000);
               setPlayerHealth(h => (h - damage > 0 ? h - damage : 0))
               await wait(500);
               setAnnouncerMassage(`${receiver.name} terhantam oleh benda benda yang berterbangan`)
-              await wait(1500);
-              setPlayerAnimation('damage')
+              await wait(2000);
+              setPlayerHealth(h => (h - damage > 0 ? h - damage : 0))
               await wait(500);
               setPlayerHealth(h => (h - damage > 0 ? h - damage : 0))
               await wait(500);
-              setPlayerAnimation('damage')
-              await wait(500);
-              setPlayerHealth(h => (h - damage > 0 ? h - damage : 0))
-              await wait(500);
-              
-              setPlayerAnimation('static')
-              
-              setAnnouncerMassage(`${receiver.name} membalas ${attacker.name} `);
-              await wait(1500);
+
+              setAnnouncerMassage(`${receiver.name} terkena serangan dingin dan terluka akibat benturan `)
+              await wait(2000);
+
+              setAnnouncerMassage(`${receiver.name} meneruskan pertarungan ini dan membalas ${attacker.name} `);
+              await wait(1800);
             }
 
             setTurn(turn === 1 ? 0 : 1);
@@ -816,33 +732,29 @@ export const useBattleSequence4 = sequence => {
           (async () => {
             setLoading(true)
             setInSequence(true);
-            setAnnouncerMassage(`${attacker.name} menyerang ${receiver.name} dengan tinju yang dilapisi sihir`);
-            await wait(1000);
+            setAnnouncerMassage(`${attacker.name} melapisi tangannya dengan sihir `);
+            await wait(2000);
+            setAnnouncerMassage(`${attacker.name} berlari ke arah ${receiver.name} lalu melancarkan 1 pukulan kuat ! `);
+            await wait(2500);
 
             if (turn === 0) {
-              setPlayerAnimation('attack')
-              await wait(100);
-
-              setPlayerAnimation('static')
-              await wait(500);
-
-              setOpponentAnimation('damage')
-              await wait(750);
-
-              setOpponentAnimation('static')
-              setAnnouncerMassage(`${receiver.name} terluka`);
+             
+              setAnnouncerMassage(`${receiver.name} terkena pukulan tersebut`);
+              await wait(1300);
               setOpponentHealth(h => (h - damage > 0 ? h - damage : 0))
-              await wait(1500);
-
-              setOpponentAnimation('static')
-              setAnnouncerMassage(`Memulihkan sebagian kecil nyawa`)
-              await wait(1500)
-
+              await wait(500);
+              
+              setAnnouncerMassage(`${attacker.name} menyerap sebagian energi ${receiver.name}`);
+              await wait(2000);
+              setOpponentHealth(h => (h - damage > 0 ? h - damage : 0))
+              await wait(500);
+              setAnnouncerMassage(`${attacker.name} memulihkan sebagian energinya`)
               setPlayerHealth(h =>
-                h + recovered <= attacker.maxHealth
-                  ? h + recovered
-                  : attacker.maxHealth,
-              )
+              h + recovered <= attacker.maxHealth
+              ? h + recovered
+              : attacker.maxHealth,
+              )   
+              await wait(1500)
               setAnnouncerMassage(`${receiver.name} membalas ${attacker.name} `);
               await wait(1500);
             }
@@ -860,22 +772,16 @@ export const useBattleSequence4 = sequence => {
           (async () => {
             setLoading(true)
             setInSequence(true);
-            setAnnouncerMassage(`${attacker.name} menyerang ${receiver.name} dengan sihir`);
-            await wait(1000);
+            setAnnouncerMassage(`${attacker.name} melompat ke belakang , menjaga jarak dari ${receiver.name}`);
+            await wait(2200);
+            setAnnouncerMassage(`${attacker.name} mengeluarkan sihir yang kuat dari loncengnya !`);
+            await wait(1900);
 
             if (turn === 0) {
-              setPlayerAnimation('attack')
-              await wait(100);
-
-              setPlayerAnimation('static')
-              await wait(500);
-
-              setOpponentAnimation('damage')
-              await wait(750);
-
-              setOpponentAnimation('static')
-              setAnnouncerMassage(`${receiver.name} terkena sihir`);
+              setAnnouncerMassage(`${receiver.name} terkena serangan sihir !`);
               setOpponentHealth(h => (h - damage > 0 ? h - damage : 0))
+              await wait(1500);
+              setAnnouncerMassage(`${receiver.name} menderita luka akibat ledakan sihir !`);
               await wait(1500);
 
               setAnnouncerMassage(`${receiver.name} membalas ${attacker.name} `);
@@ -895,17 +801,17 @@ export const useBattleSequence4 = sequence => {
           (async () => {
             setLoading(true)
             setInSequence(true);
-            setAnnouncerMassage(`${attacker.name} memulihkan nyawa`);
-            await wait(1000);
+            setAnnouncerMassage(`${attacker.name} melemparkan bola asap ke arah ${receiver.name} `);
+            await wait(2000);
+            setAnnouncerMassage(`pandangan ${receiver.name} terganggu ! `);
+            await wait(1500);
+            setAnnouncerMassage(`${attacker.name} memakai kesempatan ini untuk memulihkan diri !`);
+            await wait(2200);
 
             if (turn === 0) {
-              setPlayerAnimation('magic')
-              await wait(1000);
-
-              setPlayerAnimation('static')
-              await wait(500);
-
-              setAnnouncerMassage(`Nyawa ${attacker.name} pulih sebagian`);
+              setAnnouncerMassage(`${attacker.name} mengeluarkan sihir pemulihan yang kuat !`);
+              await wait(1900);
+              setAnnouncerMassage(`sebagian besar nyawa ${attacker.name} telah pulih !`);
               setPlayerHealth(h =>
                 h + recovered <= attacker.maxHealth
                   ? h + recovered
@@ -913,6 +819,8 @@ export const useBattleSequence4 = sequence => {
               )
               await wait(1500);
 
+              setAnnouncerMassage(`pandangan ${receiver.name} kembali normal`);
+              await wait(1500);
               setAnnouncerMassage(`${receiver.name} membalas ${attacker.name}`);
               await wait(1500);
             }
@@ -921,7 +829,7 @@ export const useBattleSequence4 = sequence => {
             setInSequence(false);
           })();
 
-          break;
+          break
         }
 
         case 'air': {
@@ -929,31 +837,20 @@ export const useBattleSequence4 = sequence => {
 
           (async () => {
             setInSequence(true);
-            setAnnouncerMassage(`${attacker.name} mengendalikan air disekitarnya dan melancarkan serangan kepada${receiver.name}`);
-            await wait(2000);
+            setAnnouncerMassage(`${attacker.name} mengendalikan air disekitarnya dan melancarkan serangan kepada ${receiver.name}`);
+            await wait(3000);
 
             if (turn === 1) {
-              setOpponentAnimation('attack')
-              await wait(100);
-              setOpponentAnimation('static')
-              await wait(500);
-              
               setAnnouncerMassage(`${receiver.name} terkena tembakan air bertubi tubi`);
-              await wait(1000);
-              setPlayerAnimation('damage')
-              await wait(500);
+              await wait(1500);
               setPlayerHealth(h => (h - damage > 0 ? h - damage : 0))
-              await wait(750);
+              await wait(500);
               setAnnouncerMassage(`${receiver.name} kesulitan menghindar !`)
               await wait(1500)
-              setPlayerAnimation('damage')
-              await wait(500);
               setPlayerHealth(h => (h - damage > 0 ? h - damage : 0))
-              await wait(750);
-              
-              setPlayerAnimation('static')
+              await wait(500);
 
-              setAnnouncerMassage(`${receiver.name} membalas ${attacker.name} `);
+              setAnnouncerMassage(`sebuah celah telah terlihat ! ${receiver.name} mengambil kesempatan dan membalas ${attacker.name} `);
               await wait(1500);
             }
 
@@ -970,32 +867,25 @@ export const useBattleSequence4 = sequence => {
 
           (async () => {
             setInSequence(true);
-            setAnnouncerMassage(`${attacker.name} mengeluarkan aura dingin disekitarnya !`);
+            setAnnouncerMassage(`${attacker.name} bersiap melakukan serangan `);
             await wait(2000);
             setAnnouncerMassage(`${attacker.name} bergerak dengan kecepatan tinggi ke arah ${receiver.name}`);
             await wait(2000);
 
             if (turn === 1) {
-              setAnnouncerMassage(`${receiver.name} tertegun karena ${attacker.name} tiba tiba menghilang !`);
+              setAnnouncerMassage(`${receiver.name} bersiap menghadapi serangan ${attacker.name}`);
               await wait(2000);
               setAnnouncerMassage(`${attacker.name} melancarkan serangan bertubi tubi`);
               await wait(2000);
-              setPlayerAnimation('damage')
+              setPlayerHealth(h => (h - damage > 0 ? h - damage : 0))
               await wait(500);
               setPlayerHealth(h => (h - damage > 0 ? h - damage : 0))
-              await wait(750);
-              setPlayerAnimation('damage')
               await wait(500);
               setPlayerHealth(h => (h - damage > 0 ? h - damage : 0))
-              await wait(750);
-              setPlayerAnimation('damage')
-              await wait(1000);
-              setPlayerHealth(h => (h - damage > 0 ? h - damage : 0))
-              await wait(750);
+              await wait(500);
               setAnnouncerMassage(`${receiver.name} terpental ke rawa dan bangun kembali !`)
-              await wait(1500)
+              await wait(2000)
               
-              setPlayerAnimation('static')
               setAnnouncerMassage(`${receiver.name} membalas ${attacker.name} `);
               await wait(1500);
             }
@@ -1014,16 +904,12 @@ export const useBattleSequence4 = sequence => {
           (async () => {
             setLoading(true)
             setInSequence(true);
-            setAnnouncerMassage(`${attacker.name} beradaptasi dengan lingkungan sekitarnya `);
+            setAnnouncerMassage(`${attacker.name} menyelam ke dalam rawa !!!`);
             await wait(1000);
 
             if (turn === 1) {
-              setOpponentAnimation('magic')
-              await wait(1000);
-
-              setOpponentAnimation('static')
-              await wait(500);
-
+              setAnnouncerMassage(`${attacker.name} menyerap energi di dalam rawa `);
+              await wait(1500)
               setAnnouncerMassage(`${attacker.name} memulihkan sebagian nyawanya`);
               setOpponentHealth(h =>
                 h + recovered <= attacker.maxHealth
@@ -1089,33 +975,29 @@ export const useBattleSequence5 = sequence => {
           (async () => {
             setLoading(true)
             setInSequence(true);
-            setAnnouncerMassage(`${attacker.name} menyerang ${receiver.name} dengan tinju yang dilapisi sihir`);
-            await wait(1000);
+            setAnnouncerMassage(`${attacker.name} melapisi tangannya dengan sihir `);
+            await wait(2000);
+            setAnnouncerMassage(`${attacker.name} berlari ke arah ${receiver.name} lalu melancarkan 1 pukulan kuat ! `);
+            await wait(2500);
 
             if (turn === 0) {
-              setPlayerAnimation('attack')
-              await wait(100);
-
-              setPlayerAnimation('static')
-              await wait(500);
-
-              setOpponentAnimation('damage')
-              await wait(750);
-
-              setOpponentAnimation('static')
-              setAnnouncerMassage(`${receiver.name} terluka`);
+             
+              setAnnouncerMassage(`${receiver.name} terkena pukulan tersebut`);
+              await wait(1300);
               setOpponentHealth(h => (h - damage > 0 ? h - damage : 0))
-              await wait(1500);
-
-              setOpponentAnimation('static')
-              setAnnouncerMassage(`Memulihkan sebagian kecil nyawa`)
-              await wait(1500)
-
+              await wait(500);
+              
+              setAnnouncerMassage(`${attacker.name} menyerap sebagian energi ${receiver.name}`);
+              await wait(2000);
+              setOpponentHealth(h => (h - damage > 0 ? h - damage : 0))
+              await wait(500);
+              setAnnouncerMassage(`${attacker.name} memulihkan sebagian energinya`)
               setPlayerHealth(h =>
-                h + recovered <= attacker.maxHealth
-                  ? h + recovered
-                  : attacker.maxHealth,
-              )
+              h + recovered <= attacker.maxHealth
+              ? h + recovered
+              : attacker.maxHealth,
+              )   
+              await wait(1500)
               setAnnouncerMassage(`${receiver.name} membalas ${attacker.name} `);
               await wait(1500);
             }
@@ -1133,22 +1015,16 @@ export const useBattleSequence5 = sequence => {
           (async () => {
             setLoading(true)
             setInSequence(true);
-            setAnnouncerMassage(`${attacker.name} menyerang ${receiver.name} dengan sihir`);
-            await wait(1000);
+            setAnnouncerMassage(`${attacker.name} melompat ke belakang , menjaga jarak dari ${receiver.name}`);
+            await wait(2200);
+            setAnnouncerMassage(`${attacker.name} mengeluarkan sihir yang kuat dari loncengnya !`);
+            await wait(1900);
 
             if (turn === 0) {
-              setPlayerAnimation('attack')
-              await wait(100);
-
-              setPlayerAnimation('static')
-              await wait(500);
-
-              setOpponentAnimation('damage')
-              await wait(750);
-
-              setOpponentAnimation('static')
-              setAnnouncerMassage(`${receiver.name} terkena sihir`);
+              setAnnouncerMassage(`${receiver.name} terkena serangan sihir !`);
               setOpponentHealth(h => (h - damage > 0 ? h - damage : 0))
+              await wait(1500);
+              setAnnouncerMassage(`${receiver.name} menderita luka akibat ledakan sihir !`);
               await wait(1500);
 
               setAnnouncerMassage(`${receiver.name} membalas ${attacker.name} `);
@@ -1168,17 +1044,17 @@ export const useBattleSequence5 = sequence => {
           (async () => {
             setLoading(true)
             setInSequence(true);
-            setAnnouncerMassage(`${attacker.name} memulihkan nyawa`);
-            await wait(1000);
+            setAnnouncerMassage(`${attacker.name} melemparkan bola asap ke bawah ${receiver.name} `);
+            await wait(2000);
+            setAnnouncerMassage(`pandangan ${receiver.name} terganggu ! `);
+            await wait(1500);
+            setAnnouncerMassage(`${attacker.name} memakai kesempatan ini untuk memulihkan diri !`);
+            await wait(2200);
 
             if (turn === 0) {
-              setPlayerAnimation('magic')
-              await wait(1000);
-
-              setPlayerAnimation('static')
-              await wait(500);
-
-              setAnnouncerMassage(`Nyawa ${attacker.name} pulih sebagian`);
+              setAnnouncerMassage(`${attacker.name} mengeluarkan sihir pemulihan yang kuat !`);
+              await wait(1900);
+              setAnnouncerMassage(`sebagian besar nyawa ${attacker.name} telah pulih !`);
               setPlayerHealth(h =>
                 h + recovered <= attacker.maxHealth
                   ? h + recovered
@@ -1186,6 +1062,8 @@ export const useBattleSequence5 = sequence => {
               )
               await wait(1500);
 
+              setAnnouncerMassage(`pandangan ${receiver.name} kembali normal`);
+              await wait(1500);
               setAnnouncerMassage(`${receiver.name} membalas ${attacker.name}`);
               await wait(1500);
             }
@@ -1194,7 +1072,7 @@ export const useBattleSequence5 = sequence => {
             setInSequence(false);
           })();
 
-          break;
+          break
         }
 
         case 'tendangan': {
@@ -1202,33 +1080,25 @@ export const useBattleSequence5 = sequence => {
 
           (async () => {
             setInSequence(true);
-            setAnnouncerMassage(`${attacker.name} berlari dengan kecepatan hampir secepat cahaya dan mengarah kepada ${receiver.name}`);
-            await wait(2000);
+            setAnnouncerMassage(`${attacker.name} berlari dengan kecepatan kilat langsung mengarah kepada ${receiver.name}`);
+            await wait(3500);
 
             if (turn === 1) {
               setAnnouncerMassage(`${receiver.name} tidak dapat bereaksi !!!`);
               await wait(1200);
-              
-              setOpponentAnimation('attack')
-              await wait(500);
-              setOpponentAnimation('static')
-              await wait(500);
+           
               setAnnouncerMassage(`${attacker.name} melakukan tendangan dengan kecepatan penuh ke arah ${receiver.name}  `);
-              await wait(1200);
+              await wait(2500);
               
-              setPlayerAnimation('damage')
-              await wait(500);
               setPlayerHealth(h => (h - damage > 0 ? h - damage : 0))
               await wait(750);
-              setAnnouncerMassage(`${receiver.name} terpental kebelakang dan mengenai batu dibelakang !`)
-              await wait(1500)
+              setAnnouncerMassage(`${receiver.name} terpental kebelakang dan menghantam batu dibelakangnya !`)
+              await wait(2000)
               
-              setAnnouncerMassage(`Batu tersebut hancur ......`)
-              await wait(1000)
+              setAnnouncerMassage(`${receiver.name} hampir kehilangan kesadaran akibat serangan tersebut`)
+              await wait(2000)
 
-              setPlayerAnimation('static')
-
-              setAnnouncerMassage(`${receiver.name} membalas ${attacker.name} `);
+              setAnnouncerMassage(`${receiver.name} bangkit lagi dan membalas ${attacker.name} `);
               await wait(1500);
             }
 
@@ -1255,66 +1125,35 @@ export const useBattleSequence5 = sequence => {
               await wait(2000);
               setAnnouncerMassage(`${attacker.name} melancarkan serangan bertubi tubi`);
               await wait(2000);
-              setPlayerAnimation('damage')
-              await wait(20);
               setPlayerHealth(h => (h - damage > 0 ? h - damage : 0))
-              await wait(200);
-              setPlayerAnimation('damage')
-              await wait(20);
-              setPlayerHealth(h => (h - damage > 0 ? h - damage : 0))
-              await wait(200);
-              setPlayerAnimation('damage')
-              await wait(20);
-              setPlayerHealth(h => (h - damage > 0 ? h - damage : 0))
-              await wait(200);
-              setPlayerAnimation('damage')
-              await wait(20);
-              setPlayerHealth(h => (h - damage > 0 ? h - damage : 0))
-              await wait(200);
-              setPlayerAnimation('damage')
-              await wait(20);
-              setPlayerHealth(h => (h - damage > 0 ? h - damage : 0))
-              await wait(200);
-              setPlayerAnimation('damage')
               await wait(200);
               setPlayerHealth(h => (h - damage > 0 ? h - damage : 0))
               await wait(200);
-              setPlayerAnimation('damage')
+              setPlayerHealth(h => (h - damage > 0 ? h - damage : 0))
               await wait(200);
               setPlayerHealth(h => (h - damage > 0 ? h - damage : 0))
               await wait(200);
-              setPlayerAnimation('damage')
+              setPlayerHealth(h => (h - damage > 0 ? h - damage : 0))
               await wait(200);
               setPlayerHealth(h => (h - damage > 0 ? h - damage : 0))
               await wait(200);
-              setPlayerAnimation('damage')
+              setPlayerHealth(h => (h - damage > 0 ? h - damage : 0))
               await wait(200);
               setPlayerHealth(h => (h - damage > 0 ? h - damage : 0))
               await wait(200);
-              setPlayerAnimation('damage')
+              setPlayerHealth(h => (h - damage > 0 ? h - damage : 0))
               await wait(200);
               setPlayerHealth(h => (h - damage > 0 ? h - damage : 0))
               await wait(200);
-              setPlayerAnimation('static')
              
               setAnnouncerMassage(`${receiver.name} melancarkan 1 serangan mengarah tepat ke kepala ${attacker.name}`)
-              await wait(1500)
-
-              setPlayerAnimation('attack')
-              await wait(200);
-
-              setPlayerAnimation('static')
-              await wait(500);
-
-              setOpponentAnimation('damage')
-              await wait(750);
-              setOpponentAnimation('static')
+              await wait(2000)
               
               setAnnouncerMassage(`${attacker.name} terpental ke belakang ! `);
               await wait(1500);
               
               setPlayerAnimation('static')
-              setAnnouncerMassage(`${receiver.name} membalas ${attacker.name} `);
+              setAnnouncerMassage(`${receiver.name} bersiap membalas ${attacker.name} `);
               await wait(1500);
             }
 
@@ -1332,21 +1171,18 @@ export const useBattleSequence5 = sequence => {
           (async () => {
             setLoading(true)
             setInSequence(true);
-            setAnnouncerMassage(`${attacker.name} mengaum dengan keras ?`);
+            setAnnouncerMassage(`${attacker.name} mengaum ke langit malam`);
             await wait(1500);
 
-            setAnnouncerMassage(`${receiver.name} tertegun melihat kejadian ini !`);
+            setAnnouncerMassage(`entah kenapa ${receiver.name} tidak dapat bergerak `);
             await wait(1500);
 
             setAnnouncerMassage(`cahaya bulan menerangi tempat dimana ${attacker.name} berada !!! `);
-            await wait(2000);
+            await wait(2500);
 
             if (turn === 1) {
-              setOpponentAnimation('magic')
-              await wait(1000);
-
-              setOpponentAnimation('static')
-              await wait(500);
+              setAnnouncerMassage(`${receiver.name} terkejut dengan apa yang ia lihat `);
+              await wait(1500);
 
               setAnnouncerMassage(`${attacker.name} memulihkan sebagian nyawanya`);
               setOpponentHealth(h =>
@@ -1356,11 +1192,7 @@ export const useBattleSequence5 = sequence => {
               )
               await wait(1500);
 
-
-              setAnnouncerMassage(`${receiver.name} tidak bisa memahami apa yang sedang terjadi`);
-              await wait(2000);
-
-              setAnnouncerMassage(`${receiver.name} membalas ${attacker.name}`);
+              setAnnouncerMassage(`${receiver.name} akhirnya bisa bergerak dan membalas ${attacker.name}`);
               await wait(1500);
             }
 

@@ -10,7 +10,7 @@ export const wait = ms =>
       const receivedDamage =
         attacker.attack - (attacker.level - receiver.level) * 1.25;
     
-      const finalDamage = receivedDamage  ;
+      const finalDamage = receivedDamage - receiver.defense / 2  ;
     
       return finalDamage;
     };
