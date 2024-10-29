@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { assets } from '../assets/indeks';
 import '../PusatCss/polygon.css';
+import styles from '../PusatCss/styles.module.css';
 import { Playerdetail } from '../components/Player/Playerdetail';
 import { BattleAnnouncer } from '../components/BattleAnnouncer/BattleAnnouncer';
 import { useBattleSequence, useAIOpponents, useBattleSequence2, useAImonsterApi, useAImonsterEs, useBattleSequence3, useBattleSequence5, useAIserigala, useAibuaya, useBattleSequence4 } from '../hooks'; // import hooks yang diperlukan
@@ -58,7 +59,7 @@ export const Battle = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
         if (currentStep < flow.length - 1) {
             return navigate(`/penghubung/${Number(currentStep) + 1}`)
             // Pindah ke langkah berikutnya
-        } 
+        }
     };
 
     const handleInfoClick = () => {
@@ -97,10 +98,42 @@ export const Battle = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
         setCurrentStep(id)
     }, [id])
 
+    const bgmAudioRef = useRef(null);
+
+    useEffect(() => {
+        // Mengatur audio agar tetap diputar ketika komponen dimount
+        const bgmAudio = bgmAudioRef.current;
+        if (bgmAudio) {
+            bgmAudio.volume = 0.99; // Contoh: mengatur volume (opsional)
+            bgmAudio.play().catch((e) => console.log(e));
+        }
+
+        return () => {
+            if (bgmAudio) {
+                bgmAudio.pause(); // Menghentikan audio jika komponen di-unmount
+            }
+        };
+    }, []);
+
 
 
     return (
         <>
+
+            <div>
+                {/* Audio hanya dimuat sekali */}
+                <audio
+                    ref={bgmAudioRef}
+                    id="bgmAudio"
+                    className="hidden" // Menyembunyikan elemen
+                    autoPlay
+                    loop
+                >
+                    <source src={assets.Audio.bgmBattle1} type="audio/mpeg" />
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
             {currentSlide === 0 && (
                 <div className='relative h-screen overflow-hidden'>
                     <div
@@ -330,7 +363,7 @@ export const Battle = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
                                             top: '20%',
                                             pointerEvents: 'none', // Pastikan elemen ini tidak menghalangi klik
                                         }}>
-                                      
+
                                     </div>
                                     <button
                                         className='absolute z-30 h-[5%] w-[5%] top-[13%] left-[66%]'
@@ -388,7 +421,7 @@ export const Battle = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
                     <div className='relative h-screen'>
 
                         <div className='relative top-[52%]'>
-                            <img src={assets.gambar.sidhimantrastory} alt="" className={`absolute ml-[12%] w-[20%] mt-[-18%]`} />
+                            <img src={assets.gambar.sidhimantrastory} alt="" className={`absolute ml-[12%] w-[20%] mt-[-18%] ${styles[playerAnimation]}`} />
                             <p className='absolute z-30 font-girassol text-white text-[3vh] mt-[0.5%] left-[8%] leading-relaxed'>Sidi Mantra</p>
                             <img src={assets.gambar.barH} alt="papan" className='absolute ml-[3%] w-[32%]' />
 
@@ -408,7 +441,7 @@ export const Battle = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
                         </div>
 
                         <div className='relative flex justify-end top-[2%] right-[2%]'>
-                            <img src={assets.gambar.spider} alt="" className={`absolute mr-[5%] w-[18%] mt-[3%] `} />
+                            <img src={assets.gambar.spider} alt="" className={`absolute mr-[5%] w-[18%] mt-[3%] ${styles[opponentAnimation]} `} />
                             <p className='absolute z-30 font-girassol text-white text-[3vh] mt-[0.5%] right-[20%] leading-relaxed'>Giant Spider</p>
 
                             <img src={assets.gambar.barH} alt="papan" className='absolute ml-[3%] w-[32%] ' />
@@ -629,7 +662,7 @@ export const Battle2 = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
             navigate('/story/20');
         }
     };
-    
+
 
     const handleInfoClick = () => {
         setShowAlert(true); // Menampilkan alert saat tombol info ditekan
@@ -667,10 +700,41 @@ export const Battle2 = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
         setCurrentStep(id)
     }, [id])
 
+    const bgmAudioRef = useRef(null);
+
+    useEffect(() => {
+        // Mengatur audio agar tetap diputar ketika komponen dimount
+        const bgmAudio = bgmAudioRef.current;
+        if (bgmAudio) {
+            bgmAudio.volume = 0.5; // Contoh: mengatur volume (opsional)
+            bgmAudio.play().catch((e) => console.log(e));
+        }
+
+        return () => {
+            if (bgmAudio) {
+                bgmAudio.pause(); // Menghentikan audio jika komponen di-unmount
+            }
+        };
+    }, []);
+
 
 
     return (
         <>
+            <div>
+                {/* Audio hanya dimuat sekali */}
+                <audio
+                    ref={bgmAudioRef}
+                    id="bgmAudio"
+                    className="hidden" // Menyembunyikan elemen
+                    autoPlay
+                    loop
+                >
+                    <source src={assets.Audio.bgmBattle2} type="audio/mpeg" />
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
             {currentSlide === 0 && (
                 <div className='relative h-screen overflow-hidden'>
                     <div
@@ -860,7 +924,7 @@ export const Battle2 = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
                             </button>
                         </div>
 
-                        <div className='z-0 absolute h-[60%] w-[60%]'
+                        <div className='z-0 absolute h-[100%] w-[60%]'
                             style={{
                                 backgroundImage: `url(${img[1]})`,
                                 backgroundSize: 'contain',
@@ -958,7 +1022,7 @@ export const Battle2 = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
                     <div className='relative h-screen'>
 
                         <div className='relative top-[52%]'>
-                            <img src={assets.gambar.sidhimantrastory} alt="" className={`absolute ml-[12%] w-[20%] mt-[-18%]`} />
+                            <img src={assets.gambar.sidhimantrastory} alt="" className={`absolute ml-[12%] w-[20%] mt-[-18%] ${styles[playerAnimation]}`} />
                             <p className='absolute z-30 font-girassol text-white text-[3vh] mt-[0.5%] left-[8%] leading-relaxed'>Sidi Mantra</p>
                             <img src={assets.gambar.barH} alt="papan" className='absolute ml-[3%] w-[32%]' />
 
@@ -978,7 +1042,7 @@ export const Battle2 = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
                         </div>
 
                         <div className='relative flex justify-end top-[2%] right-[2%]'>
-                            <img src={assets.gambar.golemApi} alt="" className={`absolute mr-[5%] w-[23%] mt-[4%] `} />
+                            <img src={assets.gambar.golemApi} alt="" className={`absolute mr-[5%] w-[23%] mt-[4%] ${styles[opponentAnimation]} `} />
                             <p className='absolute z-30 font-girassol text-white text-[3vh] mt-[0.5%] right-[23%] leading-relaxed'>Apiar</p>
 
                             <img src={assets.gambar.barH} alt="papan" className='absolute ml-[3%] w-[32%] ' />
@@ -1233,10 +1297,41 @@ export const Battle3 = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
         setCurrentStep(id)
     }, [id])
 
+    const bgmAudioRef = useRef(null);
+
+    useEffect(() => {
+        // Mengatur audio agar tetap diputar ketika komponen dimount
+        const bgmAudio = bgmAudioRef.current;
+        if (bgmAudio) {
+            bgmAudio.volume = 0.4; // Contoh: mengatur volume (opsional)
+            bgmAudio.play().catch((e) => console.log(e));
+        }
+
+        return () => {
+            if (bgmAudio) {
+                bgmAudio.pause(); // Menghentikan audio jika komponen di-unmount
+            }
+        };
+    }, []);
+
 
 
     return (
         <>
+            <div>
+                {/* Audio hanya dimuat sekali */}
+                <audio
+                    ref={bgmAudioRef}
+                    id="bgmAudio"
+                    className="hidden" // Menyembunyikan elemen
+                    autoPlay
+                    loop
+                >
+                    <source src={assets.Audio.bgmBattle3} type="audio/mpeg" />
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
             {currentSlide === 0 && (
                 <div className='relative h-screen overflow-hidden'>
                     <div
@@ -1523,7 +1618,7 @@ export const Battle3 = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
                     <div className='relative h-screen'>
 
                         <div className='relative top-[52%]'>
-                            <img src={assets.gambar.sidhimantrastory} alt="" className={`absolute ml-[12%] w-[20%] mt-[-18%]`} />
+                            <img src={assets.gambar.sidhimantrastory} alt="" className={`absolute ml-[12%] w-[20%] mt-[-18%] ${styles[playerAnimation]}`} />
                             <p className='absolute z-30 font-girassol text-white text-[3vh] mt-[0.5%] left-[8%] leading-relaxed'>Sidi Mantra</p>
                             <img src={assets.gambar.barH} alt="papan" className='absolute ml-[3%] w-[32%]' />
 
@@ -1543,7 +1638,7 @@ export const Battle3 = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
                         </div>
 
                         <div className='relative flex justify-end top-[2%] right-[2%]'>
-                            <img src={assets.gambar.monsterEs} alt="" className={`absolute mr-[5%] w-[18%] mt-[6%] `} />
+                            <img src={assets.gambar.monsterEs} alt="" className={`absolute mr-[5%] w-[18%] mt-[6%] ${styles[opponentAnimation]}`} />
                             <p className='absolute z-30 font-girassol text-white text-[3vh] mt-[0.5%] right-[22%] leading-relaxed'>Frostar</p>
 
                             <img src={assets.gambar.barH} alt="papan" className='absolute ml-[3%] w-[32%] ' />
@@ -1710,14 +1805,14 @@ export const Battle3 = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
 export const Battle4 = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
     const navigate = useNavigate();
 
-    const playerMagic =  Player.magic;
-    const playerPhysical =  Player.attack;
-    const playerhealth =  Player.heal;
-    const playerlivesteal =  Player.livesteal;
-    const playerDev =  Player.defense;
-    const playerLv =  Player.level;
+    const playerMagic = Player.magic;
+    const playerPhysical = Player.attack;
+    const playerhealth = Player.heal;
+    const playerlivesteal = Player.livesteal;
+    const playerDev = Player.defense;
+    const playerLv = Player.level;
 
-    
+
     const adaptasi = Buaya.adaptasi;
     const maxHealth = Buaya.maxHealth;
     const air = Buaya.air;
@@ -1753,7 +1848,7 @@ export const Battle4 = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
         loading
     } = useBattleSequence4(sequence);
 
-    const aiChoice =  useAibuaya(turn);
+    const aiChoice = useAibuaya(turn);
 
     // Fungsi untuk berpindah ke langkah berikutnya berdasarkan alur
     const handleNext = () => {
@@ -1801,10 +1896,41 @@ export const Battle4 = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
         setCurrentStep(id)
     }, [id])
 
+    const bgmAudioRef = useRef(null);
+
+    useEffect(() => {
+        // Mengatur audio agar tetap diputar ketika komponen dimount
+        const bgmAudio = bgmAudioRef.current;
+        if (bgmAudio) {
+            bgmAudio.volume = 0.5; // Contoh: mengatur volume (opsional)
+            bgmAudio.play().catch((e) => console.log(e));
+        }
+
+        return () => {
+            if (bgmAudio) {
+                bgmAudio.pause(); // Menghentikan audio jika komponen di-unmount
+            }
+        };
+    }, []);
 
 
     return (
         <>
+            <div>
+                {/* Audio hanya dimuat sekali */}
+                <audio
+                    ref={bgmAudioRef}
+                    id="bgmAudio"
+                    className="hidden" // Menyembunyikan elemen
+                    autoPlay
+                    loop
+                >
+                    <source src={assets.Audio.bgmBattle4} type="audio/mpeg" />
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
+
             {currentSlide === 0 && (
                 <div className='relative h-screen overflow-hidden'>
                     <div
@@ -1843,7 +1969,7 @@ export const Battle4 = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
                             }}
                         >
                             <p className='justify-center items-center flex font-poppins text-[25px] pl-20'> Lumpur ini mungkin melambatkan langkahku, tapi itu tidak akan menghentikanku. Kau yang akan tenggelam, Crockar!"
-</p>
+                            </p>
                             <button
                                 className='absolute z-50 h-[20%] w-[28%] left-[92%] bottom-[20%]'
                                 style={{
@@ -1899,7 +2025,7 @@ export const Battle4 = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
                                             top: '20%',
                                             pointerEvents: 'none', // Pastikan elemen ini tidak menghalangi klik
                                         }}>
-                                       
+
                                     </div>
                                     <button
                                         className='absolute z-30 h-[5%] w-[5%] top-[13%] left-[66%]'
@@ -2022,56 +2148,56 @@ export const Battle4 = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
                         ></div>
 
                         {showAlert && (
-                          <div className="fixed inset-0 z-50 flex items-center justify-center">
-                          <div className="bg-custom-bg-info bg-opacity-[97%] p-6 shadow-md w-[40%] h-[80%] justify-center items-center">
-                              <p className="mt-[0%] flex justify-center text-[5vh] font-girassol text-white">Crockar</p>
-                              <div
-                                  className='z-0 absolute h-[65%] w-[30%]'
-                                  style={{
-                                      backgroundImage: `url(${img[1]})`,
-                                      backgroundSize: 'contain',
-                                      backgroundPosition: 'center',
-                                      backgroundRepeat: 'no-repeat',
-                                      left: '36%',
-                                      top: '20%',
-                                      pointerEvents: 'none',
-                                  }}
-                              ></div>
-                              <button
-                                  className='absolute z-30 h-[5%] w-[5%] top-[13%] left-[66%]'
-                                  style={{
-                                      backgroundImage: `url(${assets.gambar.back2})`,
-                                      backgroundSize: 'contain',
-                                      backgroundRepeat: 'no-repeat',
-                                      border: 'none',
-                                  }}
-                                  onClick={handleCloseAlert}
-                              ></button>
-                              <div className='flex flex-row flex-wrap justify-center items-center gap-x-16 gap-y-16 mt-[50%]'>
-                                  <div className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-6 items-center font-girassol z-50'>
-                                      <img src={assets.gambar.air} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
-                                      <p className='text-custom-number-air text-[35px]'>{air}</p>
-                                  </div>
-                                  <div className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-5 items-center font-girassol z-50'>
-                                      <img src={assets.gambar.healtIcon} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
-                                      <p className='text-custom-number-healt text-[35px]'>{maxHealth}</p>
-                                  </div>
-                                  <div className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-5 items-center font-girassol z-50'>
-                                      <img src={assets.gambar.pukulan} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
-                                      <p className='text-custom-number-physical text-[35px]'>{pukulan}</p>
-                                  </div>
-                                  <div className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-6 items-center font-girassol z-50'>
-                                      <img src={assets.gambar.healIcon} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
-                                      <p className='text-custom-number-heal text-[35px]'>{adaptasi}</p>
-                                  </div>
-                                  <div className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-6 items-center font-girassol z-50'>
-                                      <img src={assets.gambar.devIcon} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
-                                      <p className='text-custom-number-dev text-[35px]'>{defense}</p>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      
+                            <div className="fixed inset-0 z-50 flex items-center justify-center">
+                                <div className="bg-custom-bg-info bg-opacity-[97%] p-6 shadow-md w-[40%] h-[80%] justify-center items-center">
+                                    <p className="mt-[0%] flex justify-center text-[5vh] font-girassol text-white">Crockar</p>
+                                    <div
+                                        className='z-0 absolute h-[65%] w-[30%]'
+                                        style={{
+                                            backgroundImage: `url(${img[1]})`,
+                                            backgroundSize: 'contain',
+                                            backgroundPosition: 'center',
+                                            backgroundRepeat: 'no-repeat',
+                                            left: '36%',
+                                            top: '20%',
+                                            pointerEvents: 'none',
+                                        }}
+                                    ></div>
+                                    <button
+                                        className='absolute z-30 h-[5%] w-[5%] top-[13%] left-[66%]'
+                                        style={{
+                                            backgroundImage: `url(${assets.gambar.back2})`,
+                                            backgroundSize: 'contain',
+                                            backgroundRepeat: 'no-repeat',
+                                            border: 'none',
+                                        }}
+                                        onClick={handleCloseAlert}
+                                    ></button>
+                                    <div className='flex flex-row flex-wrap justify-center items-center gap-x-16 gap-y-16 mt-[50%]'>
+                                        <div className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-6 items-center font-girassol z-50'>
+                                            <img src={assets.gambar.air} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
+                                            <p className='text-custom-number-air text-[35px]'>{air}</p>
+                                        </div>
+                                        <div className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-5 items-center font-girassol z-50'>
+                                            <img src={assets.gambar.healtIcon} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
+                                            <p className='text-custom-number-healt text-[35px]'>{maxHealth}</p>
+                                        </div>
+                                        <div className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-5 items-center font-girassol z-50'>
+                                            <img src={assets.gambar.pukulan} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
+                                            <p className='text-custom-number-physical text-[35px]'>{pukulan}</p>
+                                        </div>
+                                        <div className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-6 items-center font-girassol z-50'>
+                                            <img src={assets.gambar.healIcon} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
+                                            <p className='text-custom-number-heal text-[35px]'>{adaptasi}</p>
+                                        </div>
+                                        <div className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-6 items-center font-girassol z-50'>
+                                            <img src={assets.gambar.devIcon} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
+                                            <p className='text-custom-number-dev text-[35px]'>{defense}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         )}
                     </div>
                 </div>
@@ -2092,7 +2218,7 @@ export const Battle4 = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
                     <div className='relative h-screen'>
 
                         <div className='relative top-[52%]'>
-                            <img src={assets.gambar.sidhimantrastory} alt="" className={`absolute ml-[12%] w-[20%] mt-[-18%]`} />
+                            <img src={assets.gambar.sidhimantrastory} alt="" className={`absolute ml-[12%] w-[20%] mt-[-18%] ${styles[playerAnimation]}`} />
                             <p className='absolute z-30 font-girassol text-white text-[3vh] mt-[0.5%] left-[8%] leading-relaxed'>Sidi Mantra</p>
                             <img src={assets.gambar.barH} alt="papan" className='absolute ml-[3%] w-[32%]' />
 
@@ -2112,7 +2238,7 @@ export const Battle4 = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
                         </div>
 
                         <div className='relative flex justify-end top-[2%] right-[2%]'>
-                            <img src={assets.gambar.cockar} alt="" className={`absolute mr-[5%] w-[18%] mt-[5%] `} />
+                            <img src={assets.gambar.cockar} alt="" className={`absolute mr-[5%] w-[18%] mt-[5%] ${styles[opponentAnimation]}`} />
                             <p className='absolute z-30 font-girassol text-white text-[3vh] mt-[0.5%] right-[22%] leading-relaxed'>Crockar</p>
 
                             <img src={assets.gambar.barH} alt="papan" className='absolute ml-[3%] w-[32%] ' />
@@ -2368,9 +2494,41 @@ export const Battle5 = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
     }, [id])
 
 
+    const bgmAudioRef = useRef(null);
+
+    useEffect(() => {
+        // Mengatur audio agar tetap diputar ketika komponen dimount
+        const bgmAudio = bgmAudioRef.current;
+        if (bgmAudio) {
+            bgmAudio.volume = 0.5; // Contoh: mengatur volume (opsional)
+            bgmAudio.play().catch((e) => console.log(e));
+        }
+
+        return () => {
+            if (bgmAudio) {
+                bgmAudio.pause(); // Menghentikan audio jika komponen di-unmount
+            }
+        };
+    }, []);
+
 
     return (
         <>
+            <div>
+                {/* Audio hanya dimuat sekali */}
+                <audio
+                    ref={bgmAudioRef}
+                    id="bgmAudio"
+                    className="hidden" // Menyembunyikan elemen
+                    autoPlay
+                    loop
+                >
+                    <source src={assets.Audio.bgmBattle5} type="audio/mpeg" />
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
+
             {currentSlide === 0 && (
                 <div className='relative h-screen overflow-hidden'>
                     <div
@@ -2588,51 +2746,51 @@ export const Battle5 = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
 
                         {showAlert && (
                             <div className="fixed inset-0 z-50 flex items-center justify-center ">
-                            <div className="bg-custom-bg-info bg-opacity-[97%] p-6 shadow-md w-[40%] h-[80%] justify-center items-center">
-                                <p className="mt-[0%] flex justify-center text-[5vh] font-girassol text-white">Lupor</p>
-                                <div
-                                    className='z-0 absolute h-[70%] w-[30%]'
-                                    style={{
-                                        backgroundImage: `url(${img[1]})`,
-                                        backgroundSize: 'contain',
-                                        backgroundPosition: 'center',
-                                        backgroundRepeat: 'no-repeat',
-                                        left: '36%',
-                                        top: '20%',
-                                        pointerEvents: 'none', // Pastikan elemen ini tidak menghalangi klik
-                                    }}
-                                />
-                                <button
-                                    className='absolute z-30 h-[5%] w-[5%] top-[13%] left-[66%]'
-                                    style={{
-                                        backgroundImage: `url(${assets.gambar.back2})`,
-                                        backgroundSize: 'contain',
-                                        backgroundRepeat: 'no-repeat',
-                                        border: 'none',
-                                    }}
-                                    onClick={handleCloseAlert}
-                                />
-                                <div className='flex flex-row flex-wrap justify-center items-center gap-x-16 gap-y-16 mt-[50%] relative z-10'> {/* Menambahkan z-10 di sini */}
-                                    <div className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-6 items-center font-girassol'>
-                                        <img src={assets.gambar.aumanEsdanSerigla} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
-                                        <p className='text-custom-number-physical text-[35px]'>{auman}</p>
-                                    </div>
-                                    <div className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-5 items-center font-girassol'>
-                                        <img src={assets.gambar.healtIcon} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
-                                        <p className='text-custom-number-healt text-[35px]'>{Health}</p>
-                                    </div>
-                                    <div className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-5 items-center font-girassol'>
-                                        <img src={assets.gambar.Cakar} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
-                                        <p className='bg-gradient-to-t from-gradien3 via-gradien2 to-gradien1 bg-clip-text text-transparent text-[35px]'>{Cakar}</p>
-                                    </div>
-                                    <div className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-6 items-center font-girassol'>
-                                        <img src={assets.gambar.pukulan} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
-                                        <p className='text-custom-number-healt text-[35px]'>{Tendangan}</p>
+                                <div className="bg-custom-bg-info bg-opacity-[97%] p-6 shadow-md w-[40%] h-[80%] justify-center items-center">
+                                    <p className="mt-[0%] flex justify-center text-[5vh] font-girassol text-white">Lupor</p>
+                                    <div
+                                        className='z-0 absolute h-[70%] w-[30%]'
+                                        style={{
+                                            backgroundImage: `url(${img[1]})`,
+                                            backgroundSize: 'contain',
+                                            backgroundPosition: 'center',
+                                            backgroundRepeat: 'no-repeat',
+                                            left: '36%',
+                                            top: '20%',
+                                            pointerEvents: 'none', // Pastikan elemen ini tidak menghalangi klik
+                                        }}
+                                    />
+                                    <button
+                                        className='absolute z-30 h-[5%] w-[5%] top-[13%] left-[66%]'
+                                        style={{
+                                            backgroundImage: `url(${assets.gambar.back2})`,
+                                            backgroundSize: 'contain',
+                                            backgroundRepeat: 'no-repeat',
+                                            border: 'none',
+                                        }}
+                                        onClick={handleCloseAlert}
+                                    />
+                                    <div className='flex flex-row flex-wrap justify-center items-center gap-x-16 gap-y-16 mt-[50%] relative z-10'> {/* Menambahkan z-10 di sini */}
+                                        <div className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-6 items-center font-girassol'>
+                                            <img src={assets.gambar.aumanEsdanSerigla} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
+                                            <p className='text-custom-number-physical text-[35px]'>{auman}</p>
+                                        </div>
+                                        <div className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-5 items-center font-girassol'>
+                                            <img src={assets.gambar.healtIcon} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
+                                            <p className='text-custom-number-healt text-[35px]'>{Health}</p>
+                                        </div>
+                                        <div className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-5 items-center font-girassol'>
+                                            <img src={assets.gambar.Cakar} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
+                                            <p className='bg-gradient-to-t from-gradien3 via-gradien2 to-gradien1 bg-clip-text text-transparent text-[35px]'>{Cakar}</p>
+                                        </div>
+                                        <div className='bg-custom-div w-[25%] h-[15%] flex flex-row gap-6 items-center font-girassol'>
+                                            <img src={assets.gambar.pukulan} alt="" className='ml-3 my-1 w-[35px] h-[35px]' />
+                                            <p className='text-custom-number-healt text-[35px]'>{Tendangan}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        
+
                         )}
                     </div>
                 </div>
@@ -2653,7 +2811,7 @@ export const Battle5 = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
                     <div className='relative h-screen'>
 
                         <div className='relative top-[52%]'>
-                            <img src={assets.gambar.sidhimantrastory} alt="" className={`absolute ml-[12%] w-[20%] mt-[-18%]`} />
+                            <img src={assets.gambar.sidhimantrastory} alt="" className={`absolute ml-[12%] w-[20%] mt-[-18%] ${styles[playerAnimation]}`} />
                             <p className='absolute z-30 font-girassol text-white text-[3vh] mt-[0.5%] left-[8%] leading-relaxed'>Sidi Mantra</p>
                             <img src={assets.gambar.barH} alt="papan" className='absolute ml-[3%] w-[32%]' />
 
@@ -2673,7 +2831,7 @@ export const Battle5 = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
                         </div>
 
                         <div className='relative flex justify-end top-[2%] right-[2%]'>
-                            <img src={assets.gambar.monsterSrigala} alt="" className={`absolute mr-[5%] w-[18%] mt-[6%] `} />
+                            <img src={assets.gambar.monsterSrigala} alt="" className={`absolute mr-[5%] w-[18%] mt-[6%] ${styles[opponentAnimation]}`} />
                             <p className='absolute z-30 font-girassol text-white text-[3vh] mt-[0.5%] right-[23%] leading-relaxed'>Lupor</p>
 
                             <img src={assets.gambar.barH} alt="papan" className='absolute ml-[3%] w-[32%] ' />

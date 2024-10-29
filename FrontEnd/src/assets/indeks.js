@@ -62,6 +62,13 @@ import tmksh from './tmksh.png'
 import bgDewa from './bgDewa.png'
 import bgGameOver from './bgGameOver.png'
 import buttonPlayAgain from './buttonPlayAgain.png'
+import bgmBattle5 from './bgmBattle5.mp3'
+import bgmBattle2 from './bgmBattle5.mp3'
+import bgmBattle3 from './bgmBattle3.mp3'
+import bgmBattle1 from './bgmBattle1.mp3'
+import bgmBattle4 from './bgmBattle4.mp3'
+import bgmStory from './bgmStory.mp3'
+import backSoundAttack from './backSoundAttack.mp3'
 
 export const assets = {
     gambar: {
@@ -128,12 +135,16 @@ export const assets = {
         bgDewa,
         bgGameOver,
         buttonPlayAgain
-        
-
-
 
     },
     Audio: {
+        bgmBattle5,
+        bgmBattle2,
+        bgmBattle3,
+        bgmBattle1,
+        bgmBattle4,
+        bgmStory,
+        backSoundAttack,
 
     },
     vidio: {

@@ -17,9 +17,9 @@ export const GiantSpider = {
   maxHealth: 1500,
   img: '/assetss/spider.png',
 
-  cakar: 290,
+  cakar: 340,
   lari: 500,
-  gigit: 340,
+  gigit: 250,
   defense: 100,
 };
 
@@ -65,7 +65,7 @@ export const Serigala = {
   maxHealth: 1300,
   img: '/assetss/serigala.png',
 
-  cakaran : 50,
+  cakaran : 30,
   auman : 300,
   tendangan : 600,
   defense : 0

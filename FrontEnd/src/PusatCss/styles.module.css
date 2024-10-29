@@ -1,0 +1,332 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+.user,
+.opponent {
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 25px;
+  box-sizing: border-box;
+}
+.hud {
+  gap: 25px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.hudChild {
+  flex: 1;
+  height: 200px;
+}
+.gameHeader {
+  font-size: 48px;
+  color: #fdac00;
+  text-shadow: 0px 0px 5px #7f0000;
+  font-family: 'Press Start 2P', cursive;
+}
+.summary {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+.opponent .summary {
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+.characters {
+  width: 100%;
+  text-align: center;
+}
+.gameImages {
+  display: flex;
+  justify-content: space-between;
+  padding: 25px;
+  box-sizing: border-box;
+}
+
+.characters .gameImages img {
+  max-height: 25vh;
+  min-height: 150px;
+}
+
+.static {
+  transform: translateX(0px);
+  transform: translateY(0px);
+  transition: 0.5s;
+}
+
+.attackP {
+  transition: 0.1s;
+  transform: translateX(100px);
+}
+.attack {
+  transition: 0.1s;
+  transform: translateX(-100px);
+}
+
+
+.heal {
+  transition: 0.2s;
+  transform: translateY(-25px);
+  animation: shake 0.5s infinite;
+}
+
+.damage {
+  opacity: 1;
+  animation: flash 0.3s 0.3s infinite;
+}
+
+.magic {
+  animation: shake-then-attack 0.8s ease-in-out;
+  transition: 0.1s;
+}
+
+@keyframes shake-then-attack {
+  0%, 100% {
+    transform: translateX(0) translateY(0);
+  }
+  /* Efek shake */
+  10% {
+    transform: translate(2px, 2px) rotate(0.5deg);
+  }
+  20% {
+    transform: translate(-2px, -2px) rotate(-0.5deg);
+  }
+  30% {
+    transform: translate(2px, -2px) rotate(0.5deg);
+  }
+  40% {
+    transform: translate(-2px, 2px) rotate(-0.5deg);
+  }
+  50% {
+    transform: translate(1px, -1px) rotate(0.3deg);
+  }
+  60% {
+    transform: translate(-1px, 1px) rotate(-0.3deg);
+  }
+  /* Beralih ke gerakan attack */
+  80% {
+    transform: translateX(80px) translateY(-20px);
+  }
+  90% {
+    transform: translateX(90px) translateY(-10px);
+  }
+  100% {
+    transform: translateX(100px) translateY(0);
+  }
+}
+
+
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px) rotate(0deg) translateY(-25px);
+  }
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg) translateY(-25px);
+  }
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg) translateY(-25px);
+  }
+  30% {
+    transform: translate(3px, 2px) rotate(0deg) translateY(-25px);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg) translateY(-25px);
+  }
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg) translateY(-25px);
+  }
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg) translateY(-25px);
+  }
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg) translateY(-25px);
+  }
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg) translateY(-25px);
+  }
+  90% {
+    transform: translate(1px, 2px) rotate(0deg) translateY(-25px);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg) translateY(-25px);
+  }
+}
+
+@keyframes flash {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fire {
+  0%, 100% {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+  }
+  50% {
+      transform: scale(1.2) translateY(-10px);
+      opacity: 0.5;
+  }
+}
+
+.apiBesar {
+  animation: fire 0.5s infinite;
+}
+
+@keyframes shout {
+  0% {
+      transform: scale(1);
+      opacity: 1;
+  }
+  100% {
+      transform: scale(2);
+      opacity: 0;
+  }
+}
+
+.teriakan {
+  animation: shout 0.8s linear;
+}
+
+.badai {
+    animation: snow-shake 0.1s infinite; /* Efek bergetar */
+  }
+  
+  @keyframes snow-shake {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(2px, -2px); }
+    50% { transform: translate(-2px, 2px); }
+    75% { transform: translate(-2px, -2px); }
+    100% { transform: translate(2px, 2px); }
+  }
+
+
+.pusaranAir {
+  position: absolute;
+  width: 150px; /* Lebar jurus air */
+  height: 30px; /* Tinggi jurus air */
+  background: rgba(0, 191, 255, 0.8); /* Warna air */
+  border-radius: 15px; /* Membuat sudut melengkung */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scaleX(0); /* Mulai dari skala 0 */
+  animation: water-attack 1s ease-out forwards; /* Animasi jurus air */
+}
+
+/* Animasi Jurus Air */
+@keyframes water-attack {
+  0% {
+      transform: translate(-50%, -50%) scaleX(0); /* Mulai dari skala 0 */
+      opacity: 1;
+  }
+  50% {
+      transform: translate(-50%, -50%) scaleX(1.5); /* Membesar */
+      opacity: 0.7; /* Sedikit memudar */
+  }
+  100% {
+      transform: translate(-50%, -50%) scaleX(2); /* Membesar lebih */
+      opacity: 0; /* Menghilang */
+  }
+}
+
+.kecepatanTinggi {
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 0, 0, 0.7); /* Warna karakter saat berlari */
+  border-radius: 50%;
+  animation: run 1s ease forwards; /* Animasi berlari */
+}
+
+/* Animasi Berlari */
+@keyframes run {
+  0% {
+      transform: translateX(0);
+      opacity: 1;
+  }
+  50% {
+      transform: translateX(200px); /* Bergerak ke kanan */
+      opacity: 1;
+  }
+  100% {
+      transform: translateX(200px) scale(1.2); /* Menabrak musuh dan sedikit membesar */
+      opacity: 0.5; /* Menghilang setelah tabrakan */
+  }
+}
+
+.menendang {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 255, 0.7); /* Warna karakter saat berlari */
+  border-radius: 50%;
+  animation: run-kick 1.5s ease forwards; /* Animasi berlari dan tendangan */
+}
+
+/* Animasi Berlari dan Tendangan */
+@keyframes run-kick {
+  0% {
+      transform: translateX(0);
+      opacity: 1;
+  }
+  60% {
+      transform: translateX(200px); /* Bergerak ke kanan */
+      opacity: 1;
+  }
+  80% {
+      transform: translateX(200px) rotate(0deg); /* Siap untuk tendangan */
+  }
+  100% {
+      transform: translateX(200px) rotate(30deg); /* Tendangan ke depan */
+      opacity: 0.5; /* Menghilang setelah tendangan */
+  }
+}
+
+.seranganBertubi {
+  position: absolute;
+  width: 30px; /* Lebar serangan */
+  height: 30px; /* Tinggi serangan */
+  background: rgba(255, 0, 0, 0.8); /* Warna serangan */
+  border-radius: 50%; /* Membuat bentuk bulat */
+  animation: attack 1s ease-in-out infinite; /* Animasi serangan */
+}
+
+/* Animasi Getaran */
+@keyframes vibrate {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(2px, -2px); }
+  60% { transform: translate(-2px, -2px); }
+  80% { transform: translate(2px, 2px); }
+  100% { transform: translate(0); }
+}
+
+/* Animasi Serangan Bertubi-tubi */
+@keyframes attack {
+  0%, 100% {
+      transform: translateX(0); /* Posisi awal serangan */
+      opacity: 1;
+  }
+  20% {
+      transform: translateX(50px); /* Bergerak ke kanan untuk serangan */
+      opacity: 1;
+  }
+  40% {
+      transform: translateX(100px); /* Bergerak lebih jauh untuk serangan */
+      opacity: 1;
+  }
+  60% {
+      transform: translateX(50px); /* Kembali ke posisi sebelumnya */
+      opacity: 0.5; /* Memudar sedikit */
+  }
+  80% {
+      transform: translateX(0); /* Kembali ke posisi awal */
+      opacity: 0; /* Menghilang */
+  }
+}
