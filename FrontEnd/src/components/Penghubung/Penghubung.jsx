@@ -7,12 +7,27 @@ import { Player } from "../../shared";
 export const Penghubung = () => {
     const navigate = useNavigate();
     const location = useLocation();
+
+    // Ambil battleStage dari localStorage atau state navigasi
+    const [battleStage, setBattleStage] = useState(() => {
+        return localStorage.getItem('battleStage') || location.state?.mode || 'battle1';
+    });
+
     const [mode, setMode] = useState('battle');
     const [winner, setWinner] = useState();
-    const [battleStage, setBattleStage] = useState(location.state?.mode || 'battle1'); // Dapatkan stage dari state navigasi
-    const [storyStage, setStoryStage] = useState(17); // Tahap cerita, mulai dari story 17
+    const [storyStage, setStoryStage] = useState(17);
 
-    // Fungsi untuk mendapatkan komponen pertempuran yang sesuai berdasarkan battleStage
+    useEffect(() => {
+        console.log('Location state:', location.state); // Debug state
+        if (location.state?.mode) {
+            setBattleStage(location.state.mode); // Update battleStage dari state navigasi
+        }
+    }, [location.state]);
+
+    useEffect(() => {
+        localStorage.setItem('battleStage', battleStage);
+    }, [battleStage]);
+
     const getCurrentBattleComponent = () => {
         switch (battleStage) {
             case 'battle1': return Battle;
@@ -26,27 +41,26 @@ export const Penghubung = () => {
 
     const CurrentBattle = getCurrentBattleComponent();
 
-    // Logika navigasi setelah kemenangan pertempuran
     useEffect(() => {
         if (mode === 'nextStory') {
             if (battleStage === 'battle2') {
                 setStoryStage(20);
-                navigate(`/story/20 `);
+                navigate(`/story/20`);
             } else if (battleStage === 'battle3') {
                 setStoryStage(23);
-                navigate(`/story/23 `);
+                navigate(`/story/23`);
             } else if (battleStage === 'battle4') {
                 setStoryStage(26);
-                navigate(`/story/26 `)
-            } else if (battleStage === 'battle5'){
+                navigate(`/story/26`);
+            } else if (battleStage === 'battle5') {
                 setStoryStage(29);
-                navigate(`/story/29 `)
-            }else if (storyStage <= 30) {
-                navigate(`/story/${storyStage} `);
-                setStoryStage(prev => prev + 1);
+                navigate(`/story/29`);
+            } else if (storyStage <= 30) {
+                navigate(`/story/${storyStage}`);
+                setStoryStage((prev) => prev + 1);
             } else {
                 setMode('battle');
-                setBattleStage(prev => {
+                setBattleStage((prev) => {
                     if (prev === 'battle1') return 'battle2';
                     if (prev === 'battle2') return 'battle3';
                     if (prev === 'battle3') return 'battle4';
@@ -62,22 +76,25 @@ export const Penghubung = () => {
         <div>
             {mode === 'battle' && CurrentBattle && (
                 <CurrentBattle
-                    onGameEnd={winner => {
+                    onGameEnd={(winner) => {
                         setWinner(winner);
                         if (winner === Player) {
-                            setMode('nextStory'); // Menang -> pindah ke story
+                            setMode('nextStory');
                         } else {
-                            setMode('kalah'); // Kalah -> pindah ke mode kalah
+                            setMode('kalah');
                         }
                     }}
                 />
             )}
 
             {mode === 'kalah' && (
-                <EndMenu winner={winner} onStartClick={() => {
-                    setWinner(undefined);
-                    setMode('battle');
-                }} />
+                <EndMenu
+                    winner={winner}
+                    onStartClick={() => {
+                        setWinner(undefined);
+                        setMode('battle');
+                    }}
+                />
             )}
         </div>
     );

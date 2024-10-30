@@ -1058,7 +1058,7 @@ export const useBattleSequence3 = (sequence) => { //selesai
               const sound = new Audio(backSoundHeal); // [Ditambahkan]
               sound.volume = 1.0; // [Ditambahkan] Atur volume (0.0 - 1.0)
               sound.play(); // [Ditambahkan]
-
+              await wait(2200);
               setAnnouncerMassage(
                 `sebagian besar nyawa ${attacker.name} telah pulih!`,
               );

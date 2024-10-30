@@ -23,7 +23,7 @@ const Story = () => {
 
             "setiap perjalanan, kamu akan menghadapi banyak rintangan untuk menuju gunung kamu harus melewati semua rintangan untuk melanjutkan perjalanan",
 
-            "Di awal perjalanan bertemulah dengan penjaga pintu gunung  si Giant Super  yang menghalangi jalan",
+            "Di awal perjalanan bertemulah dengan penjaga pintu gunung  si Giant Spider yang menghalangi jalan",
 
             " di tengah perjalanan tiba tiba terdengar suara dari dalam hutan.Laba laba besar keluar dari dalam hutan menghadang Sidi mantra",
 

@@ -101,16 +101,23 @@ export const Battle = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
     const bgmAudioRef = useRef(null);
 
     useEffect(() => {
-        // Mengatur audio agar tetap diputar ketika komponen dimount
         const bgmAudio = bgmAudioRef.current;
-        if (bgmAudio) {
-            bgmAudio.volume = 0.99; // Contoh: mengatur volume (opsional)
-            bgmAudio.play().catch((e) => console.log(e));
-        }
+
+        const handleUserInteraction = () => {
+            if (bgmAudio) {
+                bgmAudio.play().catch((e) => console.log("Autoplay blocked:", e));
+            }
+        };
+    
+        // Dengarkan interaksi ringan dari pengguna (click atau movement)
+        window.addEventListener("click", handleUserInteraction);
+        window.addEventListener("mousemove", handleUserInteraction);
 
         return () => {
+            window.removeEventListener("click", handleUserInteraction);
+            window.removeEventListener("mousemove", handleUserInteraction);
             if (bgmAudio) {
-                bgmAudio.pause(); // Menghentikan audio jika komponen di-unmount
+                bgmAudio.pause();
             }
         };
     }, []);
@@ -703,16 +710,23 @@ export const Battle2 = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
     const bgmAudioRef = useRef(null);
 
     useEffect(() => {
-        // Mengatur audio agar tetap diputar ketika komponen dimount
         const bgmAudio = bgmAudioRef.current;
-        if (bgmAudio) {
-            bgmAudio.volume = 0.5; // Contoh: mengatur volume (opsional)
-            bgmAudio.play().catch((e) => console.log(e));
-        }
+
+        const handleUserInteraction = () => {
+            if (bgmAudio) {
+                bgmAudio.play().catch((e) => console.log("Autoplay blocked:", e));
+            }
+        };
+    
+        // Dengarkan interaksi ringan dari pengguna (click atau movement)
+        window.addEventListener("click", handleUserInteraction);
+        window.addEventListener("mousemove", handleUserInteraction);
 
         return () => {
+            window.removeEventListener("click", handleUserInteraction);
+            window.removeEventListener("mousemove", handleUserInteraction);
             if (bgmAudio) {
-                bgmAudio.pause(); // Menghentikan audio jika komponen di-unmount
+                bgmAudio.pause();
             }
         };
     }, []);
@@ -1300,19 +1314,27 @@ export const Battle3 = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
     const bgmAudioRef = useRef(null);
 
     useEffect(() => {
-        // Mengatur audio agar tetap diputar ketika komponen dimount
         const bgmAudio = bgmAudioRef.current;
-        if (bgmAudio) {
-            bgmAudio.volume = 0.4; // Contoh: mengatur volume (opsional)
-            bgmAudio.play().catch((e) => console.log(e));
-        }
+
+        const handleUserInteraction = () => {
+            if (bgmAudio) {
+                bgmAudio.play().catch((e) => console.log("Autoplay blocked:", e));
+            }
+        };
+    
+        // Dengarkan interaksi ringan dari pengguna (click atau movement)
+        window.addEventListener("click", handleUserInteraction);
+        window.addEventListener("mousemove", handleUserInteraction);
 
         return () => {
+            window.removeEventListener("click", handleUserInteraction);
+            window.removeEventListener("mousemove", handleUserInteraction);
             if (bgmAudio) {
-                bgmAudio.pause(); // Menghentikan audio jika komponen di-unmount
+                bgmAudio.pause();
             }
         };
     }, []);
+
 
 
 
@@ -1899,19 +1921,27 @@ export const Battle4 = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
     const bgmAudioRef = useRef(null);
 
     useEffect(() => {
-        // Mengatur audio agar tetap diputar ketika komponen dimount
         const bgmAudio = bgmAudioRef.current;
-        if (bgmAudio) {
-            bgmAudio.volume = 0.5; // Contoh: mengatur volume (opsional)
-            bgmAudio.play().catch((e) => console.log(e));
-        }
+
+        const handleUserInteraction = () => {
+            if (bgmAudio) {
+                bgmAudio.play().catch((e) => console.log("Autoplay blocked:", e));
+            }
+        };
+    
+        // Dengarkan interaksi ringan dari pengguna (click atau movement)
+        window.addEventListener("click", handleUserInteraction);
+        window.addEventListener("mousemove", handleUserInteraction);
 
         return () => {
+            window.removeEventListener("click", handleUserInteraction);
+            window.removeEventListener("mousemove", handleUserInteraction);
             if (bgmAudio) {
-                bgmAudio.pause(); // Menghentikan audio jika komponen di-unmount
+                bgmAudio.pause();
             }
         };
     }, []);
+
 
 
     return (
@@ -2497,19 +2527,27 @@ export const Battle5 = ({ onGameEnd, onAttack, onMagic, onHeal }) => {
     const bgmAudioRef = useRef(null);
 
     useEffect(() => {
-        // Mengatur audio agar tetap diputar ketika komponen dimount
         const bgmAudio = bgmAudioRef.current;
-        if (bgmAudio) {
-            bgmAudio.volume = 0.5; // Contoh: mengatur volume (opsional)
-            bgmAudio.play().catch((e) => console.log(e));
-        }
+
+        const handleUserInteraction = () => {
+            if (bgmAudio) {
+                bgmAudio.play().catch((e) => console.log("Autoplay blocked:", e));
+            }
+        };
+    
+        // Dengarkan interaksi ringan dari pengguna (click atau movement)
+        window.addEventListener("click", handleUserInteraction);
+        window.addEventListener("mousemove", handleUserInteraction);
 
         return () => {
+            window.removeEventListener("click", handleUserInteraction);
+            window.removeEventListener("mousemove", handleUserInteraction);
             if (bgmAudio) {
-                bgmAudio.pause(); // Menghentikan audio jika komponen di-unmount
+                bgmAudio.pause();
             }
         };
     }, []);
+
 
 
     return (
